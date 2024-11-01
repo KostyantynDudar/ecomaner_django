@@ -1,3 +1,5 @@
+# settings.py
+
 """
 Django settings for ecomaner project.
 
@@ -30,14 +32,29 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
+
 INSTALLED_APPS = [
+    # стандартные приложения Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # созданные вами приложения
+    'users',
+    'main',
+    'profile_app',  # переименовали profile на profile_app
+    'market',
+    'help_platform',
+    'eco_map',
+    'game',
+    'research',
+    'contact',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
