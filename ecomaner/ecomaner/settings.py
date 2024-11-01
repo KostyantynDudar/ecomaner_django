@@ -14,8 +14,19 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+
+
+import os
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Инициализация переменных окружения
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,9 +36,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o@207%&fta1=9&_ubzq3a-0_5=gcb%#6z1y5y@7$cb^i(bt%^t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ecomaner.com', 'www.ecomaner.com', 'localhost']
+
 
 
 # Application definition
@@ -36,6 +48,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # стандартные приложения Django
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +59,7 @@ INSTALLED_APPS = [
     # созданные вами приложения
     'users',
     'main',
-    'profile_app',  # переименовали profile на profile_app
+    'user_profile',  # переименовали profile на profile_app
     'market',
     'help_platform',
     'eco_map',
@@ -90,12 +103,28 @@ WSGI_APPLICATION = 'ecomaner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Настройки базы данных
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': env('DB_NAME'),
+        # 'USER': env('DB_USER'),
+        # 'PASSWORD': env('DB_PASSWORD'),
+        # 'HOST': env('DB_HOST'),
+        # 'PORT': env('DB_PORT'),
+
+        # Прямое указание параметров подключения
+        'NAME': 'ecomaner_db',
+        'USER': 'postgres',
+        'PASSWORD': 'f!#8Cc(nNXL_5645U)R^5Bi6bK_(te3v)',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
+
+
+# Секретный ключ для JWT (если будет использоваться в Django)
+SECRET_KEY = env('JWT_SECRET')
 
 
 # Password validation
@@ -116,6 +145,37 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',  # Вывод полного формата сообщений
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',  # Уровень DEBUG выводит все SQL-запросы
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'django': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+}
+
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -133,8 +193,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
