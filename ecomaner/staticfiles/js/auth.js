@@ -1,7 +1,3 @@
-
-    <!-- Скрипт для работы кнопки MetaMask -->
-<script>
-
 // Скрипт для работы кнопки MetaMask
 document.getElementById('registerButton').addEventListener('click', async () => {
     console.log("Нажата кнопка 'Вход через MetaMask'");
@@ -47,11 +43,6 @@ document.getElementById('registerButton').addEventListener('click', async () => 
     }
 });
 
-
-
-</script>
-
-<script>
 // Обработчик для кнопки "Регистрация по Email"
 document.getElementById('emailRegisterButton').addEventListener('click', async () => {
     const email = prompt('Введите ваш Email для регистрации:');
@@ -71,10 +62,7 @@ document.getElementById('emailRegisterButton').addEventListener('click', async (
         }
     }
 });
-</script>
 
-
-<script>
 // Обработчик для кнопки "Вход по Email"
 document.getElementById('emailLoginButton').addEventListener('click', async () => {
     const email = prompt('Введите ваш Email:');
@@ -101,8 +89,3 @@ document.getElementById('emailLoginButton').addEventListener('click', async () =
         }
     }
 });
-
-</script>
-
-
-
