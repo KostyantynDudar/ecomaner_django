@@ -3,3 +3,12 @@ body {
     background-color: #f8f9fa;
     color: #333;
 }
+
+
+/* Стили для контейнера карты */
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+
