@@ -1,25 +1,54 @@
 {% extends "base.html" %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Экоманер - Главная{% endblock %}
 
 {% block content %}
-    <h1>Добро пожаловать на главную страницу!</h1>
-<div style="border: 1px solid red; padding: 20px;">
-    <h1>Добро пожаловать на главную страницу!</h1>
-    <!-- остальной контент -->
-</div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Наш проект</h5>
-                        <p class="card-text">Описание того, чем мы занимаемся в Экоманер.</p>
-                        <a href="{% url 'about' %}" class="btn btn-secondary">Подробнее</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Можно добавить больше карточек -->
-        </div>
+    <!-- Верхняя панель -->
+    <div id="top-bar">
+        Экоманер — Платформа экологических инициатив!!!
+        <span id="pilot-dashboard-link" style="display: none; margin-left: 20px; cursor: pointer; color: #4CAF50;">
+            Кабина пилота
+        </span>
     </div>
+
+    <header>
+        <h1>Экоманер</h1>
+        <div id="menu-container"></div> <!-- Контейнер для меню -->
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <div id="auth-buttons-container">
+            <button id="registerButton">Вход через MetaMask</button>
+            <button id="emailRegisterButton">Регистрация по Email!!</button>
+            <button id="emailLoginButton">Вход по Email!!</button>
+            <button id="pilotDashboardButton" style="display: none;">Кабина пилота</button>
+            <button id="logoutButton" onclick="logout()">Выйти</button>
+        </div>
+
+        <h2>Добро пожаловать на сайт Экоманер!</h2>
+        <p>Экоманер — это проект, в котором вы можете стать активным участником сохранения экологии. За каждое полезное действие вы получаете вознаграждение в виде токенов нашего проекта.</p>
+
+        <!-- Блок о Telegram-боте -->
+        <section id="telegram-bot-info">
+            <h3>Наш Telegram-бот</h3>
+            <p>Присоединяйтесь к нашему <a href="https://t.me/ecomaner_bot" target="_blank">Telegram-боту</a>, где вы сможете отправлять отчеты о своих экологических действиях.</p>
+        </section>
+
+        <!-- Описание схемы работы -->
+        <section id="how-it-works">
+            <h3>Как это работает</h3>
+            <ol>
+                <li>Зарегистрируйтесь через Telegram-бот и начинайте участвовать.</li>
+                <li>Выполняйте полезные для экологии действия: сортируйте мусор, фотографируйте свалки, сообщайте о пунктах приема отходов.</li>
+                <li>Отправьте доказательства выполненного действия через бота.</li>
+                <li>После проверки администратора вам начисляются игровые баллы и NFT-токены.</li>
+                <li>Вы можете обменивать свои токены на фиатные деньги или криптовалюту.</li>
+            </ol>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Экоманер. Все права защищены.</p>
+    </footer>
 {% endblock %}
