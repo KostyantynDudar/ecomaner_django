@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
+{% extends "base.html" %}
 
-    <!-- Подключаем Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    
+{% block title %}Главная страница{% endblock %}
 
-
-</head>
-<body>
+{% block content %}
     <h1>Добро пожаловать на главную страницу!</h1>
-    
-
-
-
-    <!-- Подключаем Bootstrap JavaScript (после всех скриптов) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-</body>
-</html>
-
+<div style="border: 1px solid red; padding: 20px;">
+    <h1>Добро пожаловать на главную страницу!</h1>
+    <!-- остальной контент -->
+</div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Наш проект</h5>
+                        <p class="card-text">Описание того, чем мы занимаемся в Экоманер.</p>
+                        <a href="{% url 'about' %}" class="btn btn-secondary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Можно добавить больше карточек -->
+        </div>
+    </div>
+{% endblock %}
