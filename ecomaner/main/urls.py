@@ -18,4 +18,20 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('store/', views.store, name='store'),
     path('map/', views.map, name='map'),
+
+    path('api/register-email/', views.RegisterUserView.as_view(), name='register_email'),
+
+]
+
+# main/urls.py
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+urlpatterns += [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+
+
+urlpatterns += [
+    path('api/photo-locations/', PhotoLocationsView.as_view(), name='photo_locations'),
 ]
