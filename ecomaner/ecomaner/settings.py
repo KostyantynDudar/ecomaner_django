@@ -48,7 +48,7 @@ ALLOWED_HOSTS = ['ecomaner.com', 'www.ecomaner.com', 'localhost']
 
 INSTALLED_APPS = [
     # стандартные приложения Django
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
