@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'game',
     'research',
     'contact',
+    'rest_framework',
 ]
 
 
