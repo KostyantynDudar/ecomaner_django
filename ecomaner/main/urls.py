@@ -1,7 +1,8 @@
 # main/urls.py
 from django.contrib import admin
-from django.urls import path
+
 from . import views  # импорт views, если они находятся в текущем приложении
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,8 +19,10 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('store/', views.store, name='store'),
     path('map/', views.map, name='map'),
+    path('api/', include('api.urls')),
 
-    path('api/register-email/', views.RegisterUserView.as_view(), name='register_email'),
+    
+    #path('api/register-email/', views.RegisterUserView.as_view(), name='register_email'),
 
 ]
 
@@ -32,6 +35,3 @@ urlpatterns += [
 ]
 
 
-urlpatterns += [
-    path('api/photo-locations/', PhotoLocationsView.as_view(), name='photo_locations'),
-]

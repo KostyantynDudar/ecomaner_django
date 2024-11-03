@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'research',
     'contact',
     'rest_framework',
+    'api',
 ]
 
 

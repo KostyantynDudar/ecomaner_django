@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('main.urls')),  # подключение главной страницы из приложения main
     path('admin/', admin.site.urls),
     
+    path('api/', include('api.urls')),  # подключение маршрутов API
 ]
