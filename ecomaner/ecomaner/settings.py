@@ -1,5 +1,7 @@
 # settings.py
 
+
+
 """
 Django settings for ecomaner project.
 
@@ -214,7 +216,5 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-
-
 
 
