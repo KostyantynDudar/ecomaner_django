@@ -21,6 +21,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),         # Панель администратора Django
-    path('api/main/', include('apps.main.urls')), # API для главной страницы и других данных основного приложения
+    path('admin/', admin.site.urls),         
+    path('api/', include('api.urls')),  # подключаем api.urls
 ]

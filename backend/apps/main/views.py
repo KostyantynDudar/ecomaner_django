@@ -1,85 +1,14 @@
-# main/views.py
+# apps/main/views.py
 from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
+# Простейший HTML-рендеринг
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html')  # Убедитесь, что шаблон 'home.html' существует в папке templates
 
-def about(request):
-    return render(request, 'about.html')
-
-def how_it_works(request):
-    return render(request, 'how_it_works.html')
-
-def civilizations(request):
-    return render(request, 'civilizations.html')
-
-def gameplay(request):
-    return render(request, 'gameplay.html')
-
-def eternal_items(request):
-    return render(request, 'eternal_items.html')
-
-def research(request):
-    return render(request, 'research.html')
-
-def participation(request):
-    return render(request, 'participation.html')
-
-def news(request):
-    return render(request, 'news.html')
-
-def faq(request):
-    return render(request, 'faq.html')
-
-def contact(request):
-    return render(request, 'contact.html')
-
-def store(request):
-    return render(request, 'store.html')
-
-def map(request):
-    return render(request, 'map.html')
-
-# main/views.py
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from django.contrib.auth.models import User
-from apps.main.serializers import UserSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth.hashers import make_password
-
-class RegisterUserView(APIView):
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(password=make_password(request.data['password']))
-            return Response({'message': 'Успешная регистрация'}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def generate_token(user):
-        refresh = RefreshToken.for_user(user)
-        return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-        }
-
-from apps.main.models import Photo
-from apps.main.serializers import PhotoSerializer
-
-class PhotoLocationsView(APIView):
-    def get(self, request):
-        photos = Photo.objects.all()
-        serializer = PhotoSerializer(photos, many=True)
-        return Response(serializer.data)
-
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
-
+# Пример API-представления
 class HomeView(APIView):
     def get(self, request):
-        # Данные для главной страницы, которые будут отправляться в виде JSON
         data = {"message": "Welcome to Ecomaner!"}
         return Response(data)
-

@@ -40,7 +40,8 @@ SECRET_KEY = 'django-insecure-o@207%&fta1=9&_ubzq3a-0_5=gcb%#6z1y5y@7$cb^i(bt%^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ecomaner.com', 'www.ecomaner.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ecomaner.com', 'www.ecomaner.com']
+
 
 
 
@@ -80,7 +81,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Адрес фронтенда на React
+    "http://localhost:3000",  
+    "https://ecomaner.com",
+    # Адрес фронтенда на React
 ]
 
 ROOT_URLCONF = 'ecomaner_project.urls'
@@ -105,7 +108,8 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'ecomaner.wsgi.application'
+WSGI_APPLICATION = 'ecomaner_project.wsgi.application'
+
 
 
 # Database
