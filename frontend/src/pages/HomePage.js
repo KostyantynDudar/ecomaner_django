@@ -5,10 +5,14 @@ const HomePage = () => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
+        console.log("HomePage useEffect запущен");
         fetch('https://ecomaner.com/api/main/home/')  // Запрос к API Django
             .then(response => response.json())
-            .then(data => setMessage(data.message))
-            .catch(error => console.error("Error fetching data:", error));
+            .then(data => {
+                console.log("Получено сообщение:", data.message);
+                setMessage(data.message);
+            })
+            .catch(error => console.error("Ошибка при получении данных:", error));
     }, []);
 
     return (

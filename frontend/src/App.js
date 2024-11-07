@@ -1,20 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 import Header from './components/Header';
+import './styles/style.css';
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        {/* Маршрут для главной страницы */}
         <Route path="/" element={<HomePage />} />
-        {/* Другие маршруты можно добавить здесь */}
+        <Route path="/about" element={<AboutPage />} />
+        {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>
   );
 }
+
 console.log("API Base URL:", process.env.REACT_APP_API_BASE_URL);
 
 export default App;
