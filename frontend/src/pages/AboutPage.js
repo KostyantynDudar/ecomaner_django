@@ -6,14 +6,7 @@ const AboutPage = () => {
 
     return (
         <div>
-            <div className="menu-container">
-                <div className="menu">
-                    <a href="/">Главная</a>
-                    <a href="/about">О проекте</a>
-                    <a href="/map">Карта</a>
-                    <a href="/faq">FAQ</a>
-                </div>
-            </div>
+
 
             {/* Основной контент с категориями */}
             <div className="category-list">

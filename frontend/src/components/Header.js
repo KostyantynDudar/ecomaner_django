@@ -1,7 +1,7 @@
 // src/components/Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/style.css';
+import '../styles/Header.css';
 
 
 const Header = () => {
@@ -13,11 +13,15 @@ const Header = () => {
       <nav className="menu">
         <Link to="/about">О проекте</Link>
         <Link to="/how-it-works">Как это работает</Link>
+        <Link to="/faq">FAQ</Link>
+        <Link to="/join">Участие</Link>
+        <Link to="/map">Карта</Link>
+        <Link to="/gameplay">Игровой процесс</Link>
         <Link to="/civilizations">Цивилизации</Link>
         <Link to="/eternal-things">Вечные вещи</Link>
-        <Link to="/join">Участие</Link>
+
         <Link to="/news">Новости</Link>
-        <Link to="/faq">FAQ</Link>
+
         <Link to="/contact">Контакты</Link>
       </nav>
       <div className="auth-buttons">

@@ -1,0 +1,41 @@
+/* src/styles/Gameplay.css */
+
+.gameplay header {
+    text-align: center;
+    color: #ffcc00;
+    padding: 20px;
+    background-color: #333;
+}
+
+/* Стиль для вступительного абзаца */
+.intro {
+    max-width: 600px; /* Ограничиваем ширину */
+    margin: 0 auto; /* Центрируем */
+    padding: 10px 0; /* Уменьшаем отступы */
+    font-size: 1em; /* Уменьшаем размер шрифта */
+    color: #e0e0e0;
+}
+
+.gameplay .section {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gameplay h1 {
+    font-size: 1.8em;
+}
+
+.gameplay h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.gameplay .section h3 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
