@@ -10,6 +10,7 @@ import FaqPage from './pages/FaqPage';
 import ParticipationPage from './pages/ParticipationPage'; 
 import CivilizationsPage from './pages/CivilizationsPage';
 import EternalThingsPage from './pages/EternalThingsPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/join" element={<ParticipationPage />} />
         <Route path="/civilizations" element={<CivilizationsPage />} />
         <Route path="/eternal-things" element={<EternalThingsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>

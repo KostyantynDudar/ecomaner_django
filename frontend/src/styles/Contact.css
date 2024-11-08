@@ -1,0 +1,33 @@
+.contact header {
+    text-align: center;
+    color: #ffcc00;
+    padding: 20px;
+    background-color: #333;
+}
+
+.contact .section {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact h2, .contact h3 {
+    color: #6ee86e;
+}
+
+.contact .contact-info {
+    margin: 20px 0;
+}
+
+.contact .contact-info a {
+    color: #00FF41;
+    text-decoration: none;
+}
+.contact .contact-info a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
+}
