@@ -1,0 +1,45 @@
+/* src/styles/Civilizations.css */
+
+.civilizations header {
+    text-align: center;
+    color: #ffcc00;
+    padding: 20px;
+    background-color: #333;
+}
+
+.civilizations .civilization-section {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.civilizations h2 {
+    font-size: 1.5em;
+    color: #6ee86e;
+}
+
+.civilizations .civilization {
+    margin: 20px 0;
+    background-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.civilizations .civilization h4 {
+    color: #ffcc00;
+}
+
+.civilizations .civilization img {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.civilizations p {
+    color: #e0e0e0;
+}
