@@ -19,6 +19,7 @@ Including another URLconf
 # ecomaner_project/urls.py
 from django.contrib import admin
 from django.urls import path, include
+from apps.eco_map.views import test_view, another_test_view  # Импортируем тестовое представление
 
 
 urlpatterns = [
@@ -26,4 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', include('apps.news.urls')),  # Это для News API
     path('api/main/', include('apps.main.urls')),  # Это для Main API
+    path('api/', include('apps.eco_map.urls')),  # Подключение API для карты
+    path('test/', test_view),  # Подключаем тестовый маршрут напрямую
+    path('test-direct/', test_view),  # Новый тестовый маршрут
 ]
