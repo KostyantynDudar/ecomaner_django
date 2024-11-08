@@ -224,4 +224,7 @@ REST_FRAMEWORK = {
     ),
 }
 
+# settings.py
+
+CSRF_TRUSTED_ORIGINS = ['https://ecomaner.com']
 
