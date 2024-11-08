@@ -6,6 +6,7 @@ import Header from './components/Header';
 import './styles/style.css';
 import GameplayPage from './pages/GameplayPage'
 import HowItWorksPage from './pages/HowItWorksPage';
+import FaqPage from './pages/FaqPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/gameplay" element={<GameplayPage />} /> 
         <Route path="/how-it-works" element={<HowItWorksPage />} /> 
+        <Route path="/faq" element={<FaqPage />} />
         {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>
