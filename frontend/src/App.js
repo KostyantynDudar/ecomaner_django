@@ -5,6 +5,7 @@ import AboutPage from './pages/AboutPage';
 import Header from './components/Header';
 import './styles/style.css';
 import GameplayPage from './pages/GameplayPage'
+import HowItWorksPage from './pages/HowItWorksPage';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/gameplay" element={<GameplayPage />} /> {/* Добавляем маршрут */}
+        <Route path="/gameplay" element={<GameplayPage />} /> 
+        <Route path="/how-it-works" element={<HowItWorksPage />} /> 
         {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>
