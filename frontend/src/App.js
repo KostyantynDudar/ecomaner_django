@@ -11,6 +11,7 @@ import ParticipationPage from './pages/ParticipationPage';
 import CivilizationsPage from './pages/CivilizationsPage';
 import EternalThingsPage from './pages/EternalThingsPage';
 import ContactPage from './pages/ContactPage';
+import NewsList from './components/NewsList';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/civilizations" element={<CivilizationsPage />} />
         <Route path="/eternal-things" element={<EternalThingsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/news" element={<NewsList />} />
         {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>

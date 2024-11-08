@@ -20,7 +20,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),         
-    path('api/', include('api.urls')),  # подключаем api.urls
+
+    path('admin/', admin.site.urls),
+    path('news/', include('apps.news.urls')),  # Это для News API
+    path('api/main/', include('apps.main.urls')),  # Это для Main API
 ]

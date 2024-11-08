@@ -19,6 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://127.0.0.1:8000",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -44,12 +45,12 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.25.9"
   },
-"babel": {
-  "presets": ["react-app"],
-  "plugins": [
-    "@babel/plugin-proposal-private-property-in-object",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-private-methods"
-  ]
-}
+  "babel": {
+    "presets": ["react-app"],
+    "plugins": [
+      "@babel/plugin-proposal-private-property-in-object",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-private-methods"
+    ]
+  }
 }

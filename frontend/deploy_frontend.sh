@@ -8,7 +8,7 @@ BUILD_DIR="$FRONTEND_DIR/build"
 STATIC_DIR="/home/ecomaner_django/backend/staticfiles"
 
 # Переходим в папку фронтенда
-cd "$FRONTEND_DIR" || exit 1
+cd "$FRONTEND_DIR" || { echo "Ошибка: не удалось перейти в директорию фронтенда"; exit 1; }
 
 # Устанавливаем переменную для отключения ESLint (если нужно)
 export DISABLE_ESLINT_PLUGIN=true
@@ -21,10 +21,13 @@ if [ $? -ne 0 ]; then
 fi
 echo "Сборка завершена успешно."
 
-# Перемещаем файлы сборки в папку для статики
+# Удаляем старые файлы из папки статики
+echo "Удаление старых файлов из $STATIC_DIR"
+rm -rf "$STATIC_DIR"/* || { echo "Ошибка при удалении файлов из $STATIC_DIR"; exit 1; }
+
+# Копируем файлы сборки в папку статики
 echo "Копирование файлов сборки в папку статики"
-rm -rf "$STATIC_DIR/*"  # Удаляем старые файлы
-cp -r "$BUILD_DIR/"* "$STATIC_DIR/"
+cp -r "$BUILD_DIR/"* "$STATIC_DIR/" || { echo "Ошибка при копировании файлов"; exit 1; }
 
 # Перезагружаем Nginx для применения изменений
 echo "Перезагрузка Nginx"
@@ -36,4 +39,3 @@ fi
 echo "Nginx перезагружен."
 
 echo "=== Деплой завершен успешно ==="
-
