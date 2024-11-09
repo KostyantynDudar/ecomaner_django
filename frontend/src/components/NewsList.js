@@ -1,15 +1,22 @@
-// src/components/NewsList.js
-
 import React, { useEffect, useState } from 'react';
 
 const NewsList = () => {
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        fetch('/news/api/news/')  // Убедитесь, что этот путь правильный
-            .then(response => response.json())
-            .then(data => setNews(data))
-            .catch(error => console.error("Ошибка загрузки новостей:", error));
+        console.log('Запрос к API отправляется');
+        fetch('/api/news/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Ответ от API:', data);  // Вывод ответа от сервера
+                setNews(data);
+            })
+            .catch(error => console.error("Ошибка при запросе API:", error));
     }, []);
 
     return (
