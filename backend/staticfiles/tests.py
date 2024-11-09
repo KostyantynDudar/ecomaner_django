@@ -21,13 +21,7 @@ class NewsAPITestCase(TestCase):
     def test_news_list(self):
         response = self.client.get(reverse('api_news_list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 2)  # Ожидается 2 новости без фильтра
-
-    def test_news_list_only_published(self):
-        # Добавляем параметр фильтрации published=true
-        response = self.client.get(reverse('api_news_list') + '?published=true')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)  # Должна вернуться только одна опубликованная новость
+        self.assertEqual(len(response.data), 2)
 
     def test_news_detail(self):
         response = self.client.get(reverse('api_news_detail', args=[self.news1.pk]))

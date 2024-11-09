@@ -1,4 +1,3 @@
-# backend/apps/news/urls.py
 from django.urls import path
 from .views import NewsListAPIView, NewsDetailAPIView
 

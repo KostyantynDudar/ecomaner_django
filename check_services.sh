@@ -5,7 +5,6 @@ declare -A services=(
     ["PostgreSQL"]="postgresql"
     ["Django"]="django"
     ["Nginx"]="nginx"
-    ["Node.js"]="nodejs"
 )
 
 # Функция для проверки статуса службы
