@@ -12,6 +12,7 @@ import CivilizationsPage from './pages/CivilizationsPage';
 import EternalThingsPage from './pages/EternalThingsPage';
 import ContactPage from './pages/ContactPage';
 import NewsList from './components/NewsList';
+import Map from './components/Map';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/eternal-things" element={<EternalThingsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/news" element={<NewsList />} />
+        <Route path="/map" element={<Map />} />
         {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>

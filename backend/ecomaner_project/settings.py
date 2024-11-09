@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     # сторонние приложения
     'rest_framework',
 
+    'corsheaders', 
+
 ]
 
 
@@ -85,6 +87,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  
     "https://ecomaner.com",
+    "https://www.ecomaner.com",
     # Адрес фронтенда на React
 ]
 
