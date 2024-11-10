@@ -6,7 +6,7 @@ import '../styles/Map.css';
 
 const Map = () => {
     const [locations, setLocations] = useState([]);
-    const [map, setMap] = useState(null); // Сохраняем экземпляр карты в состоянии
+    const [map, setMap] = useState(null);
 
     // Функция загрузки данных о локациях
     useEffect(() => {
@@ -34,7 +34,7 @@ const Map = () => {
                     data.forEach((location, index) => {
                         console.log(`Локация ${index + 1}: широта ${location.latitude}, долгота ${location.longitude}`);
                     });
-                    setLocations(data); // Сохраняем локации в состоянии
+                    setLocations(data);
                 } else {
                     console.error("Ожидался массив данных от API, но получен другой формат:", data);
                 }
@@ -56,28 +56,41 @@ const Map = () => {
             }).addTo(newMap);
 
             console.log("Карта создана");
-            setMap(newMap); // Сохраняем экземпляр карты в состоянии
+            setMap(newMap);
         }
     }, [map]);
 
     // Добавление маркеров на карту при изменении данных о локациях
     useEffect(() => {
         if (map && locations.length > 0) {
+            console.log("Начинаем добавление маркеров на карту...");
             locations.forEach((location, index) => {
                 const lat = parseFloat(location.latitude);
                 const lng = parseFloat(location.longitude);
 
                 if (!isNaN(lat) && !isNaN(lng)) {
                     console.log(`Добавляем маркер для локации с индексом ${index}: широта ${lat}, долгота ${lng}`);
-                    L.marker([lat, lng])
+                    
+                    // Настройка кастомной иконки
+                    const customIcon = L.icon({
+                        // iconUrl: 'https://example.com/path/to/custom-icon.png', // замените URL на свою картинку
+                        iconSize: [32, 32], // размер иконки
+                        iconAnchor: [16, 32], // точка якоря
+                        popupAnchor: [0, -32] // точка появления попапа
+                    });
+
+                    // Добавление маркера с кастомной иконкой
+                    L.marker([lat, lng], { icon: customIcon })
                         .addTo(map)
-                        .bindPopup(`<b>${location.type}</b><br>${location.description}`);
+                        .bindPopup(`<b>${location.type || 'Тип не указан'}</b><br>${location.description || 'Описание не указано'}`);
                 } else {
                     console.warn(`Некорректные координаты для локации с индексом ${index}:`, location);
                 }
             });
+        } else {
+            console.log("Маркер не добавлен: либо карта еще не загружена, либо массив локаций пустой.");
         }
-    }, [map, locations]); // Этот эффект сработает каждый раз, когда изменится `locations` или `map`
+    }, [map, locations]);
 
     return <div id="map" style={{ height: '600px', width: '100%' }} />;
 };
