@@ -1,14 +1,14 @@
 # eco_map/views.py
+
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import JsonResponse
 from .models import Location
 from .serializers import LocationSerializer
+from .models import LocationPhotoView
 
-# /home/ecomaner_django/backend/apps/eco_map/views.py
-from rest_framework import viewsets
-from .models import Location
-from .serializers import LocationSerializer
 
 class LocationViewSet(viewsets.ModelViewSet):
     """
@@ -44,17 +44,19 @@ class LocationViewSet(viewsets.ModelViewSet):
     4. Добавление пользователя к локации (в разработке):
        Поддержка для назначения авторов и участников.
     """
-    queryset = Location.objects.all()
+    queryset = LocationPhotoView.objects.all()
     serializer_class = LocationSerializer
 
-# /home/ecomaner_django/backend/apps/eco_map/views.py
-from django.http import JsonResponse
 
 def test_view(request):
+    """
+    Тестовая функция для проверки базового маршрута.
+    """
     return JsonResponse({"status": "success", "message": "Basic route works"})
 
-# /home/ecomaner_django/backend/apps/eco_map/views.py
-from django.http import JsonResponse
 
 def another_test_view(request):
+    """
+    Еще одна тестовая функция для проверки другого маршрута.
+    """
     return JsonResponse({"status": "success", "message": "Another test route works"})
