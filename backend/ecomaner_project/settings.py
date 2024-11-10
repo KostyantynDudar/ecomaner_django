@@ -38,7 +38,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-o@207%&fta1=9&_ubzq3a-0_5=gcb%#6z1y5y@7$cb^i(bt%^t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ecomaner.com', 'www.ecomaner.com']
 
@@ -167,6 +167,11 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/ecomaner_django/logs/django_debug.log',
+        },
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',  # Вывод полного формата сообщений
