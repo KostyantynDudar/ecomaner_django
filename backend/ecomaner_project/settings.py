@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 
     'corsheaders', 
 
+    'apps.accounts', 
 ]
 
 
@@ -231,3 +232,5 @@ REST_FRAMEWORK = {
 
 CSRF_TRUSTED_ORIGINS = ['https://ecomaner.com']
 
+
+AUTH_USER_MODEL = 'accounts.CustomUser'

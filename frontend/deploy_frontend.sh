@@ -10,7 +10,7 @@ STATIC_DIR="/home/ecomaner_django/backend/staticfiles"
 # Переходим в папку фронтенда
 cd "$FRONTEND_DIR" || { echo "Ошибка: не удалось перейти в директорию фронтенда"; exit 1; }
 
-# Устанавливаем переменную для отключения ESLint (если нужно)
+# Устанавливаем переменную для отключения ESLint
 export DISABLE_ESLINT_PLUGIN=true
 
 # Запускаем сборку проекта
