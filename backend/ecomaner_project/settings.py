@@ -239,3 +239,11 @@ CSRF_TRUSTED_ORIGINS = ['https://ecomaner.com']
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+SENDGRID_API_KEY = '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'  # Замените на ваш API ключ SendGrid
+# Дополнительные параметры (необязательно)
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # Убедитесь, что установлено False для реальной отправки писем
+SENDGRID_ECHO_TO_STDOUT = True  # Вывод email-сообщений в консоль (для отладки)
+
