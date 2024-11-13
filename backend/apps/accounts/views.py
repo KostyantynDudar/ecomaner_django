@@ -1,17 +1,16 @@
-#  ecomaner_django-master/backend/apps/accounts/views.py
-
-
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
 from django.urls import reverse
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
+from django.http import HttpResponse
 from .forms import RegisterForm
+from .utils.email_utils import send_email  # Подключаем рабочую функцию отправки письма
 
 User = get_user_model()
 
+# Функция регистрации пользователя
 def register_user(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -27,23 +26,18 @@ def register_user(request):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             confirm_url = request.build_absolute_uri(reverse('accounts:confirm_email', args=[uid, token]))
 
-            # Отправка подтверждающего письма
-            send_mail(
-                'Подтверждение регистрации',
-                f'Для завершения регистрации перейдите по ссылке: {confirm_url}',
-                'no-reply@ecomaner.com',
-                [email],
-                fail_silently=False,
-            )
+            # Используем протестированную функцию send_email
+            subject = 'Подтверждение регистрации'
+            html_content = f'Для завершения регистрации перейдите по ссылке: <a href="{confirm_url}">подтвердить</a>'
+            send_email(email, subject, html_content)  # Отправка email
+
             return redirect('accounts:registration_success')
     else:
         form = RegisterForm()
 
     return render(request, 'accounts/register.html', {'form': form})
 
-from django.utils.http import urlsafe_base64_decode
-from django.http import HttpResponse
-
+# Функция подтверждения email
 def confirm_email(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -58,6 +52,12 @@ def confirm_email(request, uidb64, token):
     else:
         return HttpResponse('Ссылка подтверждения недействительна или устарела.')
 
-# Новая функция для успешной регистрации
+# Функция для успешной регистрации
 def registration_success(request):
     return HttpResponse("Регистрация прошла успешно. Проверьте вашу электронную почту для подтверждения.")
+
+def login_view(request):
+    # Логика для страницы входа
+    return render(request, 'accounts/login.html')
+
+

@@ -30,7 +30,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -241,8 +240,13 @@ CSRF_TRUSTED_ORIGINS = ['https://ecomaner.com']
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
+from dotenv import load_dotenv
+load_dotenv()  # Загрузка из .env файла
+
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = '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'  # Замените на ваш API ключ SendGrid
+SENDGRID_API_KEY = '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'
+print(f"Значение SENDGRID_API_KEY: {SENDGRID_API_KEY}")
+
 # Дополнительные параметры (необязательно)
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # Убедитесь, что установлено False для реальной отправки писем
 SENDGRID_ECHO_TO_STDOUT = True  # Вывод email-сообщений в консоль (для отладки)
