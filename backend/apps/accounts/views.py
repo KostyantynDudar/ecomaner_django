@@ -7,6 +7,10 @@ from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from .forms import RegisterForm
 from .utils.email_utils import send_email  # Подключаем рабочую функцию отправки письма
+from django.conf import settings
+
+import logging
+logger = logging.getLogger(__name__)  # Логгер для отслеживания шагов
 
 User = get_user_model()
 
@@ -25,11 +29,13 @@ def register_user(request):
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             confirm_url = request.build_absolute_uri(reverse('accounts:confirm_email', args=[uid, token]))
+            logger.info(f"Ссылка для подтверждения: {confirm_url}")  # Логируем ссылку
 
-            # Используем протестированную функцию send_email
+            # Используем функцию отправки email
             subject = 'Подтверждение регистрации'
             html_content = f'Для завершения регистрации перейдите по ссылке: <a href="{confirm_url}">подтвердить</a>'
             send_email(email, subject, html_content)  # Отправка email
+            logger.info(f"Email отправлен на: {email}")  # Логируем отправку email
 
             return redirect('accounts:registration_success')
     else:
@@ -40,17 +46,23 @@ def register_user(request):
 # Функция подтверждения email
 def confirm_email(request, uidb64, token):
     try:
+        # Декодируем uid и получаем пользователя
         uid = urlsafe_base64_decode(uidb64).decode()
         user = User.objects.get(pk=uid)
+        logger.info(f"Пользователь найден: {user.email}")  # Логируем пользователя
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
+        logger.error("Пользователь не найден или неверный uid")  # Логируем ошибку
 
     if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True
+        user.is_active = True  # Активируем пользователя
         user.save()
-        return HttpResponse('Email подтвержден, теперь вы можете войти.')
+        logger.info("Email успешно подтвержден")  # Логируем успешное подтверждение
+        return render(request, 'accounts/email_confirmed.html')  # Используем шаблон для подтверждения
     else:
-        return HttpResponse('Ссылка подтверждения недействительна или устарела.')
+        logger.warning("Ссылка подтверждения недействительна или устарела")  # Логируем недействительную ссылку
+        return render(request, 'accounts/email_confirmation_invalid.html')  # Шаблон для недействительной ссылки
+
 
 # Функция для успешной регистрации
 def registration_success(request):
@@ -58,6 +70,6 @@ def registration_success(request):
 
 def login_view(request):
     # Логика для страницы входа
-    return render(request, 'accounts/login.html')
+    return render(request, 'accounts/templates/accounts/login.html')
 
 

@@ -16,5 +16,5 @@ urlpatterns = [
     # Маршрут для страницы успешной регистрации
     path('registration-success/', views.registration_success, name='registration_success'),
 
-    path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
+    path('login/', views.login_view, name='login'),
 ]

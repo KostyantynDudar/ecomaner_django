@@ -2,7 +2,7 @@
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Email, Content
-
+from django.conf import settings
 
 
 def send_email(to_email, subject, html_content):

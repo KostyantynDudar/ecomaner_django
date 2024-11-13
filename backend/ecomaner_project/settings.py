@@ -251,9 +251,12 @@ print(type(key_sendgrid))
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = key_sendgrid 
 
-print(f"Значение SENDGRID_API_KEY: {SENDGRID_API_KEY}")
+# print(f"Значение SENDGRID_API_KEY: {SENDGRID_API_KEY}")
 
 # Дополнительные параметры (необязательно)
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False  # Убедитесь, что установлено False для реальной отправки писем
 SENDGRID_ECHO_TO_STDOUT = True  # Вывод email-сообщений в консоль (для отладки)
+
+# ecomaner_project/settings.py
+SITE_URL = "https://ecomaner.com"  # Укажите основной домен
 
