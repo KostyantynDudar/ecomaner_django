@@ -3,7 +3,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, Content
 
 # Убедитесь, что API-ключ указан корректно
-SENDGRID_API_KEY = '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'  # Замените на ваш реальный API ключ
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')  # Замените на ваш реальный API ключ
 
 # Функция для отправки тестового письма
 def send_test_email():

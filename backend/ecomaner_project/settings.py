@@ -243,8 +243,14 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 from dotenv import load_dotenv
 load_dotenv()  # Загрузка из .env файла
 
+key_sendgrid = os.getenv('SENDGRID_API_KEY')
+
+print(key_sendgrid)
+print(type(key_sendgrid))
+
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = key_sendgrid 
+#  SENDGRID_API_KEY = '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'
 print(f"Значение SENDGRID_API_KEY: {SENDGRID_API_KEY}")
 
 # Дополнительные параметры (необязательно)
