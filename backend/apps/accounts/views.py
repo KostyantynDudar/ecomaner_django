@@ -58,3 +58,6 @@ def confirm_email(request, uidb64, token):
     else:
         return HttpResponse('Ссылка подтверждения недействительна или устарела.')
 
+# Новая функция для успешной регистрации
+def registration_success(request):
+    return HttpResponse("Регистрация прошла успешно. Проверьте вашу электронную почту для подтверждения.")
