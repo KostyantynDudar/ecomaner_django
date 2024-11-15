@@ -45,21 +45,3 @@ class Location(models.Model):
         return f"{self.type} - {self.description[:30]}"
 
 
-# backend/apps/eco_map/models.py
-
-class LocationPhotoView(models.Model):
-    location_id = models.IntegerField(primary_key=True)
-    latitude = models.FloatField(null=True, blank=True)
-    longitude = models.FloatField(null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    type = models.CharField(max_length=20, null=True, blank=True)
-    status = models.CharField(max_length=15, null=True, blank=True)
-    photo_id = models.CharField(max_length=250, null=True, blank=True)
-    bot_latitude = models.DecimalField(max_digits=10, decimal_places=6, null=True, blank=True)
-    bot_longitude = models.DecimalField(max_digits=10, decimal_places=6, null=True, blank=True)
-    bot_comments = models.CharField(max_length=250, null=True, blank=True)
-
-    class Meta:
-        managed = False  # Указываем Django не управлять этой моделью
-        db_table = 'location_photo_view'
-

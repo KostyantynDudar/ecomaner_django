@@ -7,11 +7,15 @@ from rest_framework import status
 from django.http import JsonResponse
 from .models import Location
 from .serializers import LocationSerializer
-from .models import LocationPhotoView
+from .models import Location
 
 
 class LocationViewSet(viewsets.ModelViewSet):
-    """
+    
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+
+"""
     API для управления локациями на карте.
     Поддерживает следующие операции:
     - GET /api/locations/ — получить список всех локаций
@@ -44,9 +48,6 @@ class LocationViewSet(viewsets.ModelViewSet):
     4. Добавление пользователя к локации (в разработке):
        Поддержка для назначения авторов и участников.
     """
-    queryset = LocationPhotoView.objects.all()
-    serializer_class = LocationSerializer
-
 
 def test_view(request):
     """

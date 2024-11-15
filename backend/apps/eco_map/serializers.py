@@ -1,7 +1,7 @@
 # apps/eco_map/serializers.py
 
 from rest_framework import serializers
-from .models import Location, LocationPhotoView
+from .models import Location
 
 class LocationSerializer(serializers.ModelSerializer):
     # Поля для данных, отправляемых ботом

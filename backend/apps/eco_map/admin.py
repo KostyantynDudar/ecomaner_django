@@ -1,11 +1,9 @@
-# backend/apps/eco_map/admin.py
 from django.contrib import admin
-from .models import Location, LocationPhotoView
+from .models import Location
 
-
-@admin.register(LocationPhotoView)
-class LocationPhotoViewAdmin(admin.ModelAdmin):
-    list_display = ('location_id', 'latitude', 'longitude', 'bot_latitude', 'bot_longitude', 'photo_id')
-    search_fields = ('description', 'bot_comments')
-    readonly_fields = ('location_id', 'latitude', 'longitude', 'description', 'type', 'status', 
-                       'photo_id', 'bot_latitude', 'bot_longitude', 'bot_comments')
+@admin.register(Location)
+class LocationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'latitude', 'longitude', 'type', 'status', 'address', 'size')
+    search_fields = ('description', 'address')
+    list_filter = ('type', 'status')
+    readonly_fields = ('date_added', 'last_updated')
