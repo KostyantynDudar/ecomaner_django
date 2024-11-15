@@ -39,7 +39,7 @@ SECRET_KEY = 'django-insecure-o@207%&fta1=9&_ubzq3a-0_5=gcb%#6z1y5y@7$cb^i(bt%^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ecomaner.com', 'www.ecomaner.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ecomaner.com', 'www.ecomaner.com', '185.237.207.10']
 
 
 
@@ -85,6 +85,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  
+    "https://ecomaner.com",
+    "https://www.ecomaner.com",
+    # Адрес фронтенда на React
+]
+CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",  
     "https://ecomaner.com",
     "https://www.ecomaner.com",
@@ -170,10 +176,11 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': '/home/ecomaner_django/logs/django_debug.log',
+            'formatter': 'verbose',  # Добавлено для форматирования в файл
         },
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',  # Вывод полного формата сообщений
+            'formatter': 'verbose',
         },
     },
     'formatters': {
@@ -183,14 +190,22 @@ LOGGING = {
         },
     },
     'loggers': {
+        # Корневой логгер для логирования всех сообщений, включая от кастомных приложений
+        '': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        # Логгер для SQL-запросов
         'django.db.backends': {
-            'level': 'DEBUG',  # Уровень DEBUG выводит все SQL-запросы
+            'level': 'DEBUG',
             'handlers': ['console'],
             'propagate': False,
         },
+        # Логгер для самого Django
         'django': {
             'level': 'DEBUG',
-            'handlers': ['console'],
+            'handlers': ['file', 'console'],
             'propagate': False,
         },
     },
@@ -234,7 +249,7 @@ REST_FRAMEWORK = {
 
 # settings.py
 
-CSRF_TRUSTED_ORIGINS = ['https://ecomaner.com']
+
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -249,6 +264,7 @@ print(key_sendgrid)
 print(type(key_sendgrid))
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+#  EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # стандартный SMTP бэкенд Django
 SENDGRID_API_KEY = key_sendgrid 
 
 # print(f"Значение SENDGRID_API_KEY: {SENDGRID_API_KEY}")

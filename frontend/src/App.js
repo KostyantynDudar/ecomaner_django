@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import Header from './components/Header';
+import RegisterPage from './pages/RegisterPage';
+import ConfirmCodePage from './pages/ConfirmCodePage';
+import LoginPage from './pages/LoginPage';
 import './styles/style.css';
 import GameplayPage from './pages/GameplayPage'
 import HowItWorksPage from './pages/HowItWorksPage';
@@ -30,6 +33,9 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/news" element={<NewsList />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/confirm-code" element={<ConfirmCodePage />} />
+        <Route path="/login" element={<LoginPage />} />
         {/* Добавьте другие маршруты, если необходимо */}
       </Routes>
     </Router>

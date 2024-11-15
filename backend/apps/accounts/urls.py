@@ -10,11 +10,9 @@ urlpatterns = [
     # Маршрут для страницы регистрации
     path('register/', views.register_user, name='register'),
 
-    # Маршрут для подтверждения email (активация аккаунта)
-    path('confirm/<uidb64>/<token>/', views.confirm_email, name='confirm_email'),
-
-    # Маршрут для страницы успешной регистрации
-    path('registration-success/', views.registration_success, name='registration_success'),
+    path('confirm-code/', views.confirm_email_code, name='confirm_email_code'),  # Подтверждение кода
 
     path('login/', views.login_view, name='login'),
+
+    path('api/login/', views.login_user_api, name='login_api'),
 ]

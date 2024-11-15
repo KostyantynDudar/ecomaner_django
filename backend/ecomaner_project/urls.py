@@ -25,6 +25,7 @@ from apps.eco_map.views import test_view, another_test_view  # Импортир�
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('apps.accounts.urls')),
+    path('api/accounts/', include('apps.accounts.urls')),
 
     path('api/locations/', include('apps.eco_map.urls')),  # Подключаем API для карты
     path('api/map/', include('apps.eco_map.urls')),  # Унифицированный путь к карте
@@ -35,4 +36,5 @@ urlpatterns = [
 
     path('test/', test_view),  # Тестовый маршрут
     path('test-direct/', test_view),  # Второй тестовый маршрут
+
 ]

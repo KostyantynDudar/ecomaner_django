@@ -1,5 +1,7 @@
-# backend/apps/accounts/views.py
 
+========================================
+backend/apps/accounts/views.py
+========================================
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -19,25 +21,18 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+
 import logging
 logger = logging.getLogger(__name__)  # Логгер для отслеживания шагов
 
 User = get_user_model()
 
-@csrf_exempt
 def register_user(request):
-    logger.info("Начало процесса регистрации")
-
     if request.method == "POST":
-        # Логируем весь request.POST для проверки
-        logger.debug(f"Содержимое request.POST: {request.POST}")
-        
         email = request.POST.get('email')
         password = request.POST.get('password')
-        logger.debug(f"Получен email: {email} и пароль: {password}")
-
+        
         if not email or not password:
-            logger.warning("Отсутствует email или пароль")
             return render(request, 'accounts/register.html', {'error': 'Email and password are required.'})
         
         user = User.objects.create_user(email=email, password=password)
@@ -45,55 +40,42 @@ def register_user(request):
         user.generate_confirmation_code()
         user.save()
 
-        logger.info(f"Пользователь {email} создан и сохранен с кодом подтверждения: {user.email_confirmation_code}")
-        
+        logger.info(f"Вызов send_email с параметрами: {email}, {user.email_confirmation_code}")
         send_email(email, 'Подтверждение регистрации', user.email_confirmation_code)
-        logger.info("Отправка email завершена")
         
         return redirect('accounts:login')
     else:
-        logger.info("Показ формы регистрации")
         return render(request, 'accounts/register.html')
 
-@csrf_exempt
 def confirm_email_code(request):
-    logger.info("Начало процесса подтверждения email-кода")
-
     if request.method == "POST":
         email = request.POST.get('email')
         code = request.POST.get('code')
-        logger.debug(f"Получены данные для подтверждения: email {email}, код {code}")
-
         try:
             user = User.objects.get(email=email, email_confirmation_code=code)
-            user.is_active = True
-            user.email_confirmation_code = None
+            user.is_active = True  # Активируем пользователя
+            user.email_confirmation_code = None  # Очищаем код после подтверждения
             user.save()
-            logger.info(f"Пользователь {email} успешно активирован")
-            return redirect('accounts:login')
+            logger.info(f"Пользователь {user.email} успешно активирован.")
+            return redirect('accounts:login')  # Перенаправляем на страницу входа
         except User.DoesNotExist:
-            logger.warning(f"Ошибка подтверждения для пользователя {email}: неверный код")
             return render(request, 'accounts/confirm_email_code.html', {"error": "Неверный код"})
     return render(request, 'accounts/confirm_email_code.html')
 
 
+
 # Функция для успешной регистрации
 def registration_success(request):
-    logger.info("Отображение страницы успешной регистрации")
     return HttpResponse("Регистрация прошла успешно. Проверьте вашу электронную почту для подтверждения.")
 
 def login_view(request):
-    logger.info("Показ страницы входа")
-
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            logger.info(f"Успешная аутентификация для {user.email}")
             login(request, user)
-            return redirect('home')
+            return redirect('home')  # Перенаправляем на главную страницу после успешного входа
         else:
-            logger.warning("Неудачная попытка входа")
             return render(request, 'accounts/login.html', {'form': form, 'error': 'Неверный email или пароль'})
     else:
         form = AuthenticationForm()
@@ -102,22 +84,86 @@ def login_view(request):
 
 @csrf_exempt
 def login_user_api(request):
-    logger.info("Получен API-запрос на вход")
-
     if request.method == 'POST':
+        # Получаем данные из тела запроса
         data = json.loads(request.body)
         email = data.get('email')
         password = data.get('password')
-        logger.debug(f"API-запрос входа с email: {email}")
 
+        # Аутентификация пользователя
         user = authenticate(request, username=email, password=password)
         
         if user is not None:
-            login(request, user)
-            logger.info(f"Успешный вход через API для {email}")
+            login(request, user)  # Авторизация пользователя в сессии
             return JsonResponse({'message': 'Успешный вход'}, status=200)
         else:
-            logger.warning(f"Неудачный вход через API для {email}")
             return JsonResponse({'message': 'Неверные данные для входа'}, status=400)
-    logger.warning("Использован неподдерживаемый метод для API")
     return JsonResponse({'error': 'Неподдерживаемый метод'}, status=405)
+
+
+
+========================================
+backend/apps/accounts/urls.py
+========================================
+# ecomaner_django-master/backend/apps/accounts/urls.py
+
+from django.urls import path
+from . import views
+from django.contrib.auth.views import LoginView
+
+app_name = 'accounts'
+
+urlpatterns = [
+    # Маршрут для страницы регистрации
+    path('register/', views.register_user, name='register'),
+
+    path('confirm-code/', views.confirm_email_code, name='confirm_email_code'),  # Подтверждение кода
+
+    path('login/', views.login_view, name='login'),
+
+    path('api/login/', views.login_user_api, name='login_api'),
+]
+
+
+========================================
+backend/apps/accounts/forms.py
+========================================
+# forms.py
+from django import forms
+
+class RegisterForm(forms.Form):
+    email = forms.EmailField(label="Email", required=True)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput, required=True)
+
+
+========================================
+backend/apps/accounts/utils/email_utils.py
+========================================
+# backend/utils/email_utils.py
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Email, Content
+from django.conf import settings
+
+
+def send_email(to_email, subject, body):
+    print("Отправка email с параметрами:", to_email, subject, body)
+
+    try:
+        sg = SendGridAPIClient(api_key=settings.SENDGRID_API_KEY)
+        mail_json = {
+            "personalizations": [{"to": [{"email": to_email}], "subject": subject}],
+            "from": {"email": "info@ecomaner.com"},
+            "content": [{"type": "text/html", "value": body}]
+        }
+        response = sg.client.mail.send.post(request_body=mail_json)
+        
+        # Проверка успешности отправки
+        if response.status_code == 202:
+            print("Письмо успешно отправлено.")
+        else:
+            print("Ошибка отправки письма:", response.status_code)
+
+    except Exception as e:
+        print(f"Ошибка: {e}")
+

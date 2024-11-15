@@ -25,8 +25,8 @@ const Header = () => {
         <Link to="/contact">Контакты</Link>
       </nav>
       <div className="auth-buttons">
-        <button className="login-button">Вход</button>
-        <button className="signup-button">Регистрация</button>
+        <Link to="/login" className="login-button">Вход</Link>
+        <Link to="/register" className="signup-button">Регистрация</Link>
       </div>
     </header>
   );

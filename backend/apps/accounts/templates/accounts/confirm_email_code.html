@@ -1,0 +1,11 @@
+<!-- confirm_email_code.html -->
+<form method="POST" action="{% url 'accounts:confirm_email_code' %}">
+    {% csrf_token %}
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+
+    <label for="code">Код подтверждения:</label>
+    <input type="text" name="code" required>
+
+    <button type="submit">Подтвердить</button>
+</form>
