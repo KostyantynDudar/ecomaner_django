@@ -24,7 +24,7 @@ from apps.eco_map.views import test_view, another_test_view  # Импортир�
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('apps.accounts.urls')),
+
     path('api/accounts/', include('apps.accounts.urls')),
 
     path('api/locations/', include('apps.eco_map.urls')),  # Подключаем API для карты

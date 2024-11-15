@@ -29,59 +29,88 @@ def register_user(request):
     logger.info("Начало процесса регистрации")
 
     if request.method == "POST":
-        # Логируем весь request.POST для проверки
-        logger.debug(f"Содержимое request.POST: {request.POST}")
-        
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        logger.debug(f"Получен email: {email} и пароль: {password}")
+        try:
+            # Чтение JSON-данных из request.body
+            data = json.loads(request.body)
+            email = data.get('email')
+            password = data.get('password')
+            logger.debug(f"Получен email: {email} и пароль: {password}")
 
-        if not email or not password:
-            logger.warning("Отсутствует email или пароль")
-            return render(request, 'accounts/register.html', {'error': 'Email and password are required.'})
-        
-        user = User.objects.create_user(email=email, password=password)
-        user.is_active = False
-        user.generate_confirmation_code()
-        user.save()
+            # Проверка наличия email и password
+            if not email or not password:
+                logger.warning("Отсутствует email или пароль")
+                return JsonResponse({'error': 'Email and password are required.'}, status=400)
 
-        logger.info(f"Пользователь {email} создан и сохранен с кодом подтверждения: {user.email_confirmation_code}")
-        
-        send_email(email, 'Подтверждение регистрации', user.email_confirmation_code)
-        logger.info("Отправка email завершена")
-        
-        return redirect('accounts:login')
+            # Создание пользователя
+            user = User.objects.create_user(email=email, password=password)
+            user.is_active = False
+            user.generate_confirmation_code()
+            user.save()
+
+            logger.info(f"Пользователь {email} создан и сохранен с кодом подтверждения: {user.email_confirmation_code}")
+
+            # Отправка кода подтверждения на email
+            send_email(email, 'Подтверждение регистрации', user.email_confirmation_code)
+            logger.info("Отправка email завершена")
+
+            # Возврат успешного ответа
+            return JsonResponse({'message': 'Регистрация прошла успешно. Проверьте свою почту для подтверждения.'}, status=201)
+
+        except json.JSONDecodeError:
+            logger.error("Неверный формат JSON в запросе")
+            return JsonResponse({'error': 'Invalid JSON format.'}, status=400)
     else:
-        logger.info("Показ формы регистрации")
-        return render(request, 'accounts/register.html')
+        logger.warning("Неподдерживаемый метод для регистрации")
+        return JsonResponse({'error': 'Неподдерживаемый метод'}, status=405)
+
+
+# backend/apps/accounts/views.py
 
 @csrf_exempt
 def confirm_email_code(request):
     logger.info("Начало процесса подтверждения email-кода")
 
     if request.method == "POST":
-        email = request.POST.get('email')
-        code = request.POST.get('code')
-        logger.debug(f"Получены данные для подтверждения: email {email}, код {code}")
-
         try:
-            user = User.objects.get(email=email, email_confirmation_code=code)
-            user.is_active = True
-            user.email_confirmation_code = None
-            user.save()
-            logger.info(f"Пользователь {email} успешно активирован")
-            return redirect('accounts:login')
-        except User.DoesNotExist:
-            logger.warning(f"Ошибка подтверждения для пользователя {email}: неверный код")
-            return render(request, 'accounts/confirm_email_code.html', {"error": "Неверный код"})
-    return render(request, 'accounts/confirm_email_code.html')
+            data = json.loads(request.body)
+            email = data.get('email')
+            code = data.get('code')
+            logger.debug(f"Получены данные для подтверждения: email {email}, код {code}")
+
+            if not email or not code:
+                logger.warning("Отсутствует email или код")
+                return JsonResponse({'error': 'Email и код обязательны.'}, status=400)
+
+            try:
+                user = User.objects.get(email=email, email_confirmation_code=code)
+                user.is_active = True
+                user.email_confirmation_code = None
+                user.save()
+                logger.info(f"Пользователь {email} успешно активирован")
+                return JsonResponse({'message': 'Аккаунт успешно активирован'}, status=200)
+            except User.DoesNotExist:
+                logger.warning(f"Ошибка подтверждения для пользователя {email}: неверный код")
+                return JsonResponse({'error': 'Неверный код подтверждения или email'}, status=400)
+
+        except json.JSONDecodeError:
+            logger.error("Неверный формат JSON в запросе")
+            return JsonResponse({'error': 'Invalid JSON format.'}, status=400)
+        except Exception as e:
+            logger.error(f"Ошибка при подтверждении кода: {str(e)}")
+            return JsonResponse({'error': 'Ошибка сервера. Повторите попытку позже.'}, status=500)
+    else:
+        logger.warning("Неподдерживаемый метод для подтверждения кода")
+        return JsonResponse({'error': 'Неподдерживаемый метод'}, status=405)
+
 
 
 # Функция для успешной регистрации
+@csrf_exempt
 def registration_success(request):
     logger.info("Отображение страницы успешной регистрации")
     return HttpResponse("Регистрация прошла успешно. Проверьте вашу электронную почту для подтверждения.")
 
+@csrf_exempt
 def login_view(request):
     logger.info("Показ страницы входа")
 
@@ -103,6 +132,7 @@ def login_view(request):
 @csrf_exempt
 def login_user_api(request):
     logger.info("Получен API-запрос на вход")
+    logger.debug(f"Метод запроса: {request.method}, Заголовки: {request.headers}")
 
     if request.method == 'POST':
         data = json.loads(request.body)

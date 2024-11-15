@@ -8,14 +8,13 @@ const RegisterPage = () => {
   const [message, setMessage] = useState('');
 
   const handleRegister = async () => {
-    // Логирование клика на кнопку "Зарегистрироваться" и введенных данных
     console.log("Клик на кнопку 'Зарегистрироваться' с данными:", { email, password });
 
     try {
-      const response = await axios.post('/api/accounts/register/', { email, password }, {
+      const response = await axios.post('/accounts/register/', { email, password }, {
         headers: { 'Content-Type': 'application/json' }
       });
-      setMessage("Регистрация прошла успешно");
+      setMessage("Регистрация прошла успешно. Пожалуйста, проверьте свою почту для получения кода подтверждения.");
       console.log("Ответ сервера при регистрации:", response.data);
     } catch (error) {
       setMessage("Ошибка регистрации. Пожалуйста, попробуйте снова.");
@@ -25,21 +24,35 @@ const RegisterPage = () => {
 
   return (
     <div>
+      {console.log("Рендер компонента. Текущее состояние email:", email, "password:", password, "message:", message)}
       <h2>Регистрация</h2>
       <input
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => {
+          console.log("Изменение email:", e.target.value);
+          setEmail(e.target.value);
+        }}
       />
       <input
         type="password"
         placeholder="Пароль"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          console.log("Изменение password:", e.target.value);
+          setPassword(e.target.value);
+        }}
       />
-      <button onClick={handleRegister}>Зарегистрироваться</button>
-      {message && <p>{message}</p>}
+      <button onClick={() => {
+        console.log("Клик на кнопку 'Зарегистрироваться'");
+        handleRegister();
+      }}>Зарегистрироваться</button>
+      {message && (
+        <p>
+          {message} {message.includes("успешно") && <a href="/confirm-code">Перейти на страницу подтверждения</a>}
+        </p>
+      )}
     </div>
   );
 };

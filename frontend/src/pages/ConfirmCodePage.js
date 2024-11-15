@@ -1,6 +1,6 @@
 // src/pages/ConfirmCodePage.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../axiosSetup';
 
 const ConfirmCodePage = () => {
   const [email, setEmail] = useState('');
@@ -8,9 +8,14 @@ const ConfirmCodePage = () => {
   const [message, setMessage] = useState('');
 
   const handleConfirmCode = async () => {
+    console.log("Клик на кнопку 'Подтвердить' с данными:", { email, code });
+
     try {
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/accounts/confirm-code/`, { email, code });
+      const response = await axios.post('/accounts/confirm-code/', { email, code }, {
+        headers: { 'Content-Type': 'application/json' }
+      });
       setMessage("Ваш аккаунт успешно активирован.");
+      console.log("Ответ сервера при подтверждении кода:", response.data);
     } catch (error) {
       setMessage("Ошибка подтверждения. Пожалуйста, попробуйте снова.");
       console.error("Ошибка подтверждения:", error);
@@ -19,20 +24,30 @@ const ConfirmCodePage = () => {
 
   return (
     <div>
+      {console.log("Рендер компонента подтверждения кода. Текущее состояние email:", email, "code:", code, "message:", message)}
       <h2>Подтверждение кода</h2>
       <input
         type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => {
+          console.log("Изменение email:", e.target.value);
+          setEmail(e.target.value);
+        }}
       />
       <input
         type="text"
         placeholder="Введите код"
         value={code}
-        onChange={(e) => setCode(e.target.value)}
+        onChange={(e) => {
+          console.log("Изменение кода:", e.target.value);
+          setCode(e.target.value);
+        }}
       />
-      <button onClick={handleConfirmCode}>Подтвердить</button>
+      <button onClick={() => {
+        console.log("Клик на кнопку 'Подтвердить'");
+        handleConfirmCode();
+      }}>Подтвердить</button>
       {message && <p>{message}</p>}
     </div>
   );

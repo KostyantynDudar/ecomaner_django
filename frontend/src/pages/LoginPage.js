@@ -8,11 +8,10 @@ const LoginPage = () => {
   const [message, setMessage] = useState('');
 
   const handleLogin = async () => {
-    // Логирование клика на кнопку "Войти" и введенных данных
     console.log("Клик на кнопку 'Войти' с данными:", { email, password });
 
     try {
-      const response = await axios.post('/api/accounts/login/', { email, password }, {
+      const response = await axios.post('/accounts/api-login/', { email, password }, {
         headers: { 'Content-Type': 'application/json' }
       });
       setMessage("Вход выполнен успешно");
