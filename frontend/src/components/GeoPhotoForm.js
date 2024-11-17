@@ -10,6 +10,19 @@ const GeoPhotoForm = ({ userEmail }) => {
   const [photo, setPhoto] = useState(null); // Добавляем стейт для фото
   const [message, setMessage] = useState('');
 
+  // Получаем CSRF-токен из cookies
+  const getCSRFToken = () => {
+    const name = 'csrftoken';
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + '=')) {
+        return cookie.substring(name.length + 1);
+      }
+    }
+    return null;
+  };
+
   // Обработчик для выбора файла
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0]);
@@ -48,27 +61,35 @@ const GeoPhotoForm = ({ userEmail }) => {
     formData.append('description', description);
     formData.append('photo', photo); // Добавляем фото
     formData.append('created_by', userEmail); // Добавляем email
-    console.log('Полученный userEmail в GeoPhotoForm:', userEmail);
+
+    const csrfToken = getCSRFToken(); // Получаем CSRF-токен
+
+    // Выводим отправляемые данные в консоль
+    console.log('Отправляемые данные (FormData):');
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    const headers = {
+      'Content-Type': 'multipart/form-data',
+      'X-CSRFToken': csrfToken, // Передаем CSRF-токен
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    };
+
+    // Выводим заголовки запроса
+    console.log('Заголовки запроса:', headers);
 
     try {
-      const token = localStorage.getItem('access_token'); // Получаем токен из localStorage
-      if (!token) {
-        setMessage('Токен аутентификации отсутствует!');
-        return;
-      }
+      const response = await axios.post('/map/locations/', formData, { headers });
 
-      const response = await axios.post('/map/locations/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`, // Добавляем токен в заголовки
-        },
-      });
+      console.log('Ответ сервера:', response.data);
 
       if (response.status === 201) {
         setMessage('Локация успешно сохранена!');
       }
     } catch (error) {
-      console.error('Ошибка при отправке данных:', error.response || error.message);
+      console.error('Ошибка при отправке данных:', error);
+      console.error('Ответ сервера:', error.response?.data || error.message);
       setMessage('Ошибка при отправке данных: ' + (error.response?.data?.error || error.message));
     }
   };
