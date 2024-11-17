@@ -1,20 +1,36 @@
 # eco_map/views.py
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+from rest_framework.exceptions import PermissionDenied
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import JsonResponse
 from .models import Location
+from django.core.files.storage import default_storage
+from django.views.decorators.csrf import csrf_exempt
 from .serializers import LocationSerializer
-from .models import Location
 
+from rest_framework.permissions import IsAuthenticated
 
 class LocationViewSet(viewsets.ModelViewSet):
-    
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+    permission_classes = [IsAuthenticated]  # Требуем аутентификацию
 
+    def perform_create(self, serializer):
+        # Логируем токен
+        logger.debug(f"Заголовки запроса: {self.request.headers}")
+        logger.debug(f"Пользователь: {self.request.user}")
+        
+        if self.request.user.is_anonymous:
+            raise PermissionDenied("Пользователь должен быть аутентифицирован!")
+        
+        serializer.save(created_by=self.request.user)
 """
     API для управления локациями на карте.
     Поддерживает следующие операции:

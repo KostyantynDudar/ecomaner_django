@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -24,25 +23,32 @@ import './styles/style.css';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Состояние авторизации
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Проверка авторизации завершена
+  const [userEmail, setUserEmail] = useState(''); // Email текущего пользователя
 
   // Проверяем авторизацию при загрузке приложения
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.get('/accounts/check-auth/', {
-          withCredentials: true, // Убедитесь, что куки отправляются
-        });
-        setIsLoggedIn(response.data.isAuthenticated); // Устанавливаем статус авторизации
-      } catch (error) {
-        console.error('Ошибка при проверке авторизации:', error);
-        setIsLoggedIn(false); // Если ошибка, то пользователь не авторизован
-      } finally {
-        setIsAuthChecked(true); // Завершаем проверку авторизации
+  const checkAuth = async () => {
+    try {
+      const response = await axios.get('/accounts/check-auth/', {
+        withCredentials: true, // Убедитесь, что куки отправляются
+      });
+      console.log("Ответ check-auth:", response.data); // Выводим, что возвращает сервер
+      setIsLoggedIn(response.data.isAuthenticated); // Устанавливаем статус авторизации
+      if (response.data.isAuthenticated) {
+        setUserEmail(response.data.email); // Обновляем email
+        console.log("Email пользователя обновлен:", response.data.email); // Логируем email
       }
-    };
+    } catch (error) {
+      console.error('Ошибка при проверке авторизации:', error);
+      setIsLoggedIn(false); // Если ошибка, то пользователь не авторизован
+    } finally {
+      setIsAuthChecked(true); // Завершаем проверку авторизации
+    }
+  };
 
-    checkAuth();
-  }, []);
+  checkAuth();
+}, []);
+
 
   // Успешный вход в систему
   const handleLoginSuccess = () => {
@@ -73,7 +79,7 @@ function App() {
 
         <Routes>
           {/* Основные страницы */}
-          <Route path="/" element={<HomePage />} />
+
           <Route path="/about" element={<AboutPage />} />
           <Route path="/gameplay" element={<GameplayPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
@@ -88,6 +94,10 @@ function App() {
           {/* Регистрация и вход */}
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/confirm-code" element={<ConfirmCodePage />} />
+
+          <Route path="/" element={<HomePage userEmail={userEmail} isAuthChecked={isAuthChecked} />} />
+
+
           <Route
             path="/login"
             element={

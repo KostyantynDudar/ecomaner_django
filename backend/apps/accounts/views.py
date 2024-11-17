@@ -187,8 +187,9 @@ def user_profile(request):
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-def check_authentication(request):
-    if request.user.is_authenticated:
-        return JsonResponse({'isAuthenticated': True})
-    return JsonResponse({'isAuthenticated': False})
-
+@login_required
+def check_auth(request):
+    return JsonResponse({
+        'isAuthenticated': True,
+        'email': request.user.email,  # Убедитесь, что email возвращается
+    })

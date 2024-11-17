@@ -15,11 +15,20 @@ class LocationSerializer(serializers.ModelSerializer):
     bot_longitude = serializers.DecimalField(max_digits=10, decimal_places=6, required=False)
     bot_comments = serializers.CharField(required=False)
 
+    # Поле created_by только для чтения: возвращает email пользователя
+    created_by = serializers.ReadOnlyField(source='created_by.email')
+
     class Meta:
         model = Location
         fields = [
-            'id', 'lat_id', 'long_id', 'comments', 'photo_id',  # Поля для бота
-            'latitude', 'longitude', 'description', 'type', 'status',  # Поля для Django
-            'players_ids', 'date_added', 'last_updated', 'address', 'size', 
-            'bot_latitude', 'bot_longitude', 'bot_comments'  # Дополнительные поля из бота
+            # Поля, необходимые для работы бота
+            'id', 'lat_id', 'long_id', 'comments', 'photo_id',  
+            'bot_latitude', 'bot_longitude', 'bot_comments',  
+            
+            # Поля модели Location
+            'latitude', 'longitude', 'description', 'type', 'status',
+            'players_ids', 'date_added', 'last_updated', 'address', 'size', 'image',
+            
+            # Поле created_by для данных о создателе
+            'created_by',
         ]

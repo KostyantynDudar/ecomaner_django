@@ -20,6 +20,6 @@ urlpatterns = [
 
     path('profile/', views.user_profile, name='user_profile'),  # новый маршрут
 
-    path('check-auth/', views.check_authentication, name='check_auth'),
+    path('check-auth/', views.check_auth, name='check_auth'),
 
 ]
