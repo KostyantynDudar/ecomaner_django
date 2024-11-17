@@ -6,7 +6,9 @@ const instance = axios.create({
   baseURL: 'https://ecomaner.com/api',
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  withCredentials: true, // добавляем чтобы куки отправлялись с запросом
+
 });
 
 export default instance;

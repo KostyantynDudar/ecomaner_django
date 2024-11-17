@@ -1,21 +1,30 @@
 // src/pages/LoginPage.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from '../axiosSetup';
 
-const LoginPage = () => {
+const LoginPage = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     console.log("Клик на кнопку 'Войти' с данными:", { email, password });
 
     try {
       const response = await axios.post('/accounts/api-login/', { email, password }, {
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
       setMessage("Вход выполнен успешно");
       console.log("Ответ сервера при входе:", response.data);
+
+      // Сообщаем об успешном входе
+      onLoginSuccess();
+
+      // Перенаправляем в личный кабинет
+      navigate('/account');
+      window.location.reload(); // Обновляем страницу
     } catch (error) {
       setMessage("Ошибка входа. Проверьте свои данные.");
       console.error("Ошибка входа:", error);

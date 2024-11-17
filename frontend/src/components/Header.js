@@ -3,8 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 
-
-const Header = () => {
+const Header = ({ isLoggedIn, onLogout }) => {
   return (
     <header className="header">
       <div className="logo">
@@ -19,14 +18,22 @@ const Header = () => {
         <Link to="/gameplay">Игровой процесс</Link>
         <Link to="/civilizations">Цивилизации</Link>
         <Link to="/eternal-things">Вечные вещи</Link>
-
         <Link to="/news">Новости</Link>
-
         <Link to="/contact">Контакты</Link>
       </nav>
       <div className="auth-buttons">
-        <Link to="/login" className="login-button">Вход</Link>
-        <Link to="/register" className="signup-button">Регистрация</Link>
+        {/* Показываем кнопки в зависимости от статуса авторизации */}
+        {!isLoggedIn ? (
+          <>
+            <Link to="/login" className="login-button">Вход</Link>
+            <Link to="/register" className="signup-button">Регистрация</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/account" className="account-button">Личный кабинет</Link>
+            <button className="logout-button" onClick={onLogout}>Выйти</button>
+          </>
+        )}
       </div>
     </header>
   );
