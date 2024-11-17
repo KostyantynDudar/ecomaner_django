@@ -90,12 +90,15 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.ecomaner.com",
     # Адрес фронтенда на React
 ]
+CORS_ALLOW_CREDENTIALS = True
+
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",  
     "https://ecomaner.com",
     "https://www.ecomaner.com",
     # Адрес фронтенда на React
 ]
+
 
 ROOT_URLCONF = 'ecomaner_project.urls'
 

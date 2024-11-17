@@ -7,6 +7,9 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from django.http import HttpResponse
 from .forms import RegisterForm
@@ -151,3 +154,41 @@ def login_user_api(request):
             return JsonResponse({'message': 'Неверные данные для входа'}, status=400)
     logger.warning("Использован неподдерживаемый метод для API")
     return JsonResponse({'error': 'Неподдерживаемый метод'}, status=405)
+
+@csrf_exempt
+def logout_user_api(request):
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'message': 'Успешный выход'}, status=200)
+    return JsonResponse({'error': 'Неподдерживаемый метод'}, status=405)
+
+
+
+import logging
+logger = logging.getLogger(__name__)
+
+@login_required
+def user_profile(request):
+    try:
+        user = request.user
+        logging.debug(f"Доступные поля пользователя: {user.__dict__}")
+        data = {
+            'name': user.get_full_name() if hasattr(user, 'get_full_name') else user.email,
+            'email': user.email,
+        }
+        return JsonResponse(data)
+    except Exception as e:
+        logging.error(f"Ошибка при получении профиля: {str(e)}")
+        return JsonResponse({'error': 'Internal Server Error'}, status=500)
+
+
+
+
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+def check_authentication(request):
+    if request.user.is_authenticated:
+        return JsonResponse({'isAuthenticated': True})
+    return JsonResponse({'isAuthenticated': False})
+
