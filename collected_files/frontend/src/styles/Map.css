@@ -1,0 +1,8 @@
+/* frontend/src/styles/map.css */
+
+#map-container {
+    height: 100vh; /* Высота карты на весь экран */
+    width: 100%;   /* Полная ширина карты */
+    position: relative;
+    background-color: #ccc; /* Цвет фона для отладки */
+}

@@ -1,0 +1,70 @@
+/* src/styles/style.css */
+
+/* Основные стили для body */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+}
+
+/* Стили для контейнера меню */
+.menu-container {
+    max-width: 100%;
+    background-color: #333;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Стили для меню */
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    color: #00FF41;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.menu a:hover {
+    background-color: #444;
+    color: #ffcc00;
+}
+
+/* Стиль для разделов с текстом */
+.category-list {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.category-list h2 {
+    color: #ffcc00;
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+.category-list p, .category-list ul {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.category-list ul {
+    padding-left: 20px;
+}
+
+.category-list ul li {
+    margin-bottom: 8px;
+}

@@ -1,0 +1,12 @@
+<!-- news_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ news_item.title }}</h1>
+    <p>{{ news_item.published|date:"d M Y" }}</p>
+    <div>
+        <p>{{ news_item.content }}</p>
+    </div>
+    {% if news_item.image %}
+        <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+    {% endif %}
+{% endblock %}

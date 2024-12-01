@@ -1,0 +1,11 @@
+<!-- register.html -->
+<form method="POST" action="{% url 'accounts:register' %}">
+    {% csrf_token %}
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Зарегистрироваться</button>
+</form>

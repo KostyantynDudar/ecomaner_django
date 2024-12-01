@@ -1,0 +1,42 @@
+/* src/styles/Participation.css */
+
+.participation header {
+    text-align: center;
+    color: #ffcc00;
+    padding: 20px;
+    background-color: #333;
+}
+
+.participation .section {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.participation h2, .participation h3 {
+    color: #6ee86e;
+}
+
+.participation .feature {
+    margin: 20px 0;
+    background-color: #444;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.participation .feature h4 {
+    color: #ffcc00;
+}
+
+.participation p, .participation ul {
+    color: #e0e0e0;
+}
+
+.participation ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}

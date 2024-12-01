@@ -1,0 +1,51 @@
+/* src/styles/HowItWorks.css */
+
+.how-it-works header {
+    text-align: center;
+    color: #ffcc00;
+    padding: 20px;
+    background-color: #333;
+}
+
+.intro {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #e0e0e0;
+}
+
+.how-it-works .section {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.how-it-works h2 {
+    font-size: 1.5em;
+}
+
+.how-it-works h3 {
+    color: #6ee86e;
+    margin-bottom: 10px;
+}
+
+.how-it-works .step {
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.how-it-works img {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.how-it-works ul, .how-it-works ol {
+    padding-left: 20px;
+    color: #e0e0e0;
+}
