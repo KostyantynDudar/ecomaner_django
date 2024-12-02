@@ -1,3 +1,161 @@
+--- FILE: /home/ecomaner_django/collected_files/backend/package.json ---
+{
+  "dependencies": {
+    "i18next": "^24.0.2",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "react-i18next": "^15.1.3"
+  }
+}
+
+
+--- FILE: /home/ecomaner_django/collected_files/backend/package-lock.json ---
+{
+  "name": "backend",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "dependencies": {
+        "i18next": "^24.0.2",
+        "i18next-browser-languagedetector": "^8.0.0",
+        "react-i18next": "^15.1.3"
+      }
+    },
+    "node_modules/@babel/runtime": {
+      "version": "7.26.0",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.26.0.tgz",
+      "integrity": "sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==",
+      "license": "MIT",
+      "dependencies": {
+        "regenerator-runtime": "^0.14.0"
+      },
+      "engines": {
+        "node": ">=6.9.0"
+      }
+    },
+    "node_modules/html-parse-stringify": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz",
+      "integrity": "sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==",
+      "license": "MIT",
+      "dependencies": {
+        "void-elements": "3.1.0"
+      }
+    },
+    "node_modules/i18next": {
+      "version": "24.0.2",
+      "resolved": "https://registry.npmjs.org/i18next/-/i18next-24.0.2.tgz",
+      "integrity": "sha512-D88xyIGcWAKwBTAs4RSqASi8NXR/NhCVSTM4LDbdoU8qb/5dcEZjNCLDhtQBB7Epw/Cp1w2vH/3ujoTbqLSs5g==",
+      "funding": [
+        {
+          "type": "individual",
+          "url": "https://locize.com"
+        },
+        {
+          "type": "individual",
+          "url": "https://locize.com/i18next.html"
+        },
+        {
+          "type": "individual",
+          "url": "https://www.i18next.com/how-to/faq#i18next-is-awesome.-how-can-i-support-the-project"
+        }
+      ],
+      "license": "MIT",
+      "dependencies": {
+        "@babel/runtime": "^7.23.2"
+      },
+      "peerDependencies": {
+        "typescript": "^5"
+      },
+      "peerDependenciesMeta": {
+        "typescript": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/i18next-browser-languagedetector": {
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/i18next-browser-languagedetector/-/i18next-browser-languagedetector-8.0.0.tgz",
+      "integrity": "sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==",
+      "license": "MIT",
+      "dependencies": {
+        "@babel/runtime": "^7.23.2"
+      }
+    },
+    "node_modules/js-tokens": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+      "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
+      "license": "MIT",
+      "peer": true
+    },
+    "node_modules/loose-envify": {
+      "version": "1.4.0",
+      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
+      "integrity": "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==",
+      "license": "MIT",
+      "peer": true,
+      "dependencies": {
+        "js-tokens": "^3.0.0 || ^4.0.0"
+      },
+      "bin": {
+        "loose-envify": "cli.js"
+      }
+    },
+    "node_modules/react": {
+      "version": "18.3.1",
+      "resolved": "https://registry.npmjs.org/react/-/react-18.3.1.tgz",
+      "integrity": "sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==",
+      "license": "MIT",
+      "peer": true,
+      "dependencies": {
+        "loose-envify": "^1.1.0"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
+    "node_modules/react-i18next": {
+      "version": "15.1.3",
+      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-15.1.3.tgz",
+      "integrity": "sha512-J11oA30FbM3NZegUZjn8ySK903z6PLBz/ZuBYyT1JMR0QPrW6PFXvl1WoUhortdGi9dM0m48/zJQlPskVZXgVw==",
+      "license": "MIT",
+      "dependencies": {
+        "@babel/runtime": "^7.25.0",
+        "html-parse-stringify": "^3.0.1"
+      },
+      "peerDependencies": {
+        "i18next": ">= 23.2.3",
+        "react": ">= 16.8.0"
+      },
+      "peerDependenciesMeta": {
+        "react-dom": {
+          "optional": true
+        },
+        "react-native": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/regenerator-runtime": {
+      "version": "0.14.1",
+      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz",
+      "integrity": "sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==",
+      "license": "MIT"
+    },
+    "node_modules/void-elements": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/void-elements/-/void-elements-3.1.0.tgz",
+      "integrity": "sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    }
+  }
+}
+
+
 --- FILE: /home/ecomaner_django/collected_files/backend/export_project.py ---
 import os
 
@@ -2766,10 +2924,11 @@ def generate_token(user_id):
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.7",
+    "axios": "^1.7.8",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^13.0.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.27.0",
     "react-scripts": "^5.0.1",
@@ -2834,10 +2993,11 @@ def generate_token(user_id):
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "axios": "^1.7.7",
+        "axios": "^1.7.8",
         "leaflet": "^1.9.4",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "react-i18next": "^13.0.0",
         "react-leaflet": "^4.2.1",
         "react-router-dom": "^6.27.0",
         "react-scripts": "^5.0.1",
@@ -2852,9 +3012,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/@adobe/css-tools": {
-      "version": "4.4.0",
-      "resolved": "https://registry.npmjs.org/@adobe/css-tools/-/css-tools-4.4.0.tgz",
-      "integrity": "sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==",
+      "version": "4.4.1",
+      "resolved": "https://registry.npmjs.org/@adobe/css-tools/-/css-tools-4.4.1.tgz",
+      "integrity": "sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==",
       "license": "MIT"
     },
     "node_modules/@alloc/quick-lru": {
@@ -2880,6 +3040,23 @@ def generate_token(user_id):
       },
       "engines": {
         "node": ">=6.0.0"
+      }
+    },
+    "node_modules/@apideck/better-ajv-errors": {
+      "version": "0.3.6",
+      "resolved": "https://registry.npmjs.org/@apideck/better-ajv-errors/-/better-ajv-errors-0.3.6.tgz",
+      "integrity": "sha512-P+ZygBLZtkp0qqOAJJVX4oX/sFo5JR3eBWwwuqHHhK0GIgQOKWrAfiAaWX0aArHkRWHMuggFEgAZNxVPwPZYaA==",
+      "license": "MIT",
+      "dependencies": {
+        "json-schema": "^0.4.0",
+        "jsonpointer": "^5.0.0",
+        "leven": "^3.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "peerDependencies": {
+        "ajv": ">=8"
       }
     },
     "node_modules/@babel/code-frame": {
@@ -3058,9 +3235,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/@babel/helper-define-polyfill-provider": {
-      "version": "0.6.2",
-      "resolved": "https://registry.npmjs.org/@babel/helper-define-polyfill-provider/-/helper-define-polyfill-provider-0.6.2.tgz",
-      "integrity": "sha512-LV76g+C502biUK6AyZ3LK10vDpDyCzZnhZFXkH1L75zHPj68+qc8Zfpx2th+gzwA2MzyK+1g/3EPl62yFnVttQ==",
+      "version": "0.6.3",
+      "resolved": "https://registry.npmjs.org/@babel/helper-define-polyfill-provider/-/helper-define-polyfill-provider-0.6.3.tgz",
+      "integrity": "sha512-HK7Bi+Hj6H+VTHA3ZvBis7V/6hu9QuTrnMXNybfUf2iiuU/N97I8VjB+KbhFF8Rld/Lx5MzoCwPCpPjfK+n8Cg==",
       "license": "MIT",
       "dependencies": {
         "@babel/helper-compilation-targets": "^7.22.6",
@@ -5477,6 +5654,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/@jest/console/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/@jest/console/node_modules/jest-message-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-message-util/-/jest-message-util-27.5.1.tgz",
@@ -5586,6 +5779,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/@jest/core/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/@jest/core/node_modules/jest-message-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-message-util/-/jest-message-util-27.5.1.tgz",
@@ -5663,6 +5872,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/@jest/environment/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/@jest/expect-utils": {
       "version": "29.7.0",
       "resolved": "https://registry.npmjs.org/@jest/expect-utils/-/expect-utils-29.7.0.tgz",
@@ -5715,6 +5940,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/@jest/fake-timers/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@jest/fake-timers/node_modules/jest-message-util": {
@@ -5791,6 +6032,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/@jest/globals/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@jest/globals/node_modules/diff-sequences": {
@@ -5945,6 +6202,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/@jest/reporters/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/@jest/reporters/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -6046,6 +6319,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/@jest/test-result/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/@jest/test-sequencer": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/@jest/test-sequencer/-/test-sequencer-27.5.1.tgz",
@@ -6112,6 +6401,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/@jest/transform/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/@jest/transform/node_modules/convert-source-map": {
       "version": "1.9.0",
       "resolved": "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.9.0.tgz",
@@ -6159,6 +6464,22 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+      }
+    },
+    "node_modules/@jest/types/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@jridgewell/gen-mapping": {
@@ -6361,9 +6682,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/@remix-run/router": {
-      "version": "1.20.0",
-      "resolved": "https://registry.npmjs.org/@remix-run/router/-/router-1.20.0.tgz",
-      "integrity": "sha512-mUnk8rPJBI9loFDZ+YzPGdeniYK+FTmRD1TMCz7ev2SNIozyKKpnGgsxO34u6Z4z/t0ITuu7voi/AshfsGsgFg==",
+      "version": "1.21.0",
+      "resolved": "https://registry.npmjs.org/@remix-run/router/-/router-1.21.0.tgz",
+      "integrity": "sha512-xfSkCAchbdG5PnbrKqFWwia4Bi61nH+wm8wLEqfHDyp7Y3dZzgqS2itV8i4gAq9pC2HsTpwyBC6Ds8VHZ96JlA==",
       "license": "MIT",
       "engines": {
         "node": ">=14.0.0"
@@ -6718,23 +7039,47 @@ def generate_token(user_id):
       }
     },
     "node_modules/@testing-library/dom": {
-      "version": "10.4.0",
-      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-10.4.0.tgz",
-      "integrity": "sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==",
+      "version": "8.20.1",
+      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.1.tgz",
+      "integrity": "sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==",
       "license": "MIT",
-      "peer": true,
       "dependencies": {
         "@babel/code-frame": "^7.10.4",
         "@babel/runtime": "^7.12.5",
         "@types/aria-query": "^5.0.1",
-        "aria-query": "5.3.0",
+        "aria-query": "5.1.3",
         "chalk": "^4.1.0",
         "dom-accessibility-api": "^0.5.9",
         "lz-string": "^1.5.0",
         "pretty-format": "^27.0.2"
       },
       "engines": {
-        "node": ">=18"
+        "node": ">=12"
+      }
+    },
+    "node_modules/@testing-library/dom/node_modules/aria-query": {
+      "version": "5.1.3",
+      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
+      "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "deep-equal": "^2.0.5"
+      }
+    },
+    "node_modules/@testing-library/dom/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@testing-library/jest-dom": {
@@ -6759,19 +7104,6 @@ def generate_token(user_id):
         "yarn": ">=1"
       }
     },
-    "node_modules/@testing-library/jest-dom/node_modules/chalk": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz",
-      "integrity": "sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=8"
-      }
-    },
     "node_modules/@testing-library/react": {
       "version": "13.4.0",
       "resolved": "https://registry.npmjs.org/@testing-library/react/-/react-13.4.0.tgz",
@@ -6788,34 +7120,6 @@ def generate_token(user_id):
       "peerDependencies": {
         "react": "^18.0.0",
         "react-dom": "^18.0.0"
-      }
-    },
-    "node_modules/@testing-library/react/node_modules/@testing-library/dom": {
-      "version": "8.20.1",
-      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.1.tgz",
-      "integrity": "sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==",
-      "license": "MIT",
-      "dependencies": {
-        "@babel/code-frame": "^7.10.4",
-        "@babel/runtime": "^7.12.5",
-        "@types/aria-query": "^5.0.1",
-        "aria-query": "5.1.3",
-        "chalk": "^4.1.0",
-        "dom-accessibility-api": "^0.5.9",
-        "lz-string": "^1.5.0",
-        "pretty-format": "^27.0.2"
-      },
-      "engines": {
-        "node": ">=12"
-      }
-    },
-    "node_modules/@testing-library/react/node_modules/aria-query": {
-      "version": "5.1.3",
-      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
-      "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
-      "license": "Apache-2.0",
-      "dependencies": {
-        "deep-equal": "^2.0.5"
       }
     },
     "node_modules/@testing-library/user-event": {
@@ -6976,9 +7280,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/@types/express-serve-static-core": {
-      "version": "5.0.1",
-      "resolved": "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-5.0.1.tgz",
-      "integrity": "sha512-CRICJIl0N5cXDONAdlTv5ShATZ4HEwk6kDDIW2/w9qOWKg+NU/5F8wYRWCrONad0/UKkloNSmmyN/wX4rtpbVA==",
+      "version": "5.0.2",
+      "resolved": "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-5.0.2.tgz",
+      "integrity": "sha512-vluaspfvWEtE4vcSDlKRNer52DvOGrB2xv6diXy6UKyKW0lqZiWHGNApSyxOv+8DE5Z27IzVvE7hNkxg7EXIcg==",
       "license": "MIT",
       "dependencies": {
         "@types/node": "*",
@@ -7114,12 +7418,12 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/@types/node": {
-      "version": "22.9.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-22.9.0.tgz",
-      "integrity": "sha512-vuyHg81vvWA1Z1ELfvLko2c8f34gyA0zaic0+Rllc5lbCnbSyuvb2Oxpm6TAUAC/2xZN3QGqxBNggD1nNR2AfQ==",
+      "version": "22.10.1",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-22.10.1.tgz",
+      "integrity": "sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==",
       "license": "MIT",
       "dependencies": {
-        "undici-types": "~6.19.8"
+        "undici-types": "~6.20.0"
       }
     },
     "node_modules/@types/node-forge": {
@@ -7563,148 +7867,148 @@ def generate_token(user_id):
       "license": "ISC"
     },
     "node_modules/@webassemblyjs/ast": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.12.1.tgz",
-      "integrity": "sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/ast/-/ast-1.14.1.tgz",
+      "integrity": "sha512-nuBEDgQfm1ccRp/8bCQrx1frohyufl4JlbMMZ4P1wpeOfDhF6FQkxZJ1b/e+PLwr6X1Nhw6OLme5usuBWYBvuQ==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/helper-numbers": "1.11.6",
-        "@webassemblyjs/helper-wasm-bytecode": "1.11.6"
+        "@webassemblyjs/helper-numbers": "1.13.2",
+        "@webassemblyjs/helper-wasm-bytecode": "1.13.2"
       }
     },
     "node_modules/@webassemblyjs/floating-point-hex-parser": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.11.6.tgz",
-      "integrity": "sha512-ejAj9hfRJ2XMsNHk/v6Fu2dGS+i4UaXBXGemOfQ/JfQ6mdQg/WXtwleQRLLS4OvfDhv8rYnVwH27YJLMyYsxhw==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.13.2.tgz",
+      "integrity": "sha512-6oXyTOzbKxGH4steLbLNOu71Oj+C8Lg34n6CqRvqfS2O71BxY6ByfMDRhBytzknj9yGUPVJ1qIKhRlAwO1AovA==",
       "license": "MIT"
     },
     "node_modules/@webassemblyjs/helper-api-error": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-api-error/-/helper-api-error-1.11.6.tgz",
-      "integrity": "sha512-o0YkoP4pVu4rN8aTJgAyj9hC2Sv5UlkzCHhxqWj8butaLvnpdc2jOwh4ewE6CX0txSfLn/UYaV/pheS2Txg//Q==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-api-error/-/helper-api-error-1.13.2.tgz",
+      "integrity": "sha512-U56GMYxy4ZQCbDZd6JuvvNV/WFildOjsaWD3Tzzvmw/mas3cXzRJPMjP83JqEsgSbyrmaGjBfDtV7KDXV9UzFQ==",
       "license": "MIT"
     },
     "node_modules/@webassemblyjs/helper-buffer": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-buffer/-/helper-buffer-1.12.1.tgz",
-      "integrity": "sha512-nzJwQw99DNDKr9BVCOZcLuJJUlqkJh+kVzVl6Fmq/tI5ZtEyWT1KZMyOXltXLZJmDtvLCDgwsyrkohEtopTXCw==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-buffer/-/helper-buffer-1.14.1.tgz",
+      "integrity": "sha512-jyH7wtcHiKssDtFPRB+iQdxlDf96m0E39yb0k5uJVhFGleZFoNw1c4aeIcVUPPbXUVJ94wwnMOAqUHyzoEPVMA==",
       "license": "MIT"
     },
     "node_modules/@webassemblyjs/helper-numbers": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-numbers/-/helper-numbers-1.11.6.tgz",
-      "integrity": "sha512-vUIhZ8LZoIWHBohiEObxVm6hwP034jwmc9kuq5GdHZH0wiLVLIPcMCdpJzG4C11cHoQ25TFIQj9kaVADVX7N3g==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-numbers/-/helper-numbers-1.13.2.tgz",
+      "integrity": "sha512-FE8aCmS5Q6eQYcV3gI35O4J789wlQA+7JrqTTpJqn5emA4U2hvwJmvFRC0HODS+3Ye6WioDklgd6scJ3+PLnEA==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/floating-point-hex-parser": "1.11.6",
-        "@webassemblyjs/helper-api-error": "1.11.6",
+        "@webassemblyjs/floating-point-hex-parser": "1.13.2",
+        "@webassemblyjs/helper-api-error": "1.13.2",
         "@xtuc/long": "4.2.2"
       }
     },
     "node_modules/@webassemblyjs/helper-wasm-bytecode": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.11.6.tgz",
-      "integrity": "sha512-sFFHKwcmBprO9e7Icf0+gddyWYDViL8bpPjJJl0WHxCdETktXdmtWLGVzoHbqUcY4Be1LkNfwTmXOJUFZYSJdA==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-wasm-bytecode/-/helper-wasm-bytecode-1.13.2.tgz",
+      "integrity": "sha512-3QbLKy93F0EAIXLh0ogEVR6rOubA9AoZ+WRYhNbFyuB70j3dRdwH9g+qXhLAO0kiYGlg3TxDV+I4rQTr/YNXkA==",
       "license": "MIT"
     },
     "node_modules/@webassemblyjs/helper-wasm-section": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-wasm-section/-/helper-wasm-section-1.12.1.tgz",
-      "integrity": "sha512-Jif4vfB6FJlUlSbgEMHUyk1j234GTNG9dBJ4XJdOySoj518Xj0oGsNi59cUQF4RRMS9ouBUxDDdyBVfPTypa5g==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/helper-wasm-section/-/helper-wasm-section-1.14.1.tgz",
+      "integrity": "sha512-ds5mXEqTJ6oxRoqjhWDU83OgzAYjwsCV8Lo/N+oRsNDmx/ZDpqalmrtgOMkHwxsG0iI//3BwWAErYRHtgn0dZw==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/ast": "1.12.1",
-        "@webassemblyjs/helper-buffer": "1.12.1",
-        "@webassemblyjs/helper-wasm-bytecode": "1.11.6",
-        "@webassemblyjs/wasm-gen": "1.12.1"
+        "@webassemblyjs/ast": "1.14.1",
+        "@webassemblyjs/helper-buffer": "1.14.1",
+        "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+        "@webassemblyjs/wasm-gen": "1.14.1"
       }
     },
     "node_modules/@webassemblyjs/ieee754": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/ieee754/-/ieee754-1.11.6.tgz",
-      "integrity": "sha512-LM4p2csPNvbij6U1f19v6WR56QZ8JcHg3QIJTlSwzFcmx6WSORicYj6I63f9yU1kEUtrpG+kjkiIAkevHpDXrg==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/ieee754/-/ieee754-1.13.2.tgz",
+      "integrity": "sha512-4LtOzh58S/5lX4ITKxnAK2USuNEvpdVV9AlgGQb8rJDHaLeHciwG4zlGr0j/SNWlr7x3vO1lDEsuePvtcDNCkw==",
       "license": "MIT",
       "dependencies": {
         "@xtuc/ieee754": "^1.2.0"
       }
     },
     "node_modules/@webassemblyjs/leb128": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/leb128/-/leb128-1.11.6.tgz",
-      "integrity": "sha512-m7a0FhE67DQXgouf1tbN5XQcdWoNgaAuoULHIfGFIEVKA6tu/edls6XnIlkmS6FrXAquJRPni3ZZKjw6FSPjPQ==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/leb128/-/leb128-1.13.2.tgz",
+      "integrity": "sha512-Lde1oNoIdzVzdkNEAWZ1dZ5orIbff80YPdHx20mrHwHrVNNTjNr8E3xz9BdpcGqRQbAEa+fkrCb+fRFTl/6sQw==",
       "license": "Apache-2.0",
       "dependencies": {
         "@xtuc/long": "4.2.2"
       }
     },
     "node_modules/@webassemblyjs/utf8": {
-      "version": "1.11.6",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/utf8/-/utf8-1.11.6.tgz",
-      "integrity": "sha512-vtXf2wTQ3+up9Zsg8sa2yWiQpzSsMyXj0qViVP6xKGCUT8p8YJ6HqI7l5eCnWx1T/FYdsv07HQs2wTFbbof/RA==",
+      "version": "1.13.2",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/utf8/-/utf8-1.13.2.tgz",
+      "integrity": "sha512-3NQWGjKTASY1xV5m7Hr0iPeXD9+RDobLll3T9d2AO+g3my8xy5peVyjSag4I50mR1bBSN/Ct12lo+R9tJk0NZQ==",
       "license": "MIT"
     },
     "node_modules/@webassemblyjs/wasm-edit": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-edit/-/wasm-edit-1.12.1.tgz",
-      "integrity": "sha512-1DuwbVvADvS5mGnXbE+c9NfA8QRcZ6iKquqjjmR10k6o+zzsRVesil54DKexiowcFCPdr/Q0qaMgB01+SQ1u6g==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-edit/-/wasm-edit-1.14.1.tgz",
+      "integrity": "sha512-RNJUIQH/J8iA/1NzlE4N7KtyZNHi3w7at7hDjvRNm5rcUXa00z1vRz3glZoULfJ5mpvYhLybmVcwcjGrC1pRrQ==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/ast": "1.12.1",
-        "@webassemblyjs/helper-buffer": "1.12.1",
-        "@webassemblyjs/helper-wasm-bytecode": "1.11.6",
-        "@webassemblyjs/helper-wasm-section": "1.12.1",
-        "@webassemblyjs/wasm-gen": "1.12.1",
-        "@webassemblyjs/wasm-opt": "1.12.1",
-        "@webassemblyjs/wasm-parser": "1.12.1",
-        "@webassemblyjs/wast-printer": "1.12.1"
+        "@webassemblyjs/ast": "1.14.1",
+        "@webassemblyjs/helper-buffer": "1.14.1",
+        "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+        "@webassemblyjs/helper-wasm-section": "1.14.1",
+        "@webassemblyjs/wasm-gen": "1.14.1",
+        "@webassemblyjs/wasm-opt": "1.14.1",
+        "@webassemblyjs/wasm-parser": "1.14.1",
+        "@webassemblyjs/wast-printer": "1.14.1"
       }
     },
     "node_modules/@webassemblyjs/wasm-gen": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-gen/-/wasm-gen-1.12.1.tgz",
-      "integrity": "sha512-TDq4Ojh9fcohAw6OIMXqiIcTq5KUXTGRkVxbSo1hQnSy6lAM5GSdfwWeSxpAo0YzgsgF182E/U0mDNhuA0tW7w==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-gen/-/wasm-gen-1.14.1.tgz",
+      "integrity": "sha512-AmomSIjP8ZbfGQhumkNvgC33AY7qtMCXnN6bL2u2Js4gVCg8fp735aEiMSBbDR7UQIj90n4wKAFUSEd0QN2Ukg==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/ast": "1.12.1",
-        "@webassemblyjs/helper-wasm-bytecode": "1.11.6",
-        "@webassemblyjs/ieee754": "1.11.6",
-        "@webassemblyjs/leb128": "1.11.6",
-        "@webassemblyjs/utf8": "1.11.6"
+        "@webassemblyjs/ast": "1.14.1",
+        "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+        "@webassemblyjs/ieee754": "1.13.2",
+        "@webassemblyjs/leb128": "1.13.2",
+        "@webassemblyjs/utf8": "1.13.2"
       }
     },
     "node_modules/@webassemblyjs/wasm-opt": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-opt/-/wasm-opt-1.12.1.tgz",
-      "integrity": "sha512-Jg99j/2gG2iaz3hijw857AVYekZe2SAskcqlWIZXjji5WStnOpVoat3gQfT/Q5tb2djnCjBtMocY/Su1GfxPBg==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-opt/-/wasm-opt-1.14.1.tgz",
+      "integrity": "sha512-PTcKLUNvBqnY2U6E5bdOQcSM+oVP/PmrDY9NzowJjislEjwP/C4an2303MCVS2Mg9d3AJpIGdUFIQQWbPds0Sw==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/ast": "1.12.1",
-        "@webassemblyjs/helper-buffer": "1.12.1",
-        "@webassemblyjs/wasm-gen": "1.12.1",
-        "@webassemblyjs/wasm-parser": "1.12.1"
+        "@webassemblyjs/ast": "1.14.1",
+        "@webassemblyjs/helper-buffer": "1.14.1",
+        "@webassemblyjs/wasm-gen": "1.14.1",
+        "@webassemblyjs/wasm-parser": "1.14.1"
       }
     },
     "node_modules/@webassemblyjs/wasm-parser": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-parser/-/wasm-parser-1.12.1.tgz",
-      "integrity": "sha512-xikIi7c2FHXysxXe3COrVUPSheuBtpcfhbpFj4gmu7KRLYOzANztwUU0IbsqvMqzuNK2+glRGWCEqZo1WCLyAQ==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/wasm-parser/-/wasm-parser-1.14.1.tgz",
+      "integrity": "sha512-JLBl+KZ0R5qB7mCnud/yyX08jWFw5MsoalJ1pQ4EdFlgj9VdXKGuENGsiCIjegI1W7p91rUlcB/LB5yRJKNTcQ==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/ast": "1.12.1",
-        "@webassemblyjs/helper-api-error": "1.11.6",
-        "@webassemblyjs/helper-wasm-bytecode": "1.11.6",
-        "@webassemblyjs/ieee754": "1.11.6",
-        "@webassemblyjs/leb128": "1.11.6",
-        "@webassemblyjs/utf8": "1.11.6"
+        "@webassemblyjs/ast": "1.14.1",
+        "@webassemblyjs/helper-api-error": "1.13.2",
+        "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+        "@webassemblyjs/ieee754": "1.13.2",
+        "@webassemblyjs/leb128": "1.13.2",
+        "@webassemblyjs/utf8": "1.13.2"
       }
     },
     "node_modules/@webassemblyjs/wast-printer": {
-      "version": "1.12.1",
-      "resolved": "https://registry.npmjs.org/@webassemblyjs/wast-printer/-/wast-printer-1.12.1.tgz",
-      "integrity": "sha512-+X4WAlOisVWQMikjbcvY2e0rwPsKQ9F688lksZhBcPycBBuii3O7m8FACbDMWDojpAqvjIncrG8J0XHKyQfVeA==",
+      "version": "1.14.1",
+      "resolved": "https://registry.npmjs.org/@webassemblyjs/wast-printer/-/wast-printer-1.14.1.tgz",
+      "integrity": "sha512-kPSSXE6De1XOR820C90RIo2ogvZG+c3KiHzqUoO/F34Y2shGzesfqv7o57xrxovZJH/MetF5UjroJ/R/3isoiw==",
       "license": "MIT",
       "dependencies": {
-        "@webassemblyjs/ast": "1.12.1",
+        "@webassemblyjs/ast": "1.14.1",
         "@xtuc/long": "4.2.2"
       }
     },
@@ -7891,12 +8195,15 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/ajv-keywords": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
-      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-5.1.0.tgz",
+      "integrity": "sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==",
       "license": "MIT",
+      "dependencies": {
+        "fast-deep-equal": "^3.1.3"
+      },
       "peerDependencies": {
-        "ajv": "^6.9.1"
+        "ajv": "^8.8.2"
       }
     },
     "node_modules/ansi-escapes": {
@@ -7997,12 +8304,12 @@ def generate_token(user_id):
       }
     },
     "node_modules/aria-query": {
-      "version": "5.3.0",
-      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.0.tgz",
-      "integrity": "sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==",
+      "version": "5.3.2",
+      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.2.tgz",
+      "integrity": "sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==",
       "license": "Apache-2.0",
-      "dependencies": {
-        "dequal": "^2.0.3"
+      "engines": {
+        "node": ">= 0.4"
       }
     },
     "node_modules/array-buffer-byte-length": {
@@ -8286,28 +8593,14 @@ def generate_token(user_id):
       }
     },
     "node_modules/axios": {
-      "version": "1.7.7",
-      "resolved": "https://registry.npmjs.org/axios/-/axios-1.7.7.tgz",
-      "integrity": "sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==",
+      "version": "1.7.8",
+      "resolved": "https://registry.npmjs.org/axios/-/axios-1.7.8.tgz",
+      "integrity": "sha512-Uu0wb7KNqK2t5K+YQyVCLM76prD5sRFjKHbJYCP1J7JFGEQ6nN7HWn9+04LAeiJ3ji54lgS/gZCH1oxyrf1SPw==",
       "license": "MIT",
       "dependencies": {
         "follow-redirects": "^1.15.6",
         "form-data": "^4.0.0",
         "proxy-from-env": "^1.1.0"
-      }
-    },
-    "node_modules/axios/node_modules/form-data": {
-      "version": "4.0.1",
-      "resolved": "https://registry.npmjs.org/form-data/-/form-data-4.0.1.tgz",
-      "integrity": "sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==",
-      "license": "MIT",
-      "dependencies": {
-        "asynckit": "^0.4.0",
-        "combined-stream": "^1.0.8",
-        "mime-types": "^2.1.12"
-      },
-      "engines": {
-        "node": ">= 6"
       }
     },
     "node_modules/axobject-query": {
@@ -8366,6 +8659,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/babel-jest/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/babel-loader": {
       "version": "8.4.1",
       "resolved": "https://registry.npmjs.org/babel-loader/-/babel-loader-8.4.1.tgz",
@@ -8383,6 +8692,15 @@ def generate_token(user_id):
       "peerDependencies": {
         "@babel/core": "^7.0.0",
         "webpack": ">=2"
+      }
+    },
+    "node_modules/babel-loader/node_modules/ajv-keywords": {
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
+      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
+      "license": "MIT",
+      "peerDependencies": {
+        "ajv": "^6.9.1"
       }
     },
     "node_modules/babel-loader/node_modules/schema-utils": {
@@ -8459,13 +8777,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/babel-plugin-polyfill-corejs2": {
-      "version": "0.4.11",
-      "resolved": "https://registry.npmjs.org/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.4.11.tgz",
-      "integrity": "sha512-sMEJ27L0gRHShOh5G54uAAPaiCOygY/5ratXuiyb2G46FmlSpc9eFCzYVyDiPxfNbwzA7mYahmjQc5q+CZQ09Q==",
+      "version": "0.4.12",
+      "resolved": "https://registry.npmjs.org/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.4.12.tgz",
+      "integrity": "sha512-CPWT6BwvhrTO2d8QVorhTCQw9Y43zOu7G9HigcfxvepOU6b8o3tcWad6oVgZIsZCTt42FFv97aA7ZJsbM4+8og==",
       "license": "MIT",
       "dependencies": {
         "@babel/compat-data": "^7.22.6",
-        "@babel/helper-define-polyfill-provider": "^0.6.2",
+        "@babel/helper-define-polyfill-provider": "^0.6.3",
         "semver": "^6.3.1"
       },
       "peerDependencies": {
@@ -8486,12 +8804,12 @@ def generate_token(user_id):
       }
     },
     "node_modules/babel-plugin-polyfill-regenerator": {
-      "version": "0.6.2",
-      "resolved": "https://registry.npmjs.org/babel-plugin-polyfill-regenerator/-/babel-plugin-polyfill-regenerator-0.6.2.tgz",
-      "integrity": "sha512-2R25rQZWP63nGwaAswvDazbPXfrM3HwVoBXK6HcqeKrSrL/JqcC/rDcf95l4r7LXLyxDXc8uQDa064GubtCABg==",
+      "version": "0.6.3",
+      "resolved": "https://registry.npmjs.org/babel-plugin-polyfill-regenerator/-/babel-plugin-polyfill-regenerator-0.6.3.tgz",
+      "integrity": "sha512-LiWSbl4CRSIa5x/JAU6jZiG9eit9w6mz+yVMFwDE83LAWvt0AfGBoZ7HS/mkhrKuh2ZlzfVZYKoLjXdqw6Yt7Q==",
       "license": "MIT",
       "dependencies": {
-        "@babel/helper-define-polyfill-provider": "^0.6.2"
+        "@babel/helper-define-polyfill-provider": "^0.6.3"
       },
       "peerDependencies": {
         "@babel/core": "^7.4.0 || ^8.0.0-0 <8.0.0"
@@ -8676,9 +8994,9 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/bonjour-service": {
-      "version": "1.2.1",
-      "resolved": "https://registry.npmjs.org/bonjour-service/-/bonjour-service-1.2.1.tgz",
-      "integrity": "sha512-oSzCS2zV14bh2kji6vNe7vrpJYCHGvcZnlffFQ1MEoX/WOeQ/teD8SYWKR942OI3INjq8OMNJlbPK5LLLUxFDw==",
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/bonjour-service/-/bonjour-service-1.3.0.tgz",
+      "integrity": "sha512-3YuAUiSkWykd+2Azjgyxei8OWf8thdn8AITIog2M4UICzoqfjlqr64WIjEXZllf/W6vK1goqleSR6brGomxQqA==",
       "license": "MIT",
       "dependencies": {
         "fast-deep-equal": "^3.1.3",
@@ -8859,9 +9177,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/caniuse-lite": {
-      "version": "1.0.30001677",
-      "resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001677.tgz",
-      "integrity": "sha512-fmfjsOlJUpMWu+mAAtZZZHz7UEwsUxIIvu1TJfO1HqFQvB/B+ii0xr9B5HpbZY/mC4XZ8SvjHJqtAY6pDPQEog==",
+      "version": "1.0.30001684",
+      "resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001684.tgz",
+      "integrity": "sha512-G1LRwLIQjBQoyq0ZJGqGIJUXzJ8irpbjHLpVRXDvBEScFJ9b17sgK6vlx0GAJFE21okD7zXl08rRRUfq6HdoEQ==",
       "funding": [
         {
           "type": "opencollective",
@@ -8888,19 +9206,16 @@ def generate_token(user_id):
       }
     },
     "node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz",
+      "integrity": "sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==",
       "license": "MIT",
       "dependencies": {
         "ansi-styles": "^4.1.0",
         "supports-color": "^7.1.0"
       },
       "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
+        "node": ">=8"
       }
     },
     "node_modules/char-regex": {
@@ -9349,9 +9664,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/cross-spawn": {
-      "version": "7.0.3",
-      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz",
-      "integrity": "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==",
+      "version": "7.0.6",
+      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+      "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
       "license": "MIT",
       "dependencies": {
         "path-key": "^3.1.0",
@@ -9984,15 +10299,6 @@ def generate_token(user_id):
         "node": ">= 0.8"
       }
     },
-    "node_modules/dequal": {
-      "version": "2.0.3",
-      "resolved": "https://registry.npmjs.org/dequal/-/dequal-2.0.3.tgz",
-      "integrity": "sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=6"
-      }
-    },
     "node_modules/destroy": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz",
@@ -10258,9 +10564,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/electron-to-chromium": {
-      "version": "1.5.51",
-      "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.51.tgz",
-      "integrity": "sha512-kKeWV57KSS8jH4alKt/jKnvHPmJgBxXzGUSbMd4eQF+iOsVPl7bz2KUmu6eo80eMP8wVioTfTyTzdMgM15WXNg==",
+      "version": "1.5.67",
+      "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.67.tgz",
+      "integrity": "sha512-nz88NNBsD7kQSAGGJyp8hS6xSPtWwqNogA0mjtc2nUYeEf3nURK9qpV18TuBdDmEDgVWotS8Wkzf+V52dSQ/LQ==",
       "license": "ISC"
     },
     "node_modules/emittery": {
@@ -10340,9 +10646,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/es-abstract": {
-      "version": "1.23.3",
-      "resolved": "https://registry.npmjs.org/es-abstract/-/es-abstract-1.23.3.tgz",
-      "integrity": "sha512-e+HfNH61Bj1X9/jLc5v1owaLYuHdeHHSQlkhCBiTK8rBvKaULl/beGMxwrMXjpYrv4pz22BlY570vVePA2ho4A==",
+      "version": "1.23.5",
+      "resolved": "https://registry.npmjs.org/es-abstract/-/es-abstract-1.23.5.tgz",
+      "integrity": "sha512-vlmniQ0WNPwXqA0BnmwV3Ng7HxiGlh6r5U6JcTMNx8OilcAGqVJBHJcPjqOMaczU9fRuRK5Px2BdVyPRnKMMVQ==",
       "license": "MIT",
       "dependencies": {
         "array-buffer-byte-length": "^1.0.1",
@@ -10360,7 +10666,7 @@ def generate_token(user_id):
         "function.prototype.name": "^1.1.6",
         "get-intrinsic": "^1.2.4",
         "get-symbol-description": "^1.0.2",
-        "globalthis": "^1.0.3",
+        "globalthis": "^1.0.4",
         "gopd": "^1.0.1",
         "has-property-descriptors": "^1.0.2",
         "has-proto": "^1.0.3",
@@ -10376,10 +10682,10 @@ def generate_token(user_id):
         "is-string": "^1.0.7",
         "is-typed-array": "^1.1.13",
         "is-weakref": "^1.0.2",
-        "object-inspect": "^1.13.1",
+        "object-inspect": "^1.13.3",
         "object-keys": "^1.1.1",
         "object.assign": "^4.1.5",
-        "regexp.prototype.flags": "^1.5.2",
+        "regexp.prototype.flags": "^1.5.3",
         "safe-array-concat": "^1.1.2",
         "safe-regex-test": "^1.0.3",
         "string.prototype.trim": "^1.2.9",
@@ -10514,14 +10820,14 @@ def generate_token(user_id):
       }
     },
     "node_modules/es-to-primitive": {
-      "version": "1.2.1",
-      "resolved": "https://registry.npmjs.org/es-to-primitive/-/es-to-primitive-1.2.1.tgz",
-      "integrity": "sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==",
+      "version": "1.3.0",
+      "resolved": "https://registry.npmjs.org/es-to-primitive/-/es-to-primitive-1.3.0.tgz",
+      "integrity": "sha512-w+5mJ3GuFL+NjVtJlvydShqE1eN3h3PbI7/5LAsYJP/2qtuMXjfL2LpHSRqo4b4eSF5K/DH1JXKUAHSB2UW50g==",
       "license": "MIT",
       "dependencies": {
-        "is-callable": "^1.1.4",
-        "is-date-object": "^1.0.1",
-        "is-symbol": "^1.0.2"
+        "is-callable": "^1.2.7",
+        "is-date-object": "^1.0.5",
+        "is-symbol": "^1.0.4"
       },
       "engines": {
         "node": ">= 0.4"
@@ -10843,15 +11149,6 @@ def generate_token(user_id):
         "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9"
       }
     },
-    "node_modules/eslint-plugin-jsx-a11y/node_modules/aria-query": {
-      "version": "5.3.2",
-      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.2.tgz",
-      "integrity": "sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==",
-      "license": "Apache-2.0",
-      "engines": {
-        "node": ">= 0.4"
-      }
-    },
     "node_modules/eslint-plugin-react": {
       "version": "7.37.2",
       "resolved": "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.37.2.tgz",
@@ -11027,6 +11324,22 @@ def generate_token(user_id):
       "resolved": "https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz",
       "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==",
       "license": "Python-2.0"
+    },
+    "node_modules/eslint/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
     },
     "node_modules/eslint/node_modules/find-up": {
       "version": "5.0.0",
@@ -11448,6 +11761,15 @@ def generate_token(user_id):
         "webpack": "^4.0.0 || ^5.0.0"
       }
     },
+    "node_modules/file-loader/node_modules/ajv-keywords": {
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
+      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
+      "license": "MIT",
+      "peerDependencies": {
+        "ajv": "^6.9.1"
+      }
+    },
     "node_modules/file-loader/node_modules/schema-utils": {
       "version": "3.3.0",
       "resolved": "https://registry.npmjs.org/schema-utils/-/schema-utils-3.3.0.tgz",
@@ -11595,9 +11917,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/flatted": {
-      "version": "3.3.1",
-      "resolved": "https://registry.npmjs.org/flatted/-/flatted-3.3.1.tgz",
-      "integrity": "sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==",
+      "version": "3.3.2",
+      "resolved": "https://registry.npmjs.org/flatted/-/flatted-3.3.2.tgz",
+      "integrity": "sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA==",
       "license": "ISC"
     },
     "node_modules/follow-redirects": {
@@ -11696,6 +12018,31 @@ def generate_token(user_id):
         }
       }
     },
+    "node_modules/fork-ts-checker-webpack-plugin/node_modules/ajv-keywords": {
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
+      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
+      "license": "MIT",
+      "peerDependencies": {
+        "ajv": "^6.9.1"
+      }
+    },
+    "node_modules/fork-ts-checker-webpack-plugin/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/fork-ts-checker-webpack-plugin/node_modules/cosmiconfig": {
       "version": "6.0.0",
       "resolved": "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-6.0.0.tgz",
@@ -11767,9 +12114,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/form-data": {
-      "version": "3.0.2",
-      "resolved": "https://registry.npmjs.org/form-data/-/form-data-3.0.2.tgz",
-      "integrity": "sha512-sJe+TQb2vIaIyO783qN6BlMYWMw3WBOHA1Ay2qxsnjuafEOQFJ2JakedOQirT6D5XPRxDvS7AHYyem9fTpb4LQ==",
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/form-data/-/form-data-4.0.1.tgz",
+      "integrity": "sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==",
       "license": "MIT",
       "dependencies": {
         "asynckit": "^0.4.0",
@@ -12091,12 +12438,15 @@ def generate_token(user_id):
       }
     },
     "node_modules/gopd": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.0.1.tgz",
-      "integrity": "sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.1.0.tgz",
+      "integrity": "sha512-FQoVQnqcdk4hVM4JN1eromaun4iuS34oStkdlLENLdpULsuQcTyXj8w7ayhuUfPwEYZ1ZOooOTT6fdA9Vmx/RA==",
       "license": "MIT",
       "dependencies": {
-        "get-intrinsic": "^1.1.3"
+        "get-intrinsic": "^1.2.4"
+      },
+      "engines": {
+        "node": ">= 0.4"
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
@@ -12172,10 +12522,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/has-proto": {
-      "version": "1.0.3",
-      "resolved": "https://registry.npmjs.org/has-proto/-/has-proto-1.0.3.tgz",
-      "integrity": "sha512-SJ1amZAJUiZS+PhsVLf5tGydlaVB8EdFpaSO4gmiUKUOxk8qzn5AIy4ZeJUmh22znIdk/uMAUT2pl3FxzVUH+Q==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/has-proto/-/has-proto-1.1.0.tgz",
+      "integrity": "sha512-QLdzI9IIO1Jg7f9GT1gXpPpXArAn6cS31R1eEZqz08Gc+uQ8/XiqHWt17Fiw+2p6oTTIq5GXEpQkAlA88YRl/Q==",
       "license": "MIT",
+      "dependencies": {
+        "call-bind": "^1.0.7"
+      },
       "engines": {
         "node": ">= 0.4"
       },
@@ -12341,6 +12694,15 @@ def generate_token(user_id):
       },
       "engines": {
         "node": ">=12"
+      }
+    },
+    "node_modules/html-parse-stringify": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz",
+      "integrity": "sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==",
+      "license": "MIT",
+      "dependencies": {
+        "void-elements": "3.1.0"
       }
     },
     "node_modules/html-webpack-plugin": {
@@ -12840,12 +13202,15 @@ def generate_token(user_id):
       }
     },
     "node_modules/is-finalizationregistry": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/is-finalizationregistry/-/is-finalizationregistry-1.0.2.tgz",
-      "integrity": "sha512-0by5vtUJs8iFQb5TYUHHPudOR+qXYIMKtiUzvLIZITZUjknFmziyBJuLhVRc+Ds0dREFlskDNJKYIdIzu/9pfw==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/is-finalizationregistry/-/is-finalizationregistry-1.1.0.tgz",
+      "integrity": "sha512-qfMdqbAQEwBw78ZyReKnlA8ezmPdb9BemzIIip/JkjaZUhitfXDkkr+3QTboW0JrSXT1QWyYShpvnNHGZ4c4yA==",
       "license": "MIT",
       "dependencies": {
-        "call-bind": "^1.0.2"
+        "call-bind": "^1.0.7"
+      },
+      "engines": {
+        "node": ">= 0.4"
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
@@ -12987,13 +13352,15 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/is-regex": {
-      "version": "1.1.4",
-      "resolved": "https://registry.npmjs.org/is-regex/-/is-regex-1.1.4.tgz",
-      "integrity": "sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==",
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/is-regex/-/is-regex-1.2.0.tgz",
+      "integrity": "sha512-B6ohK4ZmoftlUe+uvenXSbPJFo6U37BH7oO1B3nQH8f/7h27N56s85MhUtbFJAziz5dcmuR3i8ovUl35zp8pFA==",
       "license": "MIT",
       "dependencies": {
-        "call-bind": "^1.0.2",
-        "has-tostringtag": "^1.0.0"
+        "call-bind": "^1.0.7",
+        "gopd": "^1.1.0",
+        "has-tostringtag": "^1.0.2",
+        "hasown": "^2.0.2"
       },
       "engines": {
         "node": ">= 0.4"
@@ -13325,6 +13692,22 @@ def generate_token(user_id):
         "node": ">=10"
       }
     },
+    "node_modules/jake/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest/-/jest-27.5.1.tgz",
@@ -13389,6 +13772,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/jest-changed-files/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-circus": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-circus/-/jest-circus-27.5.1.tgz",
@@ -13442,6 +13841,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-circus/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-circus/node_modules/diff-sequences": {
@@ -13603,6 +14018,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/jest-cli/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-cli/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -13688,6 +14119,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/jest-config/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-config/node_modules/jest-get-type": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-get-type/-/jest-get-type-27.5.1.tgz",
@@ -13729,16 +14176,20 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-diff/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+    "node_modules/jest-diff/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
       "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-diff/node_modules/pretty-format": {
@@ -13753,6 +14204,18 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+      }
+    },
+    "node_modules/jest-diff/node_modules/pretty-format/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-diff/node_modules/react-is": {
@@ -13812,6 +14275,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-each/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-each/node_modules/jest-get-type": {
@@ -13883,6 +14362,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/jest-environment-jsdom/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-environment-jsdom/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -13940,6 +14435,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-environment-node/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-environment-node/node_modules/jest-util": {
@@ -14019,6 +14530,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/jest-haste-map/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-haste-map/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -14087,6 +14614,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-jasmine2/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-jasmine2/node_modules/diff-sequences": {
@@ -14226,16 +14769,20 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-matcher-utils/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+    "node_modules/jest-matcher-utils/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
       "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-matcher-utils/node_modules/pretty-format": {
@@ -14250,6 +14797,18 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+      }
+    },
+    "node_modules/jest-matcher-utils/node_modules/pretty-format/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-matcher-utils/node_modules/react-is": {
@@ -14278,16 +14837,20 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-message-util/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+    "node_modules/jest-message-util/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
       "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-message-util/node_modules/pretty-format": {
@@ -14302,6 +14865,18 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+      }
+    },
+    "node_modules/jest-message-util/node_modules/pretty-format/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-message-util/node_modules/react-is": {
@@ -14346,6 +14921,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-mock/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-pnp-resolver": {
@@ -14434,6 +15025,22 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
+    "node_modules/jest-resolve-dependencies/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-resolve/node_modules/@jest/types": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/@jest/types/-/types-27.5.1.tgz",
@@ -14457,6 +15064,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-resolve/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-resolve/node_modules/jest-util": {
@@ -14531,6 +15154,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-runner/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-runner/node_modules/jest-message-util": {
@@ -14626,6 +15265,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-runtime/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-runtime/node_modules/jest-message-util": {
@@ -14734,6 +15389,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-snapshot/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-snapshot/node_modules/diff-sequences": {
@@ -14865,6 +15536,22 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
+    "node_modules/jest-util/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/jest-validate": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-validate/-/jest-validate-27.5.1.tgz",
@@ -14905,6 +15592,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-validate/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-validate/node_modules/jest-get-type": {
@@ -15013,16 +15716,20 @@ def generate_token(user_id):
       "integrity": "sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==",
       "license": "MIT"
     },
-    "node_modules/jest-watch-typeahead/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+    "node_modules/jest-watch-typeahead/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
       "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-watch-typeahead/node_modules/emittery": {
@@ -15151,6 +15858,18 @@ def generate_token(user_id):
         "node": "^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0"
       }
     },
+    "node_modules/jest-watch-typeahead/node_modules/pretty-format/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
+      }
+    },
     "node_modules/jest-watch-typeahead/node_modules/react-is": {
       "version": "18.3.1",
       "resolved": "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz",
@@ -15186,9 +15905,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/jest-watch-typeahead/node_modules/string-length/node_modules/char-regex": {
-      "version": "2.0.1",
-      "resolved": "https://registry.npmjs.org/char-regex/-/char-regex-2.0.1.tgz",
-      "integrity": "sha512-oSvEeo6ZUD7NepqAat3RqoucZ5SeqLJgOvVIwkafu6IP3V0pO38s/ypdVUmDDK6qIIHNlYHJAKX9E7R7HoKElw==",
+      "version": "2.0.2",
+      "resolved": "https://registry.npmjs.org/char-regex/-/char-regex-2.0.2.tgz",
+      "integrity": "sha512-cbGOjAptfM2LVmWhwRFHEKTPkLwNddVmuqYZQt895yXwAsWsXObCG+YN4DGQ/JBtT4GP1a1lPPdio2z413LmTg==",
       "license": "MIT",
       "engines": {
         "node": ">=12.20"
@@ -15262,6 +15981,22 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
+      }
+    },
+    "node_modules/jest-watcher/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-watcher/node_modules/jest-util": {
@@ -15382,6 +16117,20 @@ def generate_token(user_id):
         "canvas": {
           "optional": true
         }
+      }
+    },
+    "node_modules/jsdom/node_modules/form-data": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/form-data/-/form-data-3.0.2.tgz",
+      "integrity": "sha512-sJe+TQb2vIaIyO783qN6BlMYWMw3WBOHA1Ay2qxsnjuafEOQFJ2JakedOQirT6D5XPRxDvS7AHYyem9fTpb4LQ==",
+      "license": "MIT",
+      "dependencies": {
+        "asynckit": "^0.4.0",
+        "combined-stream": "^1.0.8",
+        "mime-types": "^2.1.12"
+      },
+      "engines": {
+        "node": ">= 6"
       }
     },
     "node_modules/jsesc": {
@@ -15970,9 +16719,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/nanoid": {
-      "version": "3.3.7",
-      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz",
-      "integrity": "sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==",
+      "version": "3.3.8",
+      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.8.tgz",
+      "integrity": "sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==",
       "funding": [
         {
           "type": "github",
@@ -16100,9 +16849,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/nwsapi": {
-      "version": "2.2.13",
-      "resolved": "https://registry.npmjs.org/nwsapi/-/nwsapi-2.2.13.tgz",
-      "integrity": "sha512-cTGB9ptp9dY9A5VbMSe7fQBcl/tt22Vcqdq8+eN93rblOuE0aCFu4aZ2vMwct/2t+lFnosm8RkQW1I0Omb1UtQ==",
+      "version": "2.2.16",
+      "resolved": "https://registry.npmjs.org/nwsapi/-/nwsapi-2.2.16.tgz",
+      "integrity": "sha512-F1I/bimDpj3ncaNDhfyMWuFqmQDBwDB0Fogc2qpL3BWvkQteFD/8BzWuIRl83rq0DXfm8SGt/HFhLXZyljTXcQ==",
       "license": "MIT"
     },
     "node_modules/object-assign": {
@@ -16124,9 +16873,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/object-inspect": {
-      "version": "1.13.2",
-      "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.2.tgz",
-      "integrity": "sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==",
+      "version": "1.13.3",
+      "resolved": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.3.tgz",
+      "integrity": "sha512-kDCGIbxkDSXE3euJZZXzc6to7fCrKHNI/hSRQnRuQ+BWjFNzZwiFF8fj/6o2t2G9/jTj8PSIYTfCLelLZEeRpA==",
       "license": "MIT",
       "engines": {
         "node": ">= 0.4"
@@ -16659,9 +17408,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/postcss": {
-      "version": "8.4.47",
-      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.47.tgz",
-      "integrity": "sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==",
+      "version": "8.4.49",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.49.tgz",
+      "integrity": "sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==",
       "funding": [
         {
           "type": "opencollective",
@@ -16679,7 +17428,7 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "nanoid": "^3.3.7",
-        "picocolors": "^1.1.0",
+        "picocolors": "^1.1.1",
         "source-map-js": "^1.2.1"
       },
       "engines": {
@@ -17192,9 +17941,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/postcss-load-config/node_modules/yaml": {
-      "version": "2.6.0",
-      "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.6.0.tgz",
-      "integrity": "sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==",
+      "version": "2.6.1",
+      "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.6.1.tgz",
+      "integrity": "sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==",
       "license": "ISC",
       "bin": {
         "yaml": "bin.mjs"
@@ -17372,13 +18121,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/postcss-modules-local-by-default": {
-      "version": "4.0.5",
-      "resolved": "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.0.5.tgz",
-      "integrity": "sha512-6MieY7sIfTK0hYfafw1OMEG+2bg8Q1ocHCpoWLqOKj3JXlKu4G7btkmM/B7lFubYkYWmRSPLZi5chid63ZaZYw==",
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.1.0.tgz",
+      "integrity": "sha512-rm0bdSv4jC3BDma3s9H19ZddW0aHX6EoqwDYU2IfZhRN+53QrufTRo2IdkAbRqLx4R2IYbZnbjKKxg4VN5oU9Q==",
       "license": "MIT",
       "dependencies": {
         "icss-utils": "^5.0.0",
-        "postcss-selector-parser": "^6.0.2",
+        "postcss-selector-parser": "^7.0.0",
         "postcss-value-parser": "^4.1.0"
       },
       "engines": {
@@ -17388,19 +18137,45 @@ def generate_token(user_id):
         "postcss": "^8.1.0"
       }
     },
+    "node_modules/postcss-modules-local-by-default/node_modules/postcss-selector-parser": {
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-7.0.0.tgz",
+      "integrity": "sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==",
+      "license": "MIT",
+      "dependencies": {
+        "cssesc": "^3.0.0",
+        "util-deprecate": "^1.0.2"
+      },
+      "engines": {
+        "node": ">=4"
+      }
+    },
     "node_modules/postcss-modules-scope": {
-      "version": "3.2.0",
-      "resolved": "https://registry.npmjs.org/postcss-modules-scope/-/postcss-modules-scope-3.2.0.tgz",
-      "integrity": "sha512-oq+g1ssrsZOsx9M96c5w8laRmvEu9C3adDSjI8oTcbfkrTE8hx/zfyobUoWIxaKPO8bt6S62kxpw5GqypEw1QQ==",
+      "version": "3.2.1",
+      "resolved": "https://registry.npmjs.org/postcss-modules-scope/-/postcss-modules-scope-3.2.1.tgz",
+      "integrity": "sha512-m9jZstCVaqGjTAuny8MdgE88scJnCiQSlSrOWcTQgM2t32UBe+MUmFSO5t7VMSfAf/FJKImAxBav8ooCHJXCJA==",
       "license": "ISC",
       "dependencies": {
-        "postcss-selector-parser": "^6.0.4"
+        "postcss-selector-parser": "^7.0.0"
       },
       "engines": {
         "node": "^10 || ^12 || >= 14"
       },
       "peerDependencies": {
         "postcss": "^8.1.0"
+      }
+    },
+    "node_modules/postcss-modules-scope/node_modules/postcss-selector-parser": {
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-7.0.0.tgz",
+      "integrity": "sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==",
+      "license": "MIT",
+      "dependencies": {
+        "cssesc": "^3.0.0",
+        "util-deprecate": "^1.0.2"
+      },
+      "engines": {
+        "node": ">=4"
       }
     },
     "node_modules/postcss-modules-values": {
@@ -18084,10 +18859,13 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/psl": {
-      "version": "1.9.0",
-      "resolved": "https://registry.npmjs.org/psl/-/psl-1.9.0.tgz",
-      "integrity": "sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==",
-      "license": "MIT"
+      "version": "1.14.0",
+      "resolved": "https://registry.npmjs.org/psl/-/psl-1.14.0.tgz",
+      "integrity": "sha512-Syk1bnf6fRZ9wQs03AtKJHcM12cKbOLo9L8JtCCdYj5/DTsHmTyXM4BK5ouWeG2P6kZ4nmFvuNTdtaqfobCOCg==",
+      "license": "MIT",
+      "dependencies": {
+        "punycode": "^2.3.1"
+      }
     },
     "node_modules/punycode": {
       "version": "2.3.1",
@@ -18274,6 +19052,22 @@ def generate_token(user_id):
         "node": ">=14"
       }
     },
+    "node_modules/react-dev-utils/node_modules/chalk": {
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
     "node_modules/react-dev-utils/node_modules/find-up": {
       "version": "5.0.0",
       "resolved": "https://registry.npmjs.org/find-up/-/find-up-5.0.0.tgz",
@@ -18363,6 +19157,28 @@ def generate_token(user_id):
       "integrity": "sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==",
       "license": "MIT"
     },
+    "node_modules/react-i18next": {
+      "version": "13.5.0",
+      "resolved": "https://registry.npmjs.org/react-i18next/-/react-i18next-13.5.0.tgz",
+      "integrity": "sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==",
+      "license": "MIT",
+      "dependencies": {
+        "@babel/runtime": "^7.22.5",
+        "html-parse-stringify": "^3.0.1"
+      },
+      "peerDependencies": {
+        "i18next": ">= 23.2.3",
+        "react": ">= 16.8.0"
+      },
+      "peerDependenciesMeta": {
+        "react-dom": {
+          "optional": true
+        },
+        "react-native": {
+          "optional": true
+        }
+      }
+    },
     "node_modules/react-is": {
       "version": "17.0.2",
       "resolved": "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz",
@@ -18393,12 +19209,12 @@ def generate_token(user_id):
       }
     },
     "node_modules/react-router": {
-      "version": "6.27.0",
-      "resolved": "https://registry.npmjs.org/react-router/-/react-router-6.27.0.tgz",
-      "integrity": "sha512-YA+HGZXz4jaAkVoYBE98VQl+nVzI+cVI2Oj/06F5ZM+0u3TgedN9Y9kmMRo2mnkSK2nCpNQn0DVob4HCsY/WLw==",
+      "version": "6.28.0",
+      "resolved": "https://registry.npmjs.org/react-router/-/react-router-6.28.0.tgz",
+      "integrity": "sha512-HrYdIFqdrnhDw0PqG/AKjAqEqM7AvxCz0DQ4h2W8k6nqmc5uRBYDag0SBxx9iYz5G8gnuNVLzUe13wl9eAsXXg==",
       "license": "MIT",
       "dependencies": {
-        "@remix-run/router": "1.20.0"
+        "@remix-run/router": "1.21.0"
       },
       "engines": {
         "node": ">=14.0.0"
@@ -18408,13 +19224,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/react-router-dom": {
-      "version": "6.27.0",
-      "resolved": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.27.0.tgz",
-      "integrity": "sha512-+bvtFWMC0DgAFrfKXKG9Fc+BcXWRUO1aJIihbB79xaeq0v5UzfvnM5houGUm1Y461WVRcgAQ+Clh5rdb1eCx4g==",
+      "version": "6.28.0",
+      "resolved": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.28.0.tgz",
+      "integrity": "sha512-kQ7Unsl5YdyOltsPGl31zOjLrDv+m2VcIEcIHqYYD3Lp0UppLjrzcfJqDJwXxFw3TH/yvapbnUvPlAj7Kx5nbg==",
       "license": "MIT",
       "dependencies": {
-        "@remix-run/router": "1.20.0",
-        "react-router": "6.27.0"
+        "@remix-run/router": "1.21.0",
+        "react-router": "6.28.0"
       },
       "engines": {
         "node": ">=14.0.0"
@@ -18570,18 +19386,18 @@ def generate_token(user_id):
       }
     },
     "node_modules/reflect.getprototypeof": {
-      "version": "1.0.6",
-      "resolved": "https://registry.npmjs.org/reflect.getprototypeof/-/reflect.getprototypeof-1.0.6.tgz",
-      "integrity": "sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==",
+      "version": "1.0.7",
+      "resolved": "https://registry.npmjs.org/reflect.getprototypeof/-/reflect.getprototypeof-1.0.7.tgz",
+      "integrity": "sha512-bMvFGIUKlc/eSfXNX+aZ+EL95/EgZzuwA0OBPTbZZDEJw/0AkentjMuM1oiRfwHrshqk4RzdgiTg5CcDalXN5g==",
       "license": "MIT",
       "dependencies": {
         "call-bind": "^1.0.7",
         "define-properties": "^1.2.1",
-        "es-abstract": "^1.23.1",
+        "es-abstract": "^1.23.5",
         "es-errors": "^1.3.0",
         "get-intrinsic": "^1.2.4",
-        "globalthis": "^1.0.3",
-        "which-builtin-type": "^1.1.3"
+        "gopd": "^1.0.1",
+        "which-builtin-type": "^1.1.4"
       },
       "engines": {
         "node": ">= 0.4"
@@ -18648,15 +19464,15 @@ def generate_token(user_id):
       }
     },
     "node_modules/regexpu-core": {
-      "version": "6.1.1",
-      "resolved": "https://registry.npmjs.org/regexpu-core/-/regexpu-core-6.1.1.tgz",
-      "integrity": "sha512-k67Nb9jvwJcJmVpw0jPttR1/zVfnKf8Km0IPatrU/zJ5XeG3+Slx0xLXs9HByJSzXzrlz5EDvN6yLNMDc2qdnw==",
+      "version": "6.2.0",
+      "resolved": "https://registry.npmjs.org/regexpu-core/-/regexpu-core-6.2.0.tgz",
+      "integrity": "sha512-H66BPQMrv+V16t8xtmq+UC0CBpiTBA60V8ibS1QVReIp8T1z8hwFxqcGzm9K6lgsN7sB5edVH8a+ze6Fqm4weA==",
       "license": "MIT",
       "dependencies": {
         "regenerate": "^1.4.2",
         "regenerate-unicode-properties": "^10.2.0",
         "regjsgen": "^0.8.0",
-        "regjsparser": "^0.11.0",
+        "regjsparser": "^0.12.0",
         "unicode-match-property-ecmascript": "^2.0.0",
         "unicode-match-property-value-ecmascript": "^2.1.0"
       },
@@ -18671,9 +19487,9 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/regjsparser": {
-      "version": "0.11.2",
-      "resolved": "https://registry.npmjs.org/regjsparser/-/regjsparser-0.11.2.tgz",
-      "integrity": "sha512-3OGZZ4HoLJkkAZx/48mTXJNlmqTGOzc0o9OWQPuWpkOlXXPbyN6OafCcoXUnBqE2D3f/T5L+pWc1kdEmnfnRsA==",
+      "version": "0.12.0",
+      "resolved": "https://registry.npmjs.org/regjsparser/-/regjsparser-0.12.0.tgz",
+      "integrity": "sha512-cnE+y8bz4NhMjISKbgeVJtqNbtf5QpjZP+Bslo+UqkIt9QPnX9q095eiRRASJG1/tz6dlNr6Z5NsBiWYokp6EQ==",
       "license": "BSD-2-Clause",
       "dependencies": {
         "jsesc": "~3.0.2"
@@ -19120,18 +19936,6 @@ def generate_token(user_id):
         "url": "https://github.com/sponsors/epoberezkin"
       }
     },
-    "node_modules/schema-utils/node_modules/ajv-keywords": {
-      "version": "5.1.0",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-5.1.0.tgz",
-      "integrity": "sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==",
-      "license": "MIT",
-      "dependencies": {
-        "fast-deep-equal": "^3.1.3"
-      },
-      "peerDependencies": {
-        "ajv": "^8.8.2"
-      }
-    },
     "node_modules/schema-utils/node_modules/json-schema-traverse": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz",
@@ -19376,10 +20180,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/shell-quote": {
-      "version": "1.8.1",
-      "resolved": "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.1.tgz",
-      "integrity": "sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==",
+      "version": "1.8.2",
+      "resolved": "https://registry.npmjs.org/shell-quote/-/shell-quote-1.8.2.tgz",
+      "integrity": "sha512-AzqKpGKjrj7EM6rKVQEPpB288oCfnrEIuyoT9cyF4nmGa7V8Zk6f7RRqYisX8X9m+Q7bd632aZW4ky7EhbQztA==",
       "license": "MIT",
+      "engines": {
+        "node": ">= 0.4"
+      },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
       }
@@ -20269,33 +21076,33 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/tailwindcss": {
-      "version": "3.4.14",
-      "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.14.tgz",
-      "integrity": "sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==",
+      "version": "3.4.15",
+      "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.15.tgz",
+      "integrity": "sha512-r4MeXnfBmSOuKUWmXe6h2CcyfzJCEk4F0pptO5jlnYSIViUkVmsawj80N5h2lO3gwcmSb4n3PuN+e+GC1Guylw==",
       "license": "MIT",
       "dependencies": {
         "@alloc/quick-lru": "^5.2.0",
         "arg": "^5.0.2",
-        "chokidar": "^3.5.3",
+        "chokidar": "^3.6.0",
         "didyoumean": "^1.2.2",
         "dlv": "^1.1.3",
-        "fast-glob": "^3.3.0",
+        "fast-glob": "^3.3.2",
         "glob-parent": "^6.0.2",
         "is-glob": "^4.0.3",
-        "jiti": "^1.21.0",
+        "jiti": "^1.21.6",
         "lilconfig": "^2.1.0",
-        "micromatch": "^4.0.5",
+        "micromatch": "^4.0.8",
         "normalize-path": "^3.0.0",
         "object-hash": "^3.0.0",
-        "picocolors": "^1.0.0",
-        "postcss": "^8.4.23",
+        "picocolors": "^1.1.1",
+        "postcss": "^8.4.47",
         "postcss-import": "^15.1.0",
         "postcss-js": "^4.0.1",
-        "postcss-load-config": "^4.0.1",
-        "postcss-nested": "^6.0.1",
-        "postcss-selector-parser": "^6.0.11",
-        "resolve": "^1.22.2",
-        "sucrase": "^3.32.0"
+        "postcss-load-config": "^4.0.2",
+        "postcss-nested": "^6.2.0",
+        "postcss-selector-parser": "^6.1.2",
+        "resolve": "^1.22.8",
+        "sucrase": "^3.35.0"
       },
       "bin": {
         "tailwind": "lib/cli.js",
@@ -20419,6 +21226,15 @@ def generate_token(user_id):
         "uglify-js": {
           "optional": true
         }
+      }
+    },
+    "node_modules/terser-webpack-plugin/node_modules/ajv-keywords": {
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
+      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
+      "license": "MIT",
+      "peerDependencies": {
+        "ajv": "^6.9.1"
       }
     },
     "node_modules/terser-webpack-plugin/node_modules/schema-utils": {
@@ -20713,9 +21529,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/typed-array-byte-offset": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/typed-array-byte-offset/-/typed-array-byte-offset-1.0.2.tgz",
-      "integrity": "sha512-Ous0vodHa56FviZucS2E63zkgtgrACj7omjwd/8lTEMEPFFyjfixMZ1ZXenpgCFBBt4EC1J2XsyVS2gkG0eTFA==",
+      "version": "1.0.3",
+      "resolved": "https://registry.npmjs.org/typed-array-byte-offset/-/typed-array-byte-offset-1.0.3.tgz",
+      "integrity": "sha512-GsvTyUHTriq6o/bHcTd0vM7OQ9JEdlvluu9YISaA7+KzDzPaIzEeDFNkTfhdE3MYcNhNi0vq/LlegYgIs5yPAw==",
       "license": "MIT",
       "dependencies": {
         "available-typed-arrays": "^1.0.7",
@@ -20723,7 +21539,8 @@ def generate_token(user_id):
         "for-each": "^0.3.3",
         "gopd": "^1.0.1",
         "has-proto": "^1.0.3",
-        "is-typed-array": "^1.1.13"
+        "is-typed-array": "^1.1.13",
+        "reflect.getprototypeof": "^1.0.6"
       },
       "engines": {
         "node": ">= 0.4"
@@ -20733,17 +21550,17 @@ def generate_token(user_id):
       }
     },
     "node_modules/typed-array-length": {
-      "version": "1.0.6",
-      "resolved": "https://registry.npmjs.org/typed-array-length/-/typed-array-length-1.0.6.tgz",
-      "integrity": "sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==",
+      "version": "1.0.7",
+      "resolved": "https://registry.npmjs.org/typed-array-length/-/typed-array-length-1.0.7.tgz",
+      "integrity": "sha512-3KS2b+kL7fsuk/eJZ7EQdnEmQoaho/r6KUef7hxvltNA5DR8NAUM+8wJMbJyZ4G9/7i3v5zPBIMN5aybAh2/Jg==",
       "license": "MIT",
       "dependencies": {
         "call-bind": "^1.0.7",
         "for-each": "^0.3.3",
         "gopd": "^1.0.1",
-        "has-proto": "^1.0.3",
         "is-typed-array": "^1.1.13",
-        "possible-typed-array-names": "^1.0.0"
+        "possible-typed-array-names": "^1.0.0",
+        "reflect.getprototypeof": "^1.0.6"
       },
       "engines": {
         "node": ">= 0.4"
@@ -20759,20 +21576,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "is-typedarray": "^1.0.0"
-      }
-    },
-    "node_modules/typescript": {
-      "version": "4.9.5",
-      "resolved": "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz",
-      "integrity": "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==",
-      "license": "Apache-2.0",
-      "peer": true,
-      "bin": {
-        "tsc": "bin/tsc",
-        "tsserver": "bin/tsserver"
-      },
-      "engines": {
-        "node": ">=4.2.0"
       }
     },
     "node_modules/unbox-primitive": {
@@ -20797,9 +21600,9 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/undici-types": {
-      "version": "6.19.8",
-      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz",
-      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==",
+      "version": "6.20.0",
+      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.20.0.tgz",
+      "integrity": "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==",
       "license": "MIT"
     },
     "node_modules/unicode-canonical-property-names-ecmascript": {
@@ -21009,6 +21812,15 @@ def generate_token(user_id):
       "license": "MIT",
       "engines": {
         "node": ">= 0.8"
+      }
+    },
+    "node_modules/void-elements": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/void-elements/-/void-elements-3.1.0.tgz",
+      "integrity": "sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=0.10.0"
       }
     },
     "node_modules/w3c-hr-time": {
@@ -21275,6 +22087,15 @@ def generate_token(user_id):
         "node": ">=10.13.0"
       }
     },
+    "node_modules/webpack/node_modules/ajv-keywords": {
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
+      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
+      "license": "MIT",
+      "peerDependencies": {
+        "ajv": "^6.9.1"
+      }
+    },
     "node_modules/webpack/node_modules/eslint-scope": {
       "version": "5.1.1",
       "resolved": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-5.1.1.tgz",
@@ -21417,16 +22238,17 @@ def generate_token(user_id):
       }
     },
     "node_modules/which-builtin-type": {
-      "version": "1.1.4",
-      "resolved": "https://registry.npmjs.org/which-builtin-type/-/which-builtin-type-1.1.4.tgz",
-      "integrity": "sha512-bppkmBSsHFmIMSl8BO9TbsyzsvGjVoppt8xUiGzwiu/bhDCGxnpOKCxgqj6GuyHE0mINMDecBFPlOm2hzY084w==",
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/which-builtin-type/-/which-builtin-type-1.2.0.tgz",
+      "integrity": "sha512-I+qLGQ/vucCby4tf5HsLmGueEla4ZhwTBSqaooS+Y0BuxN4Cp+okmGuV+8mXZ84KDI9BA+oklo+RzKg0ONdSUA==",
       "license": "MIT",
       "dependencies": {
+        "call-bind": "^1.0.7",
         "function.prototype.name": "^1.1.6",
         "has-tostringtag": "^1.0.2",
         "is-async-function": "^2.0.0",
         "is-date-object": "^1.0.5",
-        "is-finalizationregistry": "^1.0.2",
+        "is-finalizationregistry": "^1.1.0",
         "is-generator-function": "^1.0.10",
         "is-regex": "^1.1.4",
         "is-weakref": "^1.0.2",
@@ -21461,9 +22283,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/which-typed-array": {
-      "version": "1.1.15",
-      "resolved": "https://registry.npmjs.org/which-typed-array/-/which-typed-array-1.1.15.tgz",
-      "integrity": "sha512-oV0jmFtUky6CXfkqehVvBP/LSWJ2sy4vWMioiENyJLePrBO/yKyV9OyJySfAKosh+RYkIl5zJCNZ8/4JncrpdA==",
+      "version": "1.1.16",
+      "resolved": "https://registry.npmjs.org/which-typed-array/-/which-typed-array-1.1.16.tgz",
+      "integrity": "sha512-g+N+GAWiRj66DngFwHvISJd+ITsyphZvD1vChfVg6cEdnzy53GzB3oy0fUNlvhz7H7+MiqhYr26qxQShCpKTTQ==",
       "license": "MIT",
       "dependencies": {
         "available-typed-arrays": "^1.0.7",
@@ -21553,23 +22375,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": ">=10.0.0"
-      }
-    },
-    "node_modules/workbox-build/node_modules/@apideck/better-ajv-errors": {
-      "version": "0.3.6",
-      "resolved": "https://registry.npmjs.org/@apideck/better-ajv-errors/-/better-ajv-errors-0.3.6.tgz",
-      "integrity": "sha512-P+ZygBLZtkp0qqOAJJVX4oX/sFo5JR3eBWwwuqHHhK0GIgQOKWrAfiAaWX0aArHkRWHMuggFEgAZNxVPwPZYaA==",
-      "license": "MIT",
-      "dependencies": {
-        "json-schema": "^0.4.0",
-        "jsonpointer": "^5.0.0",
-        "leven": "^3.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "peerDependencies": {
-        "ajv": ">=8"
       }
     },
     "node_modules/workbox-build/node_modules/ajv": {
@@ -22059,6 +22864,64 @@ test('renders learn react link', () => {
 import '@testing-library/jest-dom';
 
 
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/i18n.js ---
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+// Подключение отдельных файлов переводов
+import aboutTranslations from './translations/about';
+import civilizationsTranslations from './translations/civilizations';
+import eternalThingsTranslations from './translations/eternalThings';
+import gameplayTranslations from './translations/gameplay';
+import howItWorksTranslations from './translations/how_it_works';
+import newsTranslations from './translations/news';
+
+// Собираем все переводы в один объект
+const resources = {
+  en: {
+    about: aboutTranslations.en,
+    civilizations: civilizationsTranslations.en,
+    eternalThings: eternalThingsTranslations.en,
+    gameplay: gameplayTranslations.en,
+    howItWorks: howItWorksTranslations.en,
+    news: newsTranslations.en,
+  },
+  ru: {
+    about: aboutTranslations.ru,
+    civilizations: civilizationsTranslations.ru,
+    eternalThings: eternalThingsTranslations.ru,
+    gameplay: gameplayTranslations.ru,
+    howItWorks: howItWorksTranslations.ru,
+    news: newsTranslations.ru,
+  },
+  ua: {
+    about: aboutTranslations.ua,
+    civilizations: civilizationsTranslations.ua,
+    eternalThings: eternalThingsTranslations.ua,
+    gameplay: gameplayTranslations.ua,
+    howItWorks: howItWorksTranslations.ua,
+    news: newsTranslations.ua,
+  },
+};
+
+// Инициализация i18next
+i18n
+  .use(initReactI18next) // Подключаем React к i18next
+  .init({
+    resources, // Передаем переводы
+    lng: 'ru', // Язык по умолчанию
+    fallbackLng: 'ru', // Резервный язык
+    interpolation: {
+      escapeValue: false, // React уже экранирует данные
+    },
+    react: {
+      useSuspense: true, // Включаем Suspense
+    },
+  });
+
+export default i18n;
+
+
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/App.js ---
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -22082,10 +22945,16 @@ import LogoutButton from './components/LogoutButton';
 import axios from './axiosSetup'; // Настройка axios для API запросов
 import './styles/style.css';
 
+import './i18n'; // Подключаем инициализацию i18n
+import { useTranslation } from 'react-i18next'; // Для работы с переводами
+import { useParams } from 'react-router-dom'; // Для получения языка из URL
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Состояние авторизации
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Проверка авторизации завершена
   const [userEmail, setUserEmail] = useState(''); // Email текущего пользователя
+  const { lang } = useParams(); // Получаем текущий язык из URL
+  const { i18n } = useTranslation(); // Используем i18next для управления языком
 
   // Проверяем авторизацию при загрузке приложения
   useEffect(() => {
@@ -22111,6 +22980,14 @@ function App() {
   checkAuth();
 }, []);
 
+  // Логика смены языка
+  useEffect(() => {
+    if (lang && ['en', 'ru', 'ua'].includes(lang)) {
+      i18n.changeLanguage(lang);
+    } else {
+      i18n.changeLanguage('ru');
+    }
+  }, [lang, i18n]);
 
   // Успешный вход в систему
   const handleLoginSuccess = () => {
@@ -22129,9 +23006,10 @@ function App() {
   };
 
   // Пока проверка авторизации не завершена, отображаем загрузочный экран
-  if (!isAuthChecked) {
-    return <div>Загрузка...</div>;
-  }
+if (!isAuthChecked) {
+  return <div className="loading-screen">Проверка авторизации...</div>;
+}
+
 
   return (
     <Router>
@@ -22142,7 +23020,9 @@ function App() {
         <Routes>
           {/* Основные страницы */}
 
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/about" element={<Navigate to="/ru/about" />} />
+          <Route path="/:lang/about" element={<AboutPage />} />
+
           <Route path="/gameplay" element={<GameplayPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/faq" element={<FaqPage />} />
@@ -22274,6 +23154,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import i18n from './i18n'; // Импортируйте i18n
+window.i18n = i18n; // Сделайте i18n доступным глобально
+console.log('i18n доступен глобально', window.i18n); // Проверьте, что он определен
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22779,122 +23663,178 @@ export default ContactPage;
 
 
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/pages/AboutPage.js ---
-// src/pages/AboutPage.js
-import React from 'react';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 const AboutPage = () => {
-    console.log("AboutPage рендерится");
+  const { t } = useTranslation(); // Хук для переводов
 
-    return (
-        <div>
+  console.log("AboutPage рендерится");
 
+  // Логируем все переводы для текущего языка
+  console.log("Текущий язык:", i18n.language);
+  console.log("Все переводы:", i18n.store.data);
 
-            {/* Основной контент с категориями */}
-            <div className="category-list">
-                <h2>Обзор и цели проекта</h2>
-                <p>Проект Экоманер нацелен на создание новой экологической культуры, используя криптовалюту и современные технологии для мотивации людей к сбору и переработке мусора.</p>
-                <p><strong>Цель:</strong> Полное очищение планеты от мусора через создание эффективной мотивационной системы.</p>
-                <p><strong>Миссия:</strong> Создание цифровой платформы и игрового процесса для организации сбора, сортировки и переработки отходов с привлечением активных участников и доноров.</p>
+  // Логируем конкретные ключи
+  const rolesTitle = t("about.roles.title");
+  const rolesList = t("about.roles.list", { returnObjects: true });
 
-                <h2>Роли и категории участников</h2>
-                <p>В проекте Экоманер выделены следующие основные роли:</p>
-                <ul>
-                    <li><strong>Участники:</strong> Люди, выполняющие задания по сбору и сортировке мусора.</li>
-                    <li><strong>Администраторы:</strong> Волонтеры и сотрудники, которые проверяют выполненные действия и выпускают токены.</li>
-                    <li><strong>Доноры и спонсоры:</strong> Поддерживают проект через покупку токенов и пожертвования, помогая поддерживать систему и поощрять участников.</li>
-                </ul>
+  console.log("rolesTitle:", rolesTitle); // Проверяем заголовок
+  console.log("rolesList:", rolesList); // Проверяем массив или ошибку
 
-                <h2>Основные процессы проекта</h2>
-                <p>Основные процессы, реализуемые в проекте Экоманер:</p>
-                <ul>
-                    <li>Сортировка мусора: Участники сортируют мусор и отправляют данные о процессе через бота.</li>
-                    <li>Мониторинг свалок: Участники фиксируют свалки, отправляют фотографии с геометками, данные проверяются, и за это начисляются токены.</li>
-                    <li>Подтверждение пунктов приёма: Участники документируют новые точки приёма мусора, такие как контейнеры и пункты переработки.</li>
-                </ul>
+  const rolesList = t('roles.list', { returnObjects: true });
+  if (!Array.isArray(rolesList)) {
+    console.error("rolesList должен быть массивом, получено:", rolesList);
+    return <div>Ошибка: данные rolesList недоступны или некорректны.</div>;
+  }
 
-                <h2>Цифровая система вознаграждений</h2>
-                <p>Цифровая система вознаграждений в проекте Экоманер включает:</p>
-                <ul>
-                    <li>NFT-токены: Выдаются за подтверждённые действия, такие как сортировка мусора и мониторинг свалок.</li>
-                    <li>Экоманер коин: Внутренняя криптовалюта, которая используется для награждения участников и поддержания активности на платформе.</li>
-                    <li>Механизм продажи токенов: Доноры могут покупать токены через платформы, такие как OpenSea, поддерживая проект и поощряя активных участников.</li>
-                </ul>
+  return (
+    <div>
+      {/* Заголовок страницы */}
+      <h1>{t("about.title")}</h1>
 
-                <h2>Игровые и мотивационные элементы</h2>
-                <p>В проекте Экоманер интегрированы элементы игры и мотивации:</p>
-                <ul>
-                    <li>Карма: Система, отражающая уровень участия и усилий участников.</li>
-                    <li>Артефакты и игровые баллы: Дополнительные награды за выполненные задания, участие в лотереях и активность на платформе.</li>
-                    <li>Социальная сеть: Механизм, позволяющий участникам отслеживать прогресс друг друга и обмениваться опытом.</li>
-                </ul>
+      {/* Раздел: Обзор */}
+      <section>
+        <h2>{t("about.overview.title")}</h2>
+        <p>{t("about.overview.intro")}</p>
+        <p>{t("about.overview.goal")}</p>
+        <p>{t("about.overview.mission")}</p>
+      </section>
 
-                <h2>Карта проекта</h2>
-                <p>Карта Ecomap предоставляет визуализацию всех зарегистрированных свалок и пунктов приёма:</p>
-                <ul>
-                    <li>Различные маркеры и обозначения для свалок, точек приёма и других объектов.</li>
-                    <li>Возможность отслеживания ликвидированных свалок и новых точек приёма.</li>
-                </ul>
+      {/* Раздел: Роли участников */}
+      <section>
+        <h2>{t("about.roles.title")}</h2>
+        <ul>
+          {t("about.roles.list", { returnObjects: true }).map((role, index) => (
+            <li key={index}>
+              <strong>{role.role}:</strong> {role.description}
+            </li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Технологическая и финансовая инфраструктура</h2>
-                <p>Проект Экоманер поддерживается продуманной технологической и финансовой инфраструктурой:</p>
-                <ul>
-                    <li>Кошелек Экоманер: Система для пополнения, обмена и вывода средств.</li>
-                    <li>Внутренняя биржа: Платформа для обмена Экоманер коинов.</li>
-                    <li>Финансовые фонды: Ремайнинг фонд, лотерейный фонд и стабилизационный фонд для поддержания активности участников.</li>
-                </ul>
+      {/* Раздел: Основные процессы */}
+      <section>
+        <h2>{t("about.processes.title")}</h2>
+        <ul>
+          {t("about.processes.list", { returnObjects: true }).map((process, index) => (
+            <li key={index}>{process}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Методы финансирования и инвестирования</h2>
-                <p>Экоманер предлагает различные способы финансирования и поддержки:</p>
-                <ul>
-                    <li>Спонсорство и донаты: Благотворительные взносы для поддержки проекта.</li>
-                    <li>Инвестирование: Возможность купить токены или Экоманер коины с целью долгосрочного дохода.</li>
-                    <li>Платежные шлюзы: Поддержка различных способов оплаты для доноров и инвесторов.</li>
-                </ul>
+      {/* Раздел: Цифровая система вознаграждений */}
+      <section>
+        <h2>{t("about.rewards.title")}</h2>
+        <ul>
+          {t("about.rewards.details", { returnObjects: true }).map((reward, index) => (
+            <li key={index}>{reward}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Партнерские программы и франчайзинг</h2>
-                <p>Партнёрская программа и франчайзинг предоставляют возможность сотрудничества:</p>
-                <ul>
-                    <li>Франчайзинг: Партнёры могут инвестировать и получать доход от активности на определённых территориях.</li>
-                    <li>Корпоративные клиенты: Взаимодействие с крупными брендами для организации экологических инициатив, например, спонсорство уборок.</li>
-                </ul>
+      {/* Раздел: Игровые элементы */}
+      <section>
+        <h2>{t("about.gamification.title")}</h2>
+        <ul>
+          {t("about.gamification.list", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Система отчетности и публичности</h2>
-                <p>Система отчетности и прозрачности:</p>
-                <ul>
-                    <li>Прозрачные данные: Публикация отчётов о проделанной работе и активности участников.</li>
-                    <li>История транзакций: Публичные данные о купленных и проданных токенах и выполненных заданиях.</li>
-                </ul>
+      {/* Раздел: Карта проекта */}
+      <section>
+        <h2>{t("about.map.title")}</h2>
+        <p>{t("about.map.description")}</p>
+        <ul>
+          {t("about.map.details", { returnObjects: true }).map((detail, index) => (
+            <li key={index}>{detail}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Образовательные программы и ресурсы</h2>
-                <p>Образовательные программы для участников Экоманер:</p>
-                <ul>
-                    <li>Материалы по сортировке мусора и работе с платформой.</li>
-                    <li>Виртуальный экскурсовод: Интерактивное обучение через элементы игры.</li>
-                </ul>
+      {/* Раздел: Технологическая и финансовая инфраструктура */}
+      <section>
+        <h2>{t("about.infrastructure.title")}</h2>
+        <ul>
+          {t("about.infrastructure.list", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>PR и маркетинговая стратегия</h2>
-                <p>PR и маркетинговая стратегия проекта включает:</p>
-                <ul>
-                    <li>PR-кампании: Привлечение внимания через социальные сети и акции.</li>
-                    <li>Реферальная программа: Вовлечение новых участников и поддержка сетевого распространения информации.</li>
-                </ul>
+      {/* Раздел: Методы финансирования */}
+      <section>
+        <h2>{t("about.funding.title")}</h2>
+        <ul>
+          {t("about.funding.list", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Собственные разработки и инновации</h2>
-                <p>Внедрение инноваций:</p>
-                <ul>
-                    <li>Цифровая экосистема: Разработка виртуальных мусорных баков и умных контейнеров.</li>
-                    <li>Аналитика данных: Сбор и анализ статистики по типам и объему собранного мусора для оптимизации переработки.</li>
-                </ul>
+      {/* Раздел: Партнерские программы */}
+      <section>
+        <h2>{t("about.partnerships.title")}</h2>
+        <ul>
+          {t("about.partnerships.list", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
 
-                <h2>Социальная сеть Экоманер</h2>
-                <p>Социальная сеть Экоманер позволяет участникам общаться и поддерживать друг друга:</p>
-                <ul>
-                    <li>Коммуникация: Форум, чаты и обмен опытом среди участников.</li>
-                    <li>Взаимопомощь: Система быстрого оповещения для ситуаций, требующих коллективных действий.</li>
-                </ul>
-            </div>
-        </div>
-    );
+      {/* Раздел: Прозрачность и отчетность */}
+      <section>
+        <h2>{t("about.transparency.title")}</h2>
+        <ul>
+          {t("about.transparency.list", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Раздел: Образовательные программы */}
+      <section>
+        <h2>{t("about.education.title")}</h2>
+        <ul>
+          {t("about.education.details", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Раздел: PR и маркетинг */}
+      <section>
+        <h2>{t("about.marketing.title")}</h2>
+        <ul>
+          {t("about.marketing.details", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Раздел: Инновации */}
+      <section>
+        <h2>{t("about.innovations.title")}</h2>
+        <ul>
+          {t("about.innovations.details", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Раздел: Социальная сеть */}
+      <section>
+        <h2>{t("about.socialNetwork.title")}</h2>
+        <ul>
+          {t("about.socialNetwork.details", { returnObjects: true }).map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  );
 };
 
 export default AboutPage;
@@ -23658,6 +24598,761 @@ const AccountPage = () => {
 export default AccountPage;
 
 
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/how_it_works.js ---
+// File: /home/ecomaner_django/frontend/src/translations/how_it_works.js
+
+const howItWorks = {
+  en: {
+    title: "How It Works",
+    intro: "This section details how the Ecomaner system operates. Follow the instructions and algorithms below to understand how you can participate and earn rewards for your actions in the project.",
+    sections: [
+      {
+        id: "sorting",
+        title: "Sorting Algorithm",
+        steps: [
+          "Collect and sort waste.",
+          "Visit a waste collection point and take a photo of the location.",
+          "While near the collection point, take a photo of the sorted waste.",
+          "Submit the waste at the collection point. If a receipt is issued, take a photo with the receipt and money.",
+          "Send all photos, geolocation, and information to our Telegram bot for verification.",
+          "Upon verification, you will receive tokens and game points in your account.",
+        ],
+      },
+    ],
+  },
+  ru: {
+    title: "Как это работает",
+    intro: "В этом разделе подробно рассказывается, как работает система Экоманер. Следуйте инструкциям и алгоритмам ниже, чтобы понять, как вы можете участвовать и получать вознаграждение за свои действия в проекте.",
+    sections: [
+      {
+        id: "sorting",
+        title: "Алгоритм 'Сортировка'",
+        steps: [
+          "Соберите и отсортируйте мусор.",
+          "Отправьтесь в пункт приёма мусора и сделайте фото места.",
+          "Находясь возле пункта приёма, сделайте фото отсортированного мусора.",
+          "Сдайте мусор в пункт приёма. Если вам выдали чек, сфотографируйте его вместе с деньгами.",
+          "Отправьте все фото, геолокацию и информацию в наш Telegram-бот для проверки.",
+          "После верификации вы получите токены и игровые баллы на ваш счёт.",
+        ],
+      },
+    ],
+  },
+  ua: {
+    title: "Як це працює",
+    intro: "У цьому розділі детально розповідається, як працює система Екоманер. Дотримуйтесь інструкцій та алгоритмів нижче, щоб зрозуміти, як ви можете брати участь і отримувати винагороди за свої дії у проєкті.",
+    sections: [
+      {
+        id: "sorting",
+        title: "Алгоритм 'Сортування'",
+        steps: [
+          "Зберіть і відсортуйте сміття.",
+          "Вирушайте до пункту прийому сміття та зробіть фото місця.",
+          "Перебуваючи біля пункту прийому, зробіть фото відсортованого сміття.",
+          "Здайте сміття у пункт прийому. Якщо вам видали чек, сфотографуйте його разом із грошима.",
+          "Надішліть усі фото, геолокацію та інформацію до нашого Telegram-бота для перевірки.",
+          "Після верифікації ви отримаєте токени та ігрові бали на ваш рахунок.",
+        ],
+      },
+    ],
+  },
+};
+
+export default howItWorks;
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/news.js ---
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/common.js ---
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/gameplay.js ---
+// File: /home/ecomaner_django/frontend/src/translations/gameplay.js
+
+const gameplay = {
+  en: {
+    title: "Gameplay",
+    intro: "Ecomaner invites players to develop an eco-friendly city using unique NFT modules and completing real-life tasks. In this game, virtual and real actions merge to create a sustainable environment and motivate ecological behavior.",
+    civilizations: [
+      {
+        name: "Bee Civilization",
+        role: "Waste collection and sorting",
+        description:
+          "Bees are responsible for waste collection and sorting, clearing space and directing waste for recycling.",
+        modules: [
+          "Waste Sorting Module: sorts waste into organic and inorganic.",
+          "Organic Processing Module: processes organic waste into resources.",
+          "Recycling Module: converts waste into reusable materials.",
+        ],
+      },
+      {
+        name: "Ant Civilization",
+        role: "Waste recycling",
+        description:
+          "Ants recycle waste and create products from secondary raw materials, contributing to the sustainable development of the city.",
+        modules: [
+          "Recycling Plant: produces goods from waste.",
+          "Product Manufacturing Module: creates durable items from recycled materials.",
+          "Eternal Goods Module: produces items resistant to wear and tear.",
+        ],
+      },
+      {
+        name: "Fungi Civilization",
+        role: "Communication and knowledge sharing",
+        description:
+          "Fungi educate and provide ecological knowledge to participants, raising residents' environmental awareness.",
+        modules: [
+          "Basic Education Module: improves waste sorting through resident education.",
+          "Trade Module: unlocks resource trading opportunities between cells.",
+          "Migration Module: increases population, enhancing productivity.",
+          "Missionary Module: attracts new participants and grants bonuses for community expansion.",
+        ],
+      },
+      {
+        name: "Bacteria Civilization",
+        role: "Energy and humus production",
+        description:
+          "Bacteria recycle organic waste into energy and humus, maintaining ecological balance in the cell.",
+        modules: [
+          "Electricity Module: converts organic matter into energy.",
+          "Heat Production Module: generates thermal energy.",
+          "Bioreactor Module: produces humus to improve soil.",
+        ],
+      },
+    ],
+    specialModules: [
+      "NFT Token 'Tree': allows players to plant trees, improving the city's ecological rating.",
+      "Online Events: unique activities with exclusive NFT rewards.",
+    ],
+    mechanics: {
+      title: "Gameplay and Mechanics",
+      sections: [
+        {
+          title: "Managing a Virtual City (Hive)",
+          content:
+            "Each player develops their hive with a unique index and population size. The hive produces waste daily, which must be processed or recycled to improve its ecological rating.",
+        },
+        {
+          title: "Integration with Real-Life Tasks",
+          content:
+            "Players complete real-world tasks, such as sorting waste or planting trees, and receive in-game rewards for their efforts. These activities help improve city infrastructure.",
+        },
+        {
+          title: "NFT-Based Economy",
+          content:
+            "Each module and action in the game is tied to NFT tokens, which players can sell or exchange, creating an economy based on ecologically meaningful actions.",
+        },
+        {
+          title: "Collaboration and Resource Sharing",
+          content:
+            "Players can collaborate, exchange resources, and share experiences to achieve common goals and create a more effective ecosystem.",
+        },
+      ],
+    },
+    goals: {
+      title: "Game Objectives and Development",
+      content:
+        "The goal is to develop the hive to its maximum level, achieve the 'Ecomaner' status, and enter the hall of fame. To do so, players must complete all real-life tasks, install maximum modules, participate in educational programs, and plant trees.",
+    },
+  },
+  ru: {
+    title: "Игровой процесс",
+    intro:
+      "Экоманер предлагает игрокам развивать экологически чистый город, используя уникальные NFT-модули и выполняя реальные задания. В этой игре виртуальные и реальные действия объединяются, чтобы создавать устойчивую среду и мотивировать экологическое поведение.",
+    civilizations: [
+      {
+        name: "Цивилизация Пчел",
+        role: "Сбор и сортировка мусора",
+        description:
+          "Пчелы занимаются сбором мусора и его сортировкой, очищая пространство и направляя отходы на переработку.",
+        modules: [
+          "Модуль сортировки мусора: сортирует мусор на органический и неорганический.",
+          "Модуль обработки органики: перерабатывает органику в ресурсы.",
+          "Модуль производства вторсырья: преобразует мусор в материалы для повторного использования.",
+        ],
+      },
+      {
+        name: "Цивилизация Муравьев",
+        role: "Переработка отходов",
+        description:
+          "Муравьи перерабатывают мусор и создают продукцию из вторсырья, способствуя устойчивому развитию города.",
+        modules: [
+          "Завод по переработке вторсырья: создает продукцию из отходов.",
+          "Модуль производства готовой продукции: создает из вторсырья вещи для длительного использования.",
+          "Модуль производства 'вечных вещей': позволяет производить продукцию, устойчивающую к износу.",
+        ],
+      },
+      {
+        name: "Цивилизация Грибов",
+        role: "Коммуникация и распространение знаний",
+        description:
+          "Грибы обучают и обеспечивают участников знаниями об экологии, повышая экологическую осведомленность жителей.",
+        modules: [
+          "Базовый обучающий модуль: улучшает сортировку мусора за счет информирования жителей.",
+          "Торговый модуль: открывает возможности для торговли ресурсами между сотами.",
+          "Миграционный модуль: увеличивает население, что повышает продуктивность.",
+          "Миссионерский модуль: привлекает новых участников и дает бонусы за расширение сообщества.",
+        ],
+      },
+      {
+        name: "Цивилизация Бактерий",
+        role: "Производство энергии и гумуса",
+        description:
+          "Бактерии перерабатывают органику в энергию и гумус, поддерживая экологическое равновесие в соте.",
+        modules: [
+          "Модуль производства электричества: превращает органику в энергию.",
+          "Модуль производства тепла: генерирует тепловую энергию.",
+          "Модуль биореактора: создает гумус, улучшая почву.",
+        ],
+      },
+    ],
+  },
+};
+
+export default gameplay;
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/about.js ---
+// File: /home/ecomaner_django/frontend/src/translations/all_sections.js
+
+const translations = {
+  en: {
+    about: {
+      title: "About the Project",
+      overview: {
+        title: "Overview and Goals of the Project",
+        intro: "The Ecomaner project aims to create a new ecological culture by using cryptocurrency and modern technologies to motivate people to collect and recycle waste.",
+        goal: "Goal: Complete planet-wide cleanup through an effective motivational system.",
+        mission: "Mission: Creating a digital platform and gameplay to organize waste collection, sorting, and recycling with active participants and donors.",
+      },
+      roles: {
+        title: "Roles and Categories of Participants",
+        list: [
+          { role: "Participants", description: "People performing tasks related to waste collection and sorting." },
+          { role: "Administrators", description: "Volunteers and staff who verify completed actions and issue tokens." },
+          { role: "Donors and Sponsors", description: "Support the project by purchasing tokens and making donations, helping to maintain the system and reward participants." },
+        ],
+      },
+      processes: {
+        title: "Core Processes of the Project",
+        list: [
+          "Waste sorting: Participants sort waste and send process data through the bot.",
+          "Landfill monitoring: Participants record landfills, submit photos with geotags, the data is verified, and tokens are credited for this.",
+          "Verification of collection points: Participants document new waste collection points, such as containers and recycling centers.",
+        ],
+      },
+      rewards: {
+        title: "Digital Reward System",
+        details: [
+          "NFT tokens: Awarded for verified actions such as waste sorting and landfill monitoring.",
+          "Ecomaner Coin: Internal cryptocurrency used to reward participants and maintain platform activity.",
+          "Token sale mechanism: Donors can purchase tokens through platforms such as OpenSea, supporting the project and encouraging active participants.",
+        ],
+      },
+      gamification: {
+        title: "Gameplay and Motivational Elements",
+        list: [
+          "Karma: A system reflecting the level of participation and effort of participants.",
+          "Artifacts and game points: Additional rewards for completed tasks, participating in lotteries, and being active on the platform.",
+          "Social network: A mechanism allowing participants to track each other's progress and share experiences.",
+        ],
+      },
+      map: {
+        title: "Project Map",
+        description: "The Ecomap provides a visualization of all registered landfills and waste collection points:",
+        details: [
+          "Various markers and designations for landfills, collection points, and other objects.",
+          "The ability to track eliminated landfills and newly established collection points.",
+        ],
+      },
+      infrastructure: {
+        title: "Technological and Financial Infrastructure",
+        list: [
+          "Ecomaner Wallet: A system for replenishing, exchanging, and withdrawing funds.",
+          "Internal exchange: A platform for trading Ecomaner Coins.",
+          "Financial funds: Reminting fund, lottery fund, and stabilization fund to maintain participant activity.",
+        ],
+      },
+      funding: {
+        title: "Funding and Investment Methods",
+        list: [
+          "Sponsorship and donations: Charitable contributions to support the project.",
+          "Investment: The ability to buy tokens or Ecomaner Coins for long-term income.",
+          "Payment gateways: Support for various payment methods for donors and investors.",
+        ],
+      },
+      partnerships: {
+        title: "Partnership Programs and Franchising",
+        list: [
+          "Franchising: Partners can invest and earn income from activities in specific territories.",
+          "Corporate clients: Interaction with large brands to organize ecological initiatives, such as sponsoring cleanups.",
+        ],
+      },
+      transparency: {
+        title: "Transparency and Reporting System",
+        list: [
+          "Transparent data: Publication of reports on the work done and participant activity.",
+          "Transaction history: Public data on purchased and sold tokens and completed tasks.",
+        ],
+      },
+      education: {
+        title: "Educational Programs and Resources",
+        details: [
+          "Materials on waste sorting and working with the platform.",
+          "Virtual guide: Interactive learning through game elements.",
+        ],
+      },
+      marketing: {
+        title: "PR and Marketing Strategy",
+        details: [
+          "PR campaigns: Attracting attention through social networks and promotions.",
+          "Referral program: Involving new participants and supporting the network dissemination of information.",
+        ],
+      },
+      innovations: {
+        title: "Own Developments and Innovations",
+        details: [
+          "Digital ecosystem: Development of virtual trash bins and smart containers.",
+          "Data analytics: Collection and analysis of statistics on the types and volumes of collected waste to optimize recycling.",
+        ],
+      },
+      socialNetwork: {
+        title: "Ecomaner Social Network",
+        details: [
+          "Communication: Forums, chats, and experience sharing among participants.",
+          "Mutual assistance: A rapid alert system for situations requiring collective actions.",
+        ],
+      },
+    },
+  },
+  ru: {
+    about: {
+      title: "О проекте",
+      overview: {
+        title: "Обзор и цели проекта",
+        intro: "Проект Экоманер нацелен на создание новой экологической культуры, используя криптовалюту и современные технологии для мотивации людей к сбору и переработке мусора.",
+        goal: "Цель: Полное очищение планеты от мусора через создание эффективной мотивационной системы.",
+        mission: "Миссия: Создание цифровой платформы и игрового процесса для организации сбора, сортировки и переработки отходов с привлечением активных участников и доноров.",
+      },
+      roles: {
+        title: "Роли и категории участников",
+        list: [
+          { role: "Участники", description: "Люди, выполняющие задания по сбору и сортировке мусора." },
+          { role: "Администраторы", description: "Волонтеры и сотрудники, которые проверяют выполненные действия и выпускают токены." },
+          { role: "Доноры и спонсоры", description: "Поддерживают проект через покупку токенов и пожертвования, помогая поддерживать систему и поощрять участников." },
+        ],
+      },
+      processes: {
+        title: "Основные процессы проекта",
+        list: [
+          "Сортировка мусора: Участники сортируют мусор и отправляют данные о процессе через бота.",
+          "Мониторинг свалок: Участники фиксируют свалки, отправляют фотографии с геометками, данные проверяются, и за это начисляются токены.",
+          "Подтверждение пунктов приёма: Участники документируют новые точки приёма мусора, такие как контейнеры и пункты переработки.",
+        ],
+      },
+      rewards: {
+        title: "Цифровая система вознаграждений",
+        details: [
+          "NFT-токены: Выдаются за подтверждённые действия, такие как сортировка мусора и мониторинг свалок.",
+          "Экоманер коин: Внутренняя криптовалюта, которая используется для награждения участников и поддержания активности на платформе.",
+          "Механизм продажи токенов: Доноры могут покупать токены через платформы, такие как OpenSea, поддерживая проект и поощряя активных участников.",
+        ],
+      },
+      gamification: {
+        title: "Игровые и мотивационные элементы",
+        list: [
+          "Карма: Система, отражающая уровень участия и усилий участников.",
+          "Артефакты и игровые баллы: Дополнительные награды за выполненные задания, участие в лотереях и активность на платформе.",
+          "Социальная сеть: Механизм, позволяющий участникам отслеживать прогресс друг друга и обмениваться опытом.",
+        ],
+      },
+      map: {
+        title: "Карта проекта",
+        description: "Карта Ecomap предоставляет визуализацию всех зарегистрированных свалок и пунктов приёма:",
+        details: [
+          "Различные маркеры и обозначения для свалок, точек приёма и других объектов.",
+          "Возможность отслеживания ликвидированных свалок и новых точек приёма.",
+        ],
+      },
+      infrastructure: {
+        title: "Технологическая и финансовая инфраструктура",
+        list: [
+          "Кошелек Экоманер: Система для пополнения, обмена и вывода средств.",
+          "Внутренняя биржа: Платформа для обмена Экоманер коинов.",
+          "Финансовые фонды: Ремайнинг фонд, лотерейный фонд и стабилизационный фонд для поддержания активности участников.",
+        ],
+      },
+      funding: {
+        title: "Методы финансирования и инвестирования",
+        list: [
+          "Спонсорство и донаты: Благотворительные взносы для поддержки проекта.",
+          "Инвестирование: Возможность купить токены или Экоманер коины с целью долгосрочного дохода.",
+          "Платежные шлюзы: Поддержка различных способов оплаты для доноров и инвесторов.",
+        ],
+      },
+      partnerships: {
+        title: "Партнерские программы и франчайзинг",
+        list: [
+          "Франчайзинг: Партнёры могут инвестировать и получать доход от активности на определённых территориях.",
+          "Корпоративные клиенты: Взаимодействие с крупными брендами для организации экологических инициатив, например, спонсорство уборок.",
+        ],
+      },
+      transparency: {
+        title: "Система отчетности и публичности",
+        list: [
+          "Прозрачные данные: Публикация отчётов о проделанной работе и активности участников.",
+          "История транзакций: Публичные данные о купленных и проданных токенах и выполненных заданиях.",
+        ],
+      },
+      education: {
+        title: "Образовательные программы и ресурсы",
+        details: [
+          "Материалы по сортировке мусора и работе с платформой.",
+          "Виртуальный экскурсовод: Интерактивное обучение через элементы игры.",
+        ],
+      },
+      marketing: {
+        title: "PR и маркетинговая стратегия",
+        details: [
+          "PR-кампании: Привлечение внимания через социальные сети и акции.",
+          "Реферальная программа: Вовлечение новых участников и поддержка сетевого распространения информации.",
+        ],
+      },
+      innovations: {
+        title: "Собственные разработки и инновации",
+        details: [
+          "Цифровая экосистема: Разработка виртуальных мусорных баков и умных контейнеров.",
+          "Аналитика данных: Сбор и анализ статистики по типам и объему собранного мусора для оптимизации переработки.",
+        ],
+      },
+      socialNetwork: {
+        title: "Социальная сеть Экоманер",
+        details: [
+          "Коммуникация: Форум, чаты и обмен опытом среди участников.",
+          "Взаимопомощь: Система быстрого оповещения для ситуаций, требующих коллективных действий.",
+        ],
+      },
+    },
+  },
+ua: {
+    about: {
+      title: "Про проєкт",
+      overview: {
+        title: "Огляд і цілі проєкту",
+        intro: "Проєкт Екоманер спрямований на створення нової екологічної культури, використовуючи криптовалюту та сучасні технології для мотивації людей до збору та переробки сміття.",
+        goal: "Мета: Повне очищення планети від сміття через створення ефективної мотиваційної системи.",
+        mission: "Місія: Створення цифрової платформи та ігрового процесу для організації збору, сортування та переробки відходів із залученням активних учасників і донорів.",
+      },
+      roles: {
+        title: "Ролі та категорії учасників",
+        list: [
+          { role: "Учасники", description: "Люди, які виконують завдання зі збору та сортування сміття." },
+          { role: "Адміністратори", description: "Волонтери та співробітники, які перевіряють виконані дії та випускають токени." },
+          { role: "Донори та спонсори", description: "Підтримують проєкт через купівлю токенів та пожертвування, допомагаючи підтримувати систему та заохочувати учасників." },
+        ],
+      },
+      processes: {
+        title: "Основні процеси проєкту",
+        list: [
+          "Сортування сміття: Учасники сортують сміття і надсилають дані про процес через бота.",
+          "Моніторинг звалищ: Учасники фіксують звалища, надсилають фотографії з геомітками, дані перевіряються, і за це нараховуються токени.",
+          "Підтвердження пунктів прийому: Учасники документують нові точки прийому сміття, такі як контейнери та пункти переробки.",
+        ],
+      },
+      rewards: {
+        title: "Цифрова система винагород",
+        details: [
+          "NFT-токени: Видаються за підтверджені дії, такі як сортування сміття і моніторинг звалищ.",
+          "Екоманер коїн: Внутрішня криптовалюта, яка використовується для нагородження учасників і підтримки активності на платформі.",
+          "Механізм продажу токенів: Донори можуть купувати токени через платформи, такі як OpenSea, підтримуючи проєкт і заохочуючи активних учасників.",
+        ],
+      },
+      gamification: {
+        title: "Ігрові та мотиваційні елементи",
+        list: [
+          "Карма: Система, яка відображає рівень участі та зусиль учасників.",
+          "Артефакти та ігрові бали: Додаткові винагороди за виконані завдання, участь у лотереях та активність на платформі.",
+          "Соціальна мережа: Механізм, який дозволяє учасникам відстежувати прогрес один одного та ділитися досвідом.",
+        ],
+      },
+      map: {
+        title: "Карта проєкту",
+        description: "Карта Ecomap надає візуалізацію всіх зареєстрованих звалищ та пунктів прийому:",
+        details: [
+          "Різноманітні маркери та позначення для звалищ, пунктів прийому та інших об'єктів.",
+          "Можливість відстеження ліквідованих звалищ та нових пунктів прийому.",
+        ],
+      },
+      infrastructure: {
+        title: "Технологічна та фінансова інфраструктура",
+        list: [
+          "Гаманець Екоманер: Система для поповнення, обміну та виведення коштів.",
+          "Внутрішня біржа: Платформа для обміну Екоманер коїнів.",
+          "Фінансові фонди: Ремайнінг фонд, лотерейний фонд і стабілізаційний фонд для підтримки активності учасників.",
+        ],
+      },
+      funding: {
+        title: "Методи фінансування та інвестування",
+        list: [
+          "Спонсорство та донати: Благодійні внески для підтримки проєкту.",
+          "Інвестування: Можливість придбати токени або Екоманер коїни з метою довгострокового доходу.",
+          "Платіжні шлюзи: Підтримка різноманітних способів оплати для донорів та інвесторів.",
+        ],
+      },
+      partnerships: {
+        title: "Партнерські програми та франчайзинг",
+        list: [
+          "Франчайзинг: Партнери можуть інвестувати та отримувати дохід від активності на певних територіях.",
+          "Корпоративні клієнти: Співпраця з великими брендами для організації екологічних ініціатив, наприклад, спонсорування прибирань.",
+        ],
+      },
+      transparency: {
+        title: "Система звітності та прозорості",
+        list: [
+          "Прозорі дані: Публікація звітів про виконану роботу та активність учасників.",
+          "Історія транзакцій: Публічні дані про куплені та продані токени і виконані завдання.",
+        ],
+      },
+      education: {
+        title: "Освітні програми та ресурси",
+        details: [
+          "Матеріали з сортування сміття та роботи з платформою.",
+          "Віртуальний гід: Інтерактивне навчання через ігрові елементи.",
+        ],
+      },
+      marketing: {
+        title: "PR та маркетингова стратегія",
+        details: [
+          "PR-кампанії: Залучення уваги через соціальні мережі та акції.",
+          "Реферальна програма: Залучення нових учасників та підтримка мережевого поширення інформації.",
+        ],
+      },
+      innovations: {
+        title: "Власні розробки та інновації",
+        details: [
+          "Цифрова екосистема: Розробка віртуальних сміттєвих баків та розумних контейнерів.",
+          "Аналітика даних: Збір та аналіз статистики за типами та обсягами зібраного сміття для оптимізації переробки.",
+        ],
+      },
+      socialNetwork: {
+        title: "Соціальна мережа Екоманер",
+        details: [
+          "Комунікація: Форум, чати та обмін досвідом серед учасників.",
+          "Взаємодопомога: Система швидкого оповіщення для ситуацій, що вимагають колективних дій.",
+        ],
+      },
+    },
+  },
+};
+
+export default translations;
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/civilizations.js ---
+// File: /home/ecomaner_django/frontend/src/translations/civilizations.js
+
+const civilizations = {
+  en: {
+    title: "Ecomaner",
+    subtitle: "Game Civilizations",
+    intro: "Each civilization in the Ecomaner project has a unique role and functions aimed at achieving ecological goals.",
+    bee_civilization: "Bee Civilization",
+    bee_role: "Role: Collecting and sorting waste.",
+    bee_description: "The Bee Civilization specializes in collecting and sorting waste. They work to reduce pollution and ensure proper disposal of recyclable materials.",
+    ant_civilization: "Ant Civilization",
+    ant_role: "Role: Efficient resource management.",
+    ant_description: "The Ant Civilization focuses on optimizing resource use, ensuring nothing goes to waste and all materials are utilized effectively.",
+    turtle_civilization: "Turtle Civilization",
+    turtle_role: "Role: Protecting water resources.",
+    turtle_description: "The Turtle Civilization safeguards rivers, lakes, and oceans, working to clean and protect aquatic ecosystems.",
+  },
+  ru: {
+    title: "Экоманер",
+    subtitle: "Игровые цивилизации",
+    intro: "Каждая цивилизация в проекте Экоманер имеет уникальную роль и функции, способствующие достижению экологических целей.",
+    bee_civilization: "Цивилизация Пчел",
+    bee_role: "Роль: Сбор и сортировка мусора.",
+    bee_description: "Цивилизация Пчел занимается сбором и сортировкой мусора. Они работают над снижением загрязнений и обеспечивают правильную переработку материалов.",
+    ant_civilization: "Цивилизация Муравьев",
+    ant_role: "Роль: Эффективное управление ресурсами.",
+    ant_description: "Цивилизация Муравьев занимается оптимизацией использования ресурсов, чтобы ничего не пропадало даром, а все материалы использовались с максимальной эффективностью.",
+    turtle_civilization: "Цивилизация Черепах",
+    turtle_role: "Роль: Защита водных ресурсов.",
+    turtle_description: "Цивилизация Черепах защищает реки, озера и океаны, работая над их очисткой и охраной водных экосистем.",
+  },
+  ua: {
+    title: "Екоманер",
+    subtitle: "Ігрові цивілізації",
+    intro: "Кожна цивілізація в проекті Екоманер має унікальну роль і функції, що сприяють досягненню екологічних цілей.",
+    bee_civilization: "Цивілізація Бджіл",
+    bee_role: "Роль: Збір і сортування сміття.",
+    bee_description: "Цивілізація Бджіл займається збором і сортуванням сміття. Вони працюють над зменшенням забруднень і забезпечують правильну утилізацію матеріалів.",
+    ant_civilization: "Цивілізація Мурах",
+    ant_role: "Роль: Ефективне управління ресурсами.",
+    ant_description: "Цивілізація Мурах займається оптимізацією використання ресурсів, щоб нічого не пропадало даремно, а всі матеріали використовувались максимально ефективно.",
+    turtle_civilization: "Цивілізація Черепах",
+    turtle_role: "Роль: Захист водних ресурсів.",
+    turtle_description: "Цивілізація Черепах захищає річки, озера та океани, працюючи над їх очищенням та охороною водних екосистем.",
+  },
+};
+
+export default civilizations;
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/translations/eternalThings.js ---
+// File: /home/ecomaner_django/frontend/src/translations/all_sections.js
+
+const translations = {
+  en: {
+    eternalItems: {
+      title: "Eternal Items",
+      intro: "The concept of 'Eternal Items' in the Ecomaner project represents an innovative approach to recycling waste, creating durable and valuable products that serve people for decades. These items are made from recycled materials, becoming not only useful but also environmentally safe.",
+      whatAre: {
+        title: "What are Eternal Items?",
+        description: "Eternal items are long-term use products made from recycled waste, designed for extended lifespan. Unlike traditional items, eternal items retain their value over many years and can be restored and reused.",
+      },
+      examples: {
+        title: "Examples of Eternal Items",
+        list: [
+          {
+            name: "Paving tiles made from recycled waste",
+            description: "Produced from recycled materials, resistant to loads and weather conditions. Used for landscaping, minimizing the use of new resources for road paving.",
+          },
+          {
+            name: "Trash bins",
+            description: "Durable waste containers made from recycled plastic materials help maintain urban cleanliness and last for years, reducing the amount of waste generated.",
+          },
+          {
+            name: "Road paving modules",
+            description: "Made from recycled waste and used for road and pavement coverings. These modules are wear-resistant and do not require frequent updates.",
+          },
+          {
+            name: "Shopping nets made of plastic chains",
+            description: "These durable nets are made from recycled plastic, replacing disposable bags. They are long-lasting and suitable for multiple uses.",
+          },
+          {
+            name: "Moisture-resistant business cards",
+            description: "Produced from recycled materials with moisture protection. These business cards are durable, wear-resistant, and retain a presentable appearance even in high humidity conditions.",
+          },
+          {
+            name: "One World Futbol",
+            description: "A football designed for long-term use, requiring no inflation and suitable for play under harsh conditions. Perfect for public spaces and educational programs.",
+          },
+          {
+            name: "Smartphone protection and tempered glass",
+            description: "These durable protective items provide additional safety for smartphones, preserving devices and reducing the need for accessory replacement.",
+          },
+        ],
+      },
+      significance: {
+        title: "Ecological and Economic Significance of Eternal Items",
+        description: "Eternal items help reduce waste volume and stimulate the recycling economy. These items last a long time, reducing the need for replacements and lessening the environmental burden by decreasing the production of disposable goods. Using eternal items also contributes to job creation in the recycling sector and increases the value of waste as a resource.",
+        additional: "Each eternal item costs more than regular products made from recycled materials, highlighting their uniqueness and high quality. In the game, players can issue NFTs for each eternal item, opening up opportunities to create new types of durable goods.",
+      },
+    },
+  },
+ru: {
+    eternalItems: {
+      title: "Вечные вещи",
+      intro: "Концепция 'Вечных вещей' в проекте Экоманер представляет собой инновационный подход к переработке отходов, создающий долговечные и ценные продукты, служащие людям десятилетиями. Эти предметы производятся из переработанных материалов и становятся не только полезными, но и экологически безопасными.",
+      whatAre: {
+        title: "Что такое вечные вещи?",
+        description: "Вечные вещи — это продукты длительного использования, созданные из переработанного мусора, которые рассчитаны на долгий срок службы. В отличие от традиционных изделий, вечные вещи сохраняют свою ценность на протяжении многих лет и подлежат восстановлению и повторному использованию.",
+      },
+      examples: {
+        title: "Примеры вечных вещей",
+        list: [
+          {
+            name: "Тротуарная плитка из переработанного мусора",
+            description: "Производится из переработанных материалов и устойчива к нагрузкам и погодным условиям. Используется в благоустройстве, минимизируя использование новых ресурсов для дорожного покрытия.",
+          },
+          {
+            name: "Ящики для мусора",
+            description: "Долговечные мусорные контейнеры, сделанные из переработанных пластиковых материалов, помогают поддерживать чистоту в городах и служат долгие годы, что снижает количество производимых отходов.",
+          },
+          {
+            name: "Модули для укладки дорог",
+            description: "Изготовлены из переработанного мусора и применяются для покрытия дорог и тротуаров. Эти модули устойчивы к износу и не требуют частого обновления.",
+          },
+          {
+            name: "Авоськи из пластиковых цепочек",
+            description: "Эти прочные авоськи производятся из переработанного пластика, заменяя одноразовые пакеты. Они долговечны и подходят для многоразового использования.",
+          },
+          {
+            name: "Влагоустойчивые визитки",
+            description: "Производятся из переработанных материалов с влагозащитой. Визитки долговечны, износостойки и сохраняют презентабельный вид даже в условиях высокой влажности.",
+          },
+          {
+            name: "One World Futbol",
+            description: "Футбольный мяч, созданный для длительного использования, не нуждается в накачке и рассчитан на игры в самых суровых условиях. Идеально подходит для использования в общественных пространствах и образовательных программах.",
+          },
+          {
+            name: "Защита для смартфонов и противоударное стекло",
+            description: "Эти долговечные защитные изделия обеспечивают смартфонам дополнительную защиту, сохраняя устройства в целости и снижая потребность в замене аксессуаров.",
+          },
+        ],
+      },
+      significance: {
+        title: "Экологическое и экономическое значение вечных вещей",
+        description: "Вечные вещи помогают снизить объём отходов и стимулируют экономику переработки. Такие предметы служат долго, что уменьшает необходимость в их замене и снижает нагрузку на природу за счёт уменьшения производства одноразовых товаров. Использование вечных вещей также способствует созданию рабочих мест в области переработки и повышению ценности отходов как ресурса.",
+        additional: "Каждая из вечных вещей стоит дороже, чем обычная продукция из вторсырья, подчеркивая их уникальность и высокое качество. В рамках игры игроки могут выпускать NFT для каждой вечной вещи, открывая возможности для создания новых видов долговечных товаров.",
+      },
+    },
+  },
+ua: {
+    eternalItems: {
+      title: "Вічні речі",
+      intro: "Концепція 'Вічних речей' у проєкті Екоманер представляє інноваційний підхід до переробки відходів, створюючи довговічні та цінні продукти, що служать людям десятиліттями. Ці предмети виготовляються з перероблених матеріалів, стаючи не лише корисними, а й екологічно безпечними.",
+      whatAre: {
+        title: "Що таке вічні речі?",
+        description: "Вічні речі — це продукти тривалого використання, створені з переробленого сміття, розраховані на довгий термін служби. На відміну від традиційних виробів, вічні речі зберігають свою цінність протягом багатьох років і підлягають відновленню та повторному використанню.",
+      },
+      examples: {
+        title: "Приклади вічних речей",
+        list: [
+          {
+            name: "Тротуарна плитка з переробленого сміття",
+            description: "Виготовляється з перероблених матеріалів, стійка до навантажень і погодних умов. Використовується в благоустрої, мінімізуючи використання нових ресурсів для дорожнього покриття.",
+          },
+          {
+            name: "Сміттєві контейнери",
+            description: "Довговічні контейнери для сміття, виготовлені з перероблених пластикових матеріалів, допомагають підтримувати чистоту у містах і служать багато років, що зменшує кількість відходів.",
+          },
+          {
+            name: "Модулі для укладання доріг",
+            description: "Виготовлені з переробленого сміття та застосовуються для покриття доріг і тротуарів. Ці модулі стійкі до зношення і не потребують частого оновлення.",
+          },
+          {
+            name: "Авоськи з пластикових ланцюжків",
+            description: "Ці міцні авоськи виготовлені з переробленого пластику, замінюючи одноразові пакети. Вони довговічні та підходять для багаторазового використання.",
+          },
+          {
+            name: "Вологостійкі візитки",
+            description: "Виготовляються з перероблених матеріалів із захистом від вологи. Ці візитки довговічні, зносостійкі та зберігають презентабельний вигляд навіть у умовах високої вологості.",
+          },
+          {
+            name: "One World Futbol",
+            description: "Футбольний м’яч, створений для тривалого використання, не потребує накачування і підходить для ігор у найсуворіших умовах. Ідеально підходить для громадських просторів і освітніх програм.",
+          },
+          {
+            name: "Захист для смартфонів і протиударне скло",
+            description: "Ці довговічні захисні вироби забезпечують додатковий захист смартфонів, зберігаючи пристрої та знижуючи потребу у заміні аксесуарів.",
+          },
+        ],
+      },
+      significance: {
+        title: "Екологічне та економічне значення вічних речей",
+        description: "Вічні речі допомагають зменшити обсяг відходів та стимулюють економіку переробки. Такі предмети служать довго, що зменшує потребу в їх заміні і знижує навантаження на природу за рахунок зменшення виробництва одноразових товарів. Використання вічних речей також сприяє створенню робочих місць у сфері переробки та підвищенню цінності відходів як ресурсу.",
+        additional: "Кожна з вічних речей коштує дорожче, ніж звичайна продукція з вторинної сировини, підкреслюючи їхню унікальність та високу якість. У межах гри гравці можуть випускати NFT для кожної вічної речі, відкриваючи можливості для створення нових видів довговічних товарів.",
+      },
+    },
+  },
+};
+
+export default translations;
+
+
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/components/NewsList.js ---
 import React, { useEffect, useState } from 'react';
 
@@ -23824,6 +25519,30 @@ const Map = () => {
 };
 
 export default Map;
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/src/components/LanguageSwitcher.js ---
+import React from "react";
+import { useTranslation } from "react-i18next";
+
+const LanguageSwitcher = () => {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    window.location.pathname = `/${lang}/about`; // Перенаправление с выбранным языком
+  };
+
+  return (
+    <div>
+      <button onClick={() => changeLanguage("ru")}>Русский</button>
+      <button onClick={() => changeLanguage("en")}>English</button>
+      <button onClick={() => changeLanguage("ua")}>Українська</button>
+    </div>
+  );
+};
+
+export default LanguageSwitcher;
 
 
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/components/Header.js ---

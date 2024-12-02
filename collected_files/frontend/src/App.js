@@ -20,10 +20,16 @@ import LogoutButton from './components/LogoutButton';
 import axios from './axiosSetup'; // Настройка axios для API запросов
 import './styles/style.css';
 
+import './i18n'; // Подключаем инициализацию i18n
+import { useTranslation } from 'react-i18next'; // Для работы с переводами
+import { useParams } from 'react-router-dom'; // Для получения языка из URL
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Состояние авторизации
   const [isAuthChecked, setIsAuthChecked] = useState(false); // Проверка авторизации завершена
   const [userEmail, setUserEmail] = useState(''); // Email текущего пользователя
+  const { lang } = useParams(); // Получаем текущий язык из URL
+  const { i18n } = useTranslation(); // Используем i18next для управления языком
 
   // Проверяем авторизацию при загрузке приложения
   useEffect(() => {
@@ -49,6 +55,14 @@ function App() {
   checkAuth();
 }, []);
 
+  // Логика смены языка
+  useEffect(() => {
+    if (lang && ['en', 'ru', 'ua'].includes(lang)) {
+      i18n.changeLanguage(lang);
+    } else {
+      i18n.changeLanguage('ru');
+    }
+  }, [lang, i18n]);
 
   // Успешный вход в систему
   const handleLoginSuccess = () => {
@@ -67,9 +81,10 @@ function App() {
   };
 
   // Пока проверка авторизации не завершена, отображаем загрузочный экран
-  if (!isAuthChecked) {
-    return <div>Загрузка...</div>;
-  }
+if (!isAuthChecked) {
+  return <div className="loading-screen">Проверка авторизации...</div>;
+}
+
 
   return (
     <Router>
@@ -80,7 +95,9 @@ function App() {
         <Routes>
           {/* Основные страницы */}
 
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/about" element={<Navigate to="/ru/about" />} />
+          <Route path="/:lang/about" element={<AboutPage />} />
+
           <Route path="/gameplay" element={<GameplayPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/faq" element={<FaqPage />} />

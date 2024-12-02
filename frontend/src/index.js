@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import i18n from './i18n'; // Импортируйте i18n
+window.i18n = i18n; // Сделайте i18n доступным глобально
+console.log('i18n доступен глобально', window.i18n); // Проверьте, что он определен
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
