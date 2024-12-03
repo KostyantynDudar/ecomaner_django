@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Подключение отдельных файлов переводов
 import aboutTranslations from './translations/about';
 import civilizationsTranslations from './translations/civilizations';
 import eternalThingsTranslations from './translations/eternalThings';
@@ -9,7 +8,7 @@ import gameplayTranslations from './translations/gameplay';
 import howItWorksTranslations from './translations/how_it_works';
 import newsTranslations from './translations/news';
 
-// Собираем все переводы в один объект
+// Собираем переводы
 const resources = {
   en: {
     about: aboutTranslations.en,
@@ -37,18 +36,20 @@ const resources = {
   },
 };
 
-// Инициализация i18next
+// Определение языка вручную
+const detectLanguage = () => {
+  const browserLang = navigator.language || navigator.userLanguage;
+  return ['ua', 'ru', 'en'].includes(browserLang) ? browserLang : 'ua';
+};
+
 i18n
   .use(initReactI18next) // Подключаем React к i18next
   .init({
-    resources, // Передаем переводы
-    lng: 'ru', // Язык по умолчанию
-    fallbackLng: 'ru', // Резервный язык
+    resources,
+    lng: detectLanguage(), // Устанавливаем язык на основе настроек браузера
+    fallbackLng: 'ua', // Язык по умолчанию
     interpolation: {
       escapeValue: false, // React уже экранирует данные
-    },
-    react: {
-      useSuspense: true, // Включаем Suspense
     },
   });
 

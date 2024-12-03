@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import Header from './components/Header';
-import RegisterPage from './pages/RegisterPage'; // Важно: RegisterPage присутствует
+import RegisterPage from './pages/RegisterPage';
 import ConfirmCodePage from './pages/ConfirmCodePage';
 import LoginPage from './pages/LoginPage';
 import GameplayPage from './pages/GameplayPage';
@@ -30,18 +30,9 @@ function App() {
 
   // Логика определения языка из URL
   useEffect(() => {
-    const getLanguageFromPath = () => {
-      const lang = window.location.pathname.split('/')[1]; // Извлекаем язык из URL
-      if (['en', 'ru', 'ua'].includes(lang)) {
-        return lang;
-      }
-      return 'ua'; // Язык по умолчанию
-    };
-
-    const lang = getLanguageFromPath();
-
-    if (i18n.language !== lang) {
-      i18n.changeLanguage(lang); // Меняем язык в i18n только если он отличается
+    const langFromPath = window.location.pathname.split('/')[1]; // Получаем язык из URL
+    if (['en', 'ru', 'ua'].includes(langFromPath) && langFromPath !== i18n.language) {
+      i18n.changeLanguage(langFromPath); // Синхронизируем язык
     }
   }, [i18n]);
 
@@ -90,7 +81,6 @@ function App() {
 
         <Routes>
           {/* Основные страницы */}
-
           <Route path="/about" element={<Navigate to="/ru/about" />} />
           <Route path="/:lang/about" element={<AboutPage />} />
 
@@ -109,7 +99,6 @@ function App() {
           <Route path="/confirm-code" element={<ConfirmCodePage />} />
 
           <Route path="/" element={<HomePage userEmail={userEmail} isAuthChecked={isAuthChecked} />} />
-
 
           <Route
             path="/login"

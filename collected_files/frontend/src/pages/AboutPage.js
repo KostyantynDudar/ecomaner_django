@@ -1,173 +1,66 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../components/LanguageSwitcher'; // Импорт компонента переключателя языка
 
 const AboutPage = () => {
-  const { t } = useTranslation(); // Хук для переводов
+  const { i18n } = useTranslation();
 
-  console.log("AboutPage рендерится");
+  // Данные для текущего языка
+  const aboutData = i18n.store.data[i18n.language]?.about?.about;
 
-  // Логируем все переводы для текущего языка
-  console.log("Текущий язык:", i18n.language);
-  console.log("Все переводы:", i18n.store.data);
-
-  // Логируем конкретные ключи
-  const rolesTitle = t("about.roles.title");
-  const rolesList = t("about.roles.list", { returnObjects: true });
-
-  console.log("rolesTitle:", rolesTitle); // Проверяем заголовок
-  console.log("rolesList:", rolesList); // Проверяем массив или ошибку
-
-  const rolesList = t('roles.list', { returnObjects: true });
-  if (!Array.isArray(rolesList)) {
-    console.error("rolesList должен быть массивом, получено:", rolesList);
-    return <div>Ошибка: данные rolesList недоступны или некорректны.</div>;
+  // Проверка на наличие данных
+  if (!aboutData) {
+    return <div>Ошибка: данные для текущего языка отсутствуют.</div>;
   }
+
+  // Универсальная функция для рендера секций
+  const renderSection = (title, list) => {
+    if (!title || !list || list.length === 0) return null; // Проверка на пустые данные
+    return (
+      <section>
+        <h2>{title}</h2>
+        <ul>
+          {list.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+    );
+  };
 
   return (
     <div>
+      {/* Компонент для переключения языка */}
+      <LanguageSwitcher />
+
       {/* Заголовок страницы */}
-      <h1>{t("about.title")}</h1>
+      <h1>{aboutData.title}</h1>
 
       {/* Раздел: Обзор */}
       <section>
-        <h2>{t("about.overview.title")}</h2>
-        <p>{t("about.overview.intro")}</p>
-        <p>{t("about.overview.goal")}</p>
-        <p>{t("about.overview.mission")}</p>
+        <h2>{aboutData.overview?.title}</h2>
+        <p>{aboutData.overview?.intro}</p>
+        <p>{aboutData.overview?.goal}</p>
+        <p>{aboutData.overview?.mission}</p>
       </section>
 
-      {/* Раздел: Роли участников */}
-      <section>
-        <h2>{t("about.roles.title")}</h2>
-        <ul>
-          {t("about.roles.list", { returnObjects: true }).map((role, index) => (
-            <li key={index}>
-              <strong>{role.role}:</strong> {role.description}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Основные процессы */}
-      <section>
-        <h2>{t("about.processes.title")}</h2>
-        <ul>
-          {t("about.processes.list", { returnObjects: true }).map((process, index) => (
-            <li key={index}>{process}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Цифровая система вознаграждений */}
-      <section>
-        <h2>{t("about.rewards.title")}</h2>
-        <ul>
-          {t("about.rewards.details", { returnObjects: true }).map((reward, index) => (
-            <li key={index}>{reward}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Игровые элементы */}
-      <section>
-        <h2>{t("about.gamification.title")}</h2>
-        <ul>
-          {t("about.gamification.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Карта проекта */}
-      <section>
-        <h2>{t("about.map.title")}</h2>
-        <p>{t("about.map.description")}</p>
-        <ul>
-          {t("about.map.details", { returnObjects: true }).map((detail, index) => (
-            <li key={index}>{detail}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Технологическая и финансовая инфраструктура */}
-      <section>
-        <h2>{t("about.infrastructure.title")}</h2>
-        <ul>
-          {t("about.infrastructure.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Методы финансирования */}
-      <section>
-        <h2>{t("about.funding.title")}</h2>
-        <ul>
-          {t("about.funding.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Партнерские программы */}
-      <section>
-        <h2>{t("about.partnerships.title")}</h2>
-        <ul>
-          {t("about.partnerships.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Прозрачность и отчетность */}
-      <section>
-        <h2>{t("about.transparency.title")}</h2>
-        <ul>
-          {t("about.transparency.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Образовательные программы */}
-      <section>
-        <h2>{t("about.education.title")}</h2>
-        <ul>
-          {t("about.education.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: PR и маркетинг */}
-      <section>
-        <h2>{t("about.marketing.title")}</h2>
-        <ul>
-          {t("about.marketing.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Инновации */}
-      <section>
-        <h2>{t("about.innovations.title")}</h2>
-        <ul>
-          {t("about.innovations.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Социальная сеть */}
-      <section>
-        <h2>{t("about.socialNetwork.title")}</h2>
-        <ul>
-          {t("about.socialNetwork.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
+      {/* Остальные секции */}
+      {renderSection(
+        aboutData.roles?.title,
+        aboutData.roles?.list.map((role) => `${role.role}: ${role.description}`)
+      )}
+      {renderSection(aboutData.processes?.title, aboutData.processes?.list)}
+      {renderSection(aboutData.rewards?.title, aboutData.rewards?.details)}
+      {renderSection(aboutData.gamification?.title, aboutData.gamification?.list)}
+      {renderSection(aboutData.map?.title, aboutData.map?.details)}
+      {renderSection(aboutData.infrastructure?.title, aboutData.infrastructure?.list)}
+      {renderSection(aboutData.funding?.title, aboutData.funding?.list)}
+      {renderSection(aboutData.partnerships?.title, aboutData.partnerships?.list)}
+      {renderSection(aboutData.transparency?.title, aboutData.transparency?.list)}
+      {renderSection(aboutData.education?.title, aboutData.education?.details)}
+      {renderSection(aboutData.marketing?.title, aboutData.marketing?.details)}
+      {renderSection(aboutData.innovations?.title, aboutData.innovations?.details)}
+      {renderSection(aboutData.socialNetwork?.title, aboutData.socialNetwork?.details)}
     </div>
   );
 };

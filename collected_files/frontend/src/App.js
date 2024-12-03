@@ -16,75 +16,62 @@ import ContactPage from './pages/ContactPage';
 import NewsList from './components/NewsList';
 import Map from './components/Map';
 import AccountPage from './pages/AccountPage';
-import LogoutButton from './components/LogoutButton';
-import axios from './axiosSetup'; // Настройка axios для API запросов
+import axios from './axiosSetup';
 import './styles/style.css';
 
-import './i18n'; // Подключаем инициализацию i18n
-import { useTranslation } from 'react-i18next'; // Для работы с переводами
-import { useParams } from 'react-router-dom'; // Для получения языка из URL
+import './i18n'; // Подключаем i18n
+import { useTranslation } from 'react-i18next';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Состояние авторизации
-  const [isAuthChecked, setIsAuthChecked] = useState(false); // Проверка авторизации завершена
-  const [userEmail, setUserEmail] = useState(''); // Email текущего пользователя
-  const { lang } = useParams(); // Получаем текущий язык из URL
-  const { i18n } = useTranslation(); // Используем i18next для управления языком
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const { i18n } = useTranslation();
 
-  // Проверяем авторизацию при загрузке приложения
+  // Логика определения языка из URL
   useEffect(() => {
-  const checkAuth = async () => {
-    try {
-      const response = await axios.get('/accounts/check-auth/', {
-        withCredentials: true, // Убедитесь, что куки отправляются
-      });
-      console.log("Ответ check-auth:", response.data); // Выводим, что возвращает сервер
-      setIsLoggedIn(response.data.isAuthenticated); // Устанавливаем статус авторизации
-      if (response.data.isAuthenticated) {
-        setUserEmail(response.data.email); // Обновляем email
-        console.log("Email пользователя обновлен:", response.data.email); // Логируем email
+    const langFromPath = window.location.pathname.split('/')[1]; // Получаем язык из URL
+    if (['en', 'ru', 'ua'].includes(langFromPath) && langFromPath !== i18n.language) {
+      i18n.changeLanguage(langFromPath); // Синхронизируем язык
+    }
+  }, [i18n]);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get('/accounts/check-auth/', { withCredentials: true });
+        setIsLoggedIn(response.data.isAuthenticated);
+        if (response.data.isAuthenticated) {
+          setUserEmail(response.data.email);
+        }
+      } catch (error) {
+        console.error('Ошибка при проверке авторизации:', error);
+        setIsLoggedIn(false);
+      } finally {
+        setIsAuthChecked(true);
       }
-    } catch (error) {
-      console.error('Ошибка при проверке авторизации:', error);
-      setIsLoggedIn(false); // Если ошибка, то пользователь не авторизован
-    } finally {
-      setIsAuthChecked(true); // Завершаем проверку авторизации
-    }
-  };
+    };
 
-  checkAuth();
-}, []);
+    checkAuth();
+  }, []);
 
-  // Логика смены языка
-  useEffect(() => {
-    if (lang && ['en', 'ru', 'ua'].includes(lang)) {
-      i18n.changeLanguage(lang);
-    } else {
-      i18n.changeLanguage('ru');
-    }
-  }, [lang, i18n]);
-
-  // Успешный вход в систему
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
-  // Выход из системы
   const handleLogout = async () => {
     try {
       await axios.post('/accounts/logout/', {}, { headers: { 'Content-Type': 'application/json' } });
-      setIsLoggedIn(false); // Обновляем состояние после выхода
-      window.location.reload(); // Обновляем страницу для применения изменений
+      setIsLoggedIn(false);
+      window.location.reload();
     } catch (error) {
       console.error('Ошибка при выходе:', error);
     }
   };
 
-  // Пока проверка авторизации не завершена, отображаем загрузочный экран
-if (!isAuthChecked) {
-  return <div className="loading-screen">Проверка авторизации...</div>;
-}
-
+  if (!isAuthChecked) {
+    return <div className="loading-screen">Проверка авторизации...</div>;
+  }
 
   return (
     <Router>
@@ -94,7 +81,6 @@ if (!isAuthChecked) {
 
         <Routes>
           {/* Основные страницы */}
-
           <Route path="/about" element={<Navigate to="/ru/about" />} />
           <Route path="/:lang/about" element={<AboutPage />} />
 
@@ -113,7 +99,6 @@ if (!isAuthChecked) {
           <Route path="/confirm-code" element={<ConfirmCodePage />} />
 
           <Route path="/" element={<HomePage userEmail={userEmail} isAuthChecked={isAuthChecked} />} />
-
 
           <Route
             path="/login"

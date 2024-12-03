@@ -2935,9 +2935,9 @@ def generate_token(user_id):
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "proxy": "http://127.0.0.1:8000",
@@ -2964,7 +2964,10 @@ def generate_token(user_id):
     "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.25.9"
+    "@babel/preset-react": "^7.25.9",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
+    "react-app-rewired": "^2.2.1"
   },
   "babel": {
     "presets": [
@@ -2977,6 +2980,17 @@ def generate_token(user_id):
     ]
   }
 }
+
+
+--- FILE: /home/ecomaner_django/collected_files/frontend/config-overrides.js ---
+module.exports = function override(config, env) {
+  if (env === 'development' && config.devServer) {
+    config.devServer.allowedHosts = 'all'; // Разрешить все хосты
+    config.devServer.host = '0.0.0.0'; // Хост для подключения
+    config.devServer.port = 3000; // Убедитесь, что порт указан явно
+  }
+  return config;
+};
 
 
 --- FILE: /home/ecomaner_django/collected_files/frontend/package-lock.json ---
@@ -3008,7 +3022,10 @@ def generate_token(user_id):
         "@babel/plugin-proposal-private-methods": "^7.18.6",
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@babel/preset-env": "^7.26.0",
-        "@babel/preset-react": "^7.25.9"
+        "@babel/preset-react": "^7.25.9",
+        "ajv": "^6.12.6",
+        "ajv-keywords": "^3.5.2",
+        "react-app-rewired": "^2.2.1"
       }
     },
     "node_modules/@adobe/css-tools": {
@@ -3040,23 +3057,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": ">=6.0.0"
-      }
-    },
-    "node_modules/@apideck/better-ajv-errors": {
-      "version": "0.3.6",
-      "resolved": "https://registry.npmjs.org/@apideck/better-ajv-errors/-/better-ajv-errors-0.3.6.tgz",
-      "integrity": "sha512-P+ZygBLZtkp0qqOAJJVX4oX/sFo5JR3eBWwwuqHHhK0GIgQOKWrAfiAaWX0aArHkRWHMuggFEgAZNxVPwPZYaA==",
-      "license": "MIT",
-      "dependencies": {
-        "json-schema": "^0.4.0",
-        "jsonpointer": "^5.0.0",
-        "leven": "^3.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "peerDependencies": {
-        "ajv": ">=8"
       }
     },
     "node_modules/@babel/code-frame": {
@@ -5654,22 +5654,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/@jest/console/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@jest/console/node_modules/jest-message-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-message-util/-/jest-message-util-27.5.1.tgz",
@@ -5779,22 +5763,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/@jest/core/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@jest/core/node_modules/jest-message-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-message-util/-/jest-message-util-27.5.1.tgz",
@@ -5872,22 +5840,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/@jest/environment/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@jest/expect-utils": {
       "version": "29.7.0",
       "resolved": "https://registry.npmjs.org/@jest/expect-utils/-/expect-utils-29.7.0.tgz",
@@ -5940,22 +5892,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/@jest/fake-timers/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@jest/fake-timers/node_modules/jest-message-util": {
@@ -6032,22 +5968,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/@jest/globals/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@jest/globals/node_modules/diff-sequences": {
@@ -6202,22 +6122,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/@jest/reporters/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@jest/reporters/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -6319,22 +6223,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/@jest/test-result/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@jest/test-sequencer": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/@jest/test-sequencer/-/test-sequencer-27.5.1.tgz",
@@ -6401,22 +6289,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/@jest/transform/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@jest/transform/node_modules/convert-source-map": {
       "version": "1.9.0",
       "resolved": "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.9.0.tgz",
@@ -6464,22 +6336,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
-      }
-    },
-    "node_modules/@jest/types/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/@jridgewell/gen-mapping": {
@@ -7038,50 +6894,6 @@ def generate_token(user_id):
         "url": "https://github.com/sponsors/gregberge"
       }
     },
-    "node_modules/@testing-library/dom": {
-      "version": "8.20.1",
-      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.1.tgz",
-      "integrity": "sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==",
-      "license": "MIT",
-      "dependencies": {
-        "@babel/code-frame": "^7.10.4",
-        "@babel/runtime": "^7.12.5",
-        "@types/aria-query": "^5.0.1",
-        "aria-query": "5.1.3",
-        "chalk": "^4.1.0",
-        "dom-accessibility-api": "^0.5.9",
-        "lz-string": "^1.5.0",
-        "pretty-format": "^27.0.2"
-      },
-      "engines": {
-        "node": ">=12"
-      }
-    },
-    "node_modules/@testing-library/dom/node_modules/aria-query": {
-      "version": "5.1.3",
-      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
-      "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
-      "license": "Apache-2.0",
-      "dependencies": {
-        "deep-equal": "^2.0.5"
-      }
-    },
-    "node_modules/@testing-library/dom/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/@testing-library/jest-dom": {
       "version": "5.17.0",
       "resolved": "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.17.0.tgz",
@@ -7104,6 +6916,19 @@ def generate_token(user_id):
         "yarn": ">=1"
       }
     },
+    "node_modules/@testing-library/jest-dom/node_modules/chalk": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz",
+      "integrity": "sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==",
+      "license": "MIT",
+      "dependencies": {
+        "ansi-styles": "^4.1.0",
+        "supports-color": "^7.1.0"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/@testing-library/react": {
       "version": "13.4.0",
       "resolved": "https://registry.npmjs.org/@testing-library/react/-/react-13.4.0.tgz",
@@ -7120,6 +6945,34 @@ def generate_token(user_id):
       "peerDependencies": {
         "react": "^18.0.0",
         "react-dom": "^18.0.0"
+      }
+    },
+    "node_modules/@testing-library/react/node_modules/@testing-library/dom": {
+      "version": "8.20.1",
+      "resolved": "https://registry.npmjs.org/@testing-library/dom/-/dom-8.20.1.tgz",
+      "integrity": "sha512-/DiOQ5xBxgdYRC8LNk7U+RWat0S3qRLeIw3ZIkMQ9kkVlRmwD/Eg8k8CqIpD6GW7u20JIUOfMKbxtiLutpjQ4g==",
+      "license": "MIT",
+      "dependencies": {
+        "@babel/code-frame": "^7.10.4",
+        "@babel/runtime": "^7.12.5",
+        "@types/aria-query": "^5.0.1",
+        "aria-query": "5.1.3",
+        "chalk": "^4.1.0",
+        "dom-accessibility-api": "^0.5.9",
+        "lz-string": "^1.5.0",
+        "pretty-format": "^27.0.2"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/@testing-library/react/node_modules/aria-query": {
+      "version": "5.1.3",
+      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.1.3.tgz",
+      "integrity": "sha512-R5iJ5lkuHybztUfuOAznmboyjWq8O6sqNqtK7CLOqdydi54VNbORp49mb14KbWgG1QD3JFO9hJdZ+y4KutfdOQ==",
+      "license": "Apache-2.0",
+      "dependencies": {
+        "deep-equal": "^2.0.5"
       }
     },
     "node_modules/@testing-library/user-event": {
@@ -8195,15 +8048,12 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/ajv-keywords": {
-      "version": "5.1.0",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-5.1.0.tgz",
-      "integrity": "sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==",
+      "version": "3.5.2",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
+      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
       "license": "MIT",
-      "dependencies": {
-        "fast-deep-equal": "^3.1.3"
-      },
       "peerDependencies": {
-        "ajv": "^8.8.2"
+        "ajv": "^6.9.1"
       }
     },
     "node_modules/ansi-escapes": {
@@ -8304,12 +8154,12 @@ def generate_token(user_id):
       }
     },
     "node_modules/aria-query": {
-      "version": "5.3.2",
-      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.2.tgz",
-      "integrity": "sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==",
+      "version": "5.3.0",
+      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.0.tgz",
+      "integrity": "sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==",
       "license": "Apache-2.0",
-      "engines": {
-        "node": ">= 0.4"
+      "dependencies": {
+        "dequal": "^2.0.3"
       }
     },
     "node_modules/array-buffer-byte-length": {
@@ -8659,22 +8509,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/babel-jest/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/babel-loader": {
       "version": "8.4.1",
       "resolved": "https://registry.npmjs.org/babel-loader/-/babel-loader-8.4.1.tgz",
@@ -8692,15 +8526,6 @@ def generate_token(user_id):
       "peerDependencies": {
         "@babel/core": "^7.0.0",
         "webpack": ">=2"
-      }
-    },
-    "node_modules/babel-loader/node_modules/ajv-keywords": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
-      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "ajv": "^6.9.1"
       }
     },
     "node_modules/babel-loader/node_modules/schema-utils": {
@@ -9177,9 +9002,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/caniuse-lite": {
-      "version": "1.0.30001684",
-      "resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001684.tgz",
-      "integrity": "sha512-G1LRwLIQjBQoyq0ZJGqGIJUXzJ8irpbjHLpVRXDvBEScFJ9b17sgK6vlx0GAJFE21okD7zXl08rRRUfq6HdoEQ==",
+      "version": "1.0.30001685",
+      "resolved": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001685.tgz",
+      "integrity": "sha512-e/kJN1EMyHQzgcMEEgoo+YTCO1NGCmIYHk5Qk8jT6AazWemS5QFKJ5ShCJlH3GZrNIdZofcNCEwZqbMjjKzmnA==",
       "funding": [
         {
           "type": "opencollective",
@@ -9206,16 +9031,19 @@ def generate_token(user_id):
       }
     },
     "node_modules/chalk": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-3.0.0.tgz",
-      "integrity": "sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==",
+      "version": "4.1.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
+      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
       "license": "MIT",
       "dependencies": {
         "ansi-styles": "^4.1.0",
         "supports-color": "^7.1.0"
       },
       "engines": {
-        "node": ">=8"
+        "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/char-regex": {
@@ -10299,6 +10127,15 @@ def generate_token(user_id):
         "node": ">= 0.8"
       }
     },
+    "node_modules/dequal": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/dequal/-/dequal-2.0.3.tgz",
+      "integrity": "sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==",
+      "license": "MIT",
+      "engines": {
+        "node": ">=6"
+      }
+    },
     "node_modules/destroy": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz",
@@ -10564,9 +10401,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/electron-to-chromium": {
-      "version": "1.5.67",
-      "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.67.tgz",
-      "integrity": "sha512-nz88NNBsD7kQSAGGJyp8hS6xSPtWwqNogA0mjtc2nUYeEf3nURK9qpV18TuBdDmEDgVWotS8Wkzf+V52dSQ/LQ==",
+      "version": "1.5.68",
+      "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.68.tgz",
+      "integrity": "sha512-FgMdJlma0OzUYlbrtZ4AeXjKxKPk6KT8WOP8BjcqxWtlg8qyJQjRzPJzUtUn5GBg1oQ26hFs7HOOHJMYiJRnvQ==",
       "license": "ISC"
     },
     "node_modules/emittery": {
@@ -11149,6 +10986,15 @@ def generate_token(user_id):
         "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9"
       }
     },
+    "node_modules/eslint-plugin-jsx-a11y/node_modules/aria-query": {
+      "version": "5.3.2",
+      "resolved": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.2.tgz",
+      "integrity": "sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">= 0.4"
+      }
+    },
     "node_modules/eslint-plugin-react": {
       "version": "7.37.2",
       "resolved": "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.37.2.tgz",
@@ -11324,22 +11170,6 @@ def generate_token(user_id):
       "resolved": "https://registry.npmjs.org/argparse/-/argparse-2.0.1.tgz",
       "integrity": "sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==",
       "license": "Python-2.0"
-    },
-    "node_modules/eslint/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
     },
     "node_modules/eslint/node_modules/find-up": {
       "version": "5.0.0",
@@ -11761,15 +11591,6 @@ def generate_token(user_id):
         "webpack": "^4.0.0 || ^5.0.0"
       }
     },
-    "node_modules/file-loader/node_modules/ajv-keywords": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
-      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "ajv": "^6.9.1"
-      }
-    },
     "node_modules/file-loader/node_modules/schema-utils": {
       "version": "3.3.0",
       "resolved": "https://registry.npmjs.org/schema-utils/-/schema-utils-3.3.0.tgz",
@@ -12016,31 +11837,6 @@ def generate_token(user_id):
         "vue-template-compiler": {
           "optional": true
         }
-      }
-    },
-    "node_modules/fork-ts-checker-webpack-plugin/node_modules/ajv-keywords": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
-      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "ajv": "^6.9.1"
-      }
-    },
-    "node_modules/fork-ts-checker-webpack-plugin/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/fork-ts-checker-webpack-plugin/node_modules/cosmiconfig": {
@@ -12537,9 +12333,9 @@ def generate_token(user_id):
       }
     },
     "node_modules/has-symbols": {
-      "version": "1.0.3",
-      "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.3.tgz",
-      "integrity": "sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+      "integrity": "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ==",
       "license": "MIT",
       "engines": {
         "node": ">= 0.4"
@@ -13081,12 +12877,15 @@ def generate_token(user_id):
       }
     },
     "node_modules/is-bigint": {
-      "version": "1.0.4",
-      "resolved": "https://registry.npmjs.org/is-bigint/-/is-bigint-1.0.4.tgz",
-      "integrity": "sha512-zB9CruMamjym81i2JZ3UMn54PKGsQzsJeo6xvN3HJJ4CAsQNB6iRutp2To77OfCNuoxspsIhzaPoO1zyCEhFOg==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/is-bigint/-/is-bigint-1.1.0.tgz",
+      "integrity": "sha512-n4ZT37wG78iz03xPRKJrHTdZbe3IicyucEtdRsV5yglwc3GyUfbAfpSeD0FJ41NbUNSt5wbhqfp1fS+BgnvDFQ==",
       "license": "MIT",
       "dependencies": {
-        "has-bigints": "^1.0.1"
+        "has-bigints": "^1.0.2"
+      },
+      "engines": {
+        "node": ">= 0.4"
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
@@ -13105,13 +12904,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/is-boolean-object": {
-      "version": "1.1.2",
-      "resolved": "https://registry.npmjs.org/is-boolean-object/-/is-boolean-object-1.1.2.tgz",
-      "integrity": "sha512-gDYaKHJmnj4aWxyj6YHyXVpdQawtVLHU5cb+eztPGczf6cjuTdwve5ZIEfgXqH4e57An1D1AKf8CZ3kYrQRqYA==",
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/is-boolean-object/-/is-boolean-object-1.2.0.tgz",
+      "integrity": "sha512-kR5g0+dXf/+kXnqI+lu0URKYPKgICtHGGNCDSB10AaUFj3o/HkB3u7WfpRBJGFopxxY0oH3ux7ZsDjLtK7xqvw==",
       "license": "MIT",
       "dependencies": {
-        "call-bind": "^1.0.2",
-        "has-tostringtag": "^1.0.0"
+        "call-bind": "^1.0.7",
+        "has-tostringtag": "^1.0.2"
       },
       "engines": {
         "node": ">= 0.4"
@@ -13301,12 +13100,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/is-number-object": {
-      "version": "1.0.7",
-      "resolved": "https://registry.npmjs.org/is-number-object/-/is-number-object-1.0.7.tgz",
-      "integrity": "sha512-k1U0IRzLMo7ZlYIfzRu23Oh6MiIFasgpb9X76eqfFZAqwH44UI4KTBvBYIZ1dSL9ZzChTB9ShHfLkR4pdW5krQ==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/is-number-object/-/is-number-object-1.1.0.tgz",
+      "integrity": "sha512-KVSZV0Dunv9DTPkhXwcZ3Q+tUc9TsaE1ZwX5J2WMvsSGS6Md8TFPun5uwh0yRdrNerI6vf/tbJxqSx4c1ZI1Lw==",
       "license": "MIT",
       "dependencies": {
-        "has-tostringtag": "^1.0.0"
+        "call-bind": "^1.0.7",
+        "has-tostringtag": "^1.0.2"
       },
       "engines": {
         "node": ">= 0.4"
@@ -13427,12 +13227,13 @@ def generate_token(user_id):
       }
     },
     "node_modules/is-string": {
-      "version": "1.0.7",
-      "resolved": "https://registry.npmjs.org/is-string/-/is-string-1.0.7.tgz",
-      "integrity": "sha512-tE2UXzivje6ofPW7l23cjDOMa09gb7xlAqG6jG5ej6uPV32TlWP3NKPigtaGeHNu9fohccRYvIiZMfOOnOYUtg==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/is-string/-/is-string-1.1.0.tgz",
+      "integrity": "sha512-PlfzajuF9vSo5wErv3MJAKD/nqf9ngAs1NFQYm16nUYFO2IzxJ2hcm+IOCg+EEopdykNNUhVq5cz35cAUxU8+g==",
       "license": "MIT",
       "dependencies": {
-        "has-tostringtag": "^1.0.0"
+        "call-bind": "^1.0.7",
+        "has-tostringtag": "^1.0.2"
       },
       "engines": {
         "node": ">= 0.4"
@@ -13442,12 +13243,14 @@ def generate_token(user_id):
       }
     },
     "node_modules/is-symbol": {
-      "version": "1.0.4",
-      "resolved": "https://registry.npmjs.org/is-symbol/-/is-symbol-1.0.4.tgz",
-      "integrity": "sha512-C/CPBqKWnvdcxqIARxyOh4v1UUEOCHpgDa0WYgpKDFMszcrPcffg5uhwSgPCLD2WWxmq6isisz87tzT01tuGhg==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/is-symbol/-/is-symbol-1.1.0.tgz",
+      "integrity": "sha512-qS8KkNNXUZ/I+nX6QT8ZS1/Yx0A444yhzdTKxCzKkNjQ9sHErBxJnJAgh+f5YhusYECEcjo4XcyH87hn6+ks0A==",
       "license": "MIT",
       "dependencies": {
-        "has-symbols": "^1.0.2"
+        "call-bind": "^1.0.7",
+        "has-symbols": "^1.0.3",
+        "safe-regex-test": "^1.0.3"
       },
       "engines": {
         "node": ">= 0.4"
@@ -13692,22 +13495,6 @@ def generate_token(user_id):
         "node": ">=10"
       }
     },
-    "node_modules/jake/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest/-/jest-27.5.1.tgz",
@@ -13772,22 +13559,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/jest-changed-files/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-circus": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-circus/-/jest-circus-27.5.1.tgz",
@@ -13841,22 +13612,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-circus/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-circus/node_modules/diff-sequences": {
@@ -14018,22 +13773,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/jest-cli/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-cli/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -14119,22 +13858,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/jest-config/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-config/node_modules/jest-get-type": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-get-type/-/jest-get-type-27.5.1.tgz",
@@ -14176,20 +13899,16 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-diff/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+    "node_modules/jest-diff/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
       "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-diff/node_modules/pretty-format": {
@@ -14204,18 +13923,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
-      }
-    },
-    "node_modules/jest-diff/node_modules/pretty-format/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-diff/node_modules/react-is": {
@@ -14275,22 +13982,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-each/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-each/node_modules/jest-get-type": {
@@ -14362,22 +14053,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/jest-environment-jsdom/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-environment-jsdom/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -14435,22 +14110,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-environment-node/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-environment-node/node_modules/jest-util": {
@@ -14530,22 +14189,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/jest-haste-map/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-haste-map/node_modules/jest-util": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-util/-/jest-util-27.5.1.tgz",
@@ -14614,22 +14257,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-jasmine2/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-jasmine2/node_modules/diff-sequences": {
@@ -14769,20 +14396,16 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-matcher-utils/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+    "node_modules/jest-matcher-utils/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
       "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-matcher-utils/node_modules/pretty-format": {
@@ -14797,18 +14420,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
-      }
-    },
-    "node_modules/jest-matcher-utils/node_modules/pretty-format/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-matcher-utils/node_modules/react-is": {
@@ -14837,20 +14448,16 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-message-util/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+    "node_modules/jest-message-util/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
       "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-message-util/node_modules/pretty-format": {
@@ -14865,18 +14472,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
-      }
-    },
-    "node_modules/jest-message-util/node_modules/pretty-format/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-message-util/node_modules/react-is": {
@@ -14921,22 +14516,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-mock/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-pnp-resolver": {
@@ -15025,22 +14604,6 @@ def generate_token(user_id):
         "@types/yargs-parser": "*"
       }
     },
-    "node_modules/jest-resolve-dependencies/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-resolve/node_modules/@jest/types": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/@jest/types/-/types-27.5.1.tgz",
@@ -15064,22 +14627,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-resolve/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-resolve/node_modules/jest-util": {
@@ -15154,22 +14701,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-runner/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-runner/node_modules/jest-message-util": {
@@ -15265,22 +14796,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-runtime/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-runtime/node_modules/jest-message-util": {
@@ -15389,22 +14904,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-snapshot/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-snapshot/node_modules/diff-sequences": {
@@ -15536,22 +15035,6 @@ def generate_token(user_id):
         "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
       }
     },
-    "node_modules/jest-util/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
-      }
-    },
     "node_modules/jest-validate": {
       "version": "27.5.1",
       "resolved": "https://registry.npmjs.org/jest-validate/-/jest-validate-27.5.1.tgz",
@@ -15592,22 +15075,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-validate/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-validate/node_modules/jest-get-type": {
@@ -15716,20 +15183,16 @@ def generate_token(user_id):
       "integrity": "sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==",
       "license": "MIT"
     },
-    "node_modules/jest-watch-typeahead/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+    "node_modules/jest-watch-typeahead/node_modules/ansi-styles": {
+      "version": "5.2.0",
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
+      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
       "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
       "engines": {
         "node": ">=10"
       },
       "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
+        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
       }
     },
     "node_modules/jest-watch-typeahead/node_modules/emittery": {
@@ -15858,18 +15321,6 @@ def generate_token(user_id):
         "node": "^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0"
       }
     },
-    "node_modules/jest-watch-typeahead/node_modules/pretty-format/node_modules/ansi-styles": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz",
-      "integrity": "sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==",
-      "license": "MIT",
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/ansi-styles?sponsor=1"
-      }
-    },
     "node_modules/jest-watch-typeahead/node_modules/react-is": {
       "version": "18.3.1",
       "resolved": "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz",
@@ -15981,22 +15432,6 @@ def generate_token(user_id):
       "license": "MIT",
       "dependencies": {
         "@types/yargs-parser": "*"
-      }
-    },
-    "node_modules/jest-watcher/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/jest-watcher/node_modules/jest-util": {
@@ -18859,12 +18294,15 @@ def generate_token(user_id):
       "license": "MIT"
     },
     "node_modules/psl": {
-      "version": "1.14.0",
-      "resolved": "https://registry.npmjs.org/psl/-/psl-1.14.0.tgz",
-      "integrity": "sha512-Syk1bnf6fRZ9wQs03AtKJHcM12cKbOLo9L8JtCCdYj5/DTsHmTyXM4BK5ouWeG2P6kZ4nmFvuNTdtaqfobCOCg==",
+      "version": "1.15.0",
+      "resolved": "https://registry.npmjs.org/psl/-/psl-1.15.0.tgz",
+      "integrity": "sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==",
       "license": "MIT",
       "dependencies": {
         "punycode": "^2.3.1"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/lupomontero"
       }
     },
     "node_modules/punycode": {
@@ -19017,6 +18455,32 @@ def generate_token(user_id):
       "integrity": "sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==",
       "license": "MIT"
     },
+    "node_modules/react-app-rewired": {
+      "version": "2.2.1",
+      "resolved": "https://registry.npmjs.org/react-app-rewired/-/react-app-rewired-2.2.1.tgz",
+      "integrity": "sha512-uFQWTErXeLDrMzOJHKp0h8P1z0LV9HzPGsJ6adOtGlA/B9WfT6Shh4j2tLTTGlXOfiVx6w6iWpp7SOC5pvk+gA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "semver": "^5.6.0"
+      },
+      "bin": {
+        "react-app-rewired": "bin/index.js"
+      },
+      "peerDependencies": {
+        "react-scripts": ">=2.1.3"
+      }
+    },
+    "node_modules/react-app-rewired/node_modules/semver": {
+      "version": "5.7.2",
+      "resolved": "https://registry.npmjs.org/semver/-/semver-5.7.2.tgz",
+      "integrity": "sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==",
+      "dev": true,
+      "license": "ISC",
+      "bin": {
+        "semver": "bin/semver"
+      }
+    },
     "node_modules/react-dev-utils": {
       "version": "12.0.1",
       "resolved": "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-12.0.1.tgz",
@@ -19050,22 +18514,6 @@ def generate_token(user_id):
       },
       "engines": {
         "node": ">=14"
-      }
-    },
-    "node_modules/react-dev-utils/node_modules/chalk": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz",
-      "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
-      "license": "MIT",
-      "dependencies": {
-        "ansi-styles": "^4.1.0",
-        "supports-color": "^7.1.0"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/chalk/chalk?sponsor=1"
       }
     },
     "node_modules/react-dev-utils/node_modules/find-up": {
@@ -19934,6 +19382,18 @@ def generate_token(user_id):
       "funding": {
         "type": "github",
         "url": "https://github.com/sponsors/epoberezkin"
+      }
+    },
+    "node_modules/schema-utils/node_modules/ajv-keywords": {
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-5.1.0.tgz",
+      "integrity": "sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==",
+      "license": "MIT",
+      "dependencies": {
+        "fast-deep-equal": "^3.1.3"
+      },
+      "peerDependencies": {
+        "ajv": "^8.8.2"
       }
     },
     "node_modules/schema-utils/node_modules/json-schema-traverse": {
@@ -21228,15 +20688,6 @@ def generate_token(user_id):
         }
       }
     },
-    "node_modules/terser-webpack-plugin/node_modules/ajv-keywords": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
-      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "ajv": "^6.9.1"
-      }
-    },
     "node_modules/terser-webpack-plugin/node_modules/schema-utils": {
       "version": "3.3.0",
       "resolved": "https://registry.npmjs.org/schema-utils/-/schema-utils-3.3.0.tgz",
@@ -22087,15 +21538,6 @@ def generate_token(user_id):
         "node": ">=10.13.0"
       }
     },
-    "node_modules/webpack/node_modules/ajv-keywords": {
-      "version": "3.5.2",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz",
-      "integrity": "sha512-5p6WTN0DdTGVQk6VjcEju19IgaHudalcfabD7yhDGeA6bcQnmL+CpveLJq/3hvfwd1aof6L386Ougkx6RfyMIQ==",
-      "license": "MIT",
-      "peerDependencies": {
-        "ajv": "^6.9.1"
-      }
-    },
     "node_modules/webpack/node_modules/eslint-scope": {
       "version": "5.1.1",
       "resolved": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-5.1.1.tgz",
@@ -22222,16 +21664,19 @@ def generate_token(user_id):
       }
     },
     "node_modules/which-boxed-primitive": {
-      "version": "1.0.2",
-      "resolved": "https://registry.npmjs.org/which-boxed-primitive/-/which-boxed-primitive-1.0.2.tgz",
-      "integrity": "sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/which-boxed-primitive/-/which-boxed-primitive-1.1.0.tgz",
+      "integrity": "sha512-Ei7Miu/AXe2JJ4iNF5j/UphAgRoma4trE6PtisM09bPygb3egMH3YLW/befsWb1A1AxvNSFidOFTB18XtnIIng==",
       "license": "MIT",
       "dependencies": {
-        "is-bigint": "^1.0.1",
-        "is-boolean-object": "^1.1.0",
-        "is-number-object": "^1.0.4",
-        "is-string": "^1.0.5",
-        "is-symbol": "^1.0.3"
+        "is-bigint": "^1.1.0",
+        "is-boolean-object": "^1.2.0",
+        "is-number-object": "^1.1.0",
+        "is-string": "^1.1.0",
+        "is-symbol": "^1.1.0"
+      },
+      "engines": {
+        "node": ">= 0.4"
       },
       "funding": {
         "url": "https://github.com/sponsors/ljharb"
@@ -22375,6 +21820,23 @@ def generate_token(user_id):
       },
       "engines": {
         "node": ">=10.0.0"
+      }
+    },
+    "node_modules/workbox-build/node_modules/@apideck/better-ajv-errors": {
+      "version": "0.3.6",
+      "resolved": "https://registry.npmjs.org/@apideck/better-ajv-errors/-/better-ajv-errors-0.3.6.tgz",
+      "integrity": "sha512-P+ZygBLZtkp0qqOAJJVX4oX/sFo5JR3eBWwwuqHHhK0GIgQOKWrAfiAaWX0aArHkRWHMuggFEgAZNxVPwPZYaA==",
+      "license": "MIT",
+      "dependencies": {
+        "json-schema": "^0.4.0",
+        "jsonpointer": "^5.0.0",
+        "leven": "^3.1.0"
+      },
+      "engines": {
+        "node": ">=10"
+      },
+      "peerDependencies": {
+        "ajv": ">=8"
       }
     },
     "node_modules/workbox-build/node_modules/ajv": {
@@ -22868,7 +22330,6 @@ import '@testing-library/jest-dom';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Подключение отдельных файлов переводов
 import aboutTranslations from './translations/about';
 import civilizationsTranslations from './translations/civilizations';
 import eternalThingsTranslations from './translations/eternalThings';
@@ -22876,7 +22337,7 @@ import gameplayTranslations from './translations/gameplay';
 import howItWorksTranslations from './translations/how_it_works';
 import newsTranslations from './translations/news';
 
-// Собираем все переводы в один объект
+// Собираем переводы
 const resources = {
   en: {
     about: aboutTranslations.en,
@@ -22904,23 +22365,24 @@ const resources = {
   },
 };
 
-// Инициализация i18next
+// Определение языка вручную
+const detectLanguage = () => {
+  const browserLang = navigator.language || navigator.userLanguage;
+  return ['ua', 'ru', 'en'].includes(browserLang) ? browserLang : 'ua';
+};
+
 i18n
   .use(initReactI18next) // Подключаем React к i18next
   .init({
-    resources, // Передаем переводы
-    lng: 'ru', // Язык по умолчанию
-    fallbackLng: 'ru', // Резервный язык
+    resources,
+    lng: detectLanguage(), // Устанавливаем язык на основе настроек браузера
+    fallbackLng: 'ua', // Язык по умолчанию
     interpolation: {
       escapeValue: false, // React уже экранирует данные
-    },
-    react: {
-      useSuspense: true, // Включаем Suspense
     },
   });
 
 export default i18n;
-
 
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/App.js ---
 import React, { useState, useEffect } from 'react';
@@ -22941,75 +22403,62 @@ import ContactPage from './pages/ContactPage';
 import NewsList from './components/NewsList';
 import Map from './components/Map';
 import AccountPage from './pages/AccountPage';
-import LogoutButton from './components/LogoutButton';
-import axios from './axiosSetup'; // Настройка axios для API запросов
+import axios from './axiosSetup';
 import './styles/style.css';
 
-import './i18n'; // Подключаем инициализацию i18n
-import { useTranslation } from 'react-i18next'; // Для работы с переводами
-import { useParams } from 'react-router-dom'; // Для получения языка из URL
+import './i18n'; // Подключаем i18n
+import { useTranslation } from 'react-i18next';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Состояние авторизации
-  const [isAuthChecked, setIsAuthChecked] = useState(false); // Проверка авторизации завершена
-  const [userEmail, setUserEmail] = useState(''); // Email текущего пользователя
-  const { lang } = useParams(); // Получаем текущий язык из URL
-  const { i18n } = useTranslation(); // Используем i18next для управления языком
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const { i18n } = useTranslation();
 
-  // Проверяем авторизацию при загрузке приложения
+  // Логика определения языка из URL
   useEffect(() => {
-  const checkAuth = async () => {
-    try {
-      const response = await axios.get('/accounts/check-auth/', {
-        withCredentials: true, // Убедитесь, что куки отправляются
-      });
-      console.log("Ответ check-auth:", response.data); // Выводим, что возвращает сервер
-      setIsLoggedIn(response.data.isAuthenticated); // Устанавливаем статус авторизации
-      if (response.data.isAuthenticated) {
-        setUserEmail(response.data.email); // Обновляем email
-        console.log("Email пользователя обновлен:", response.data.email); // Логируем email
+    const langFromPath = window.location.pathname.split('/')[1]; // Получаем язык из URL
+    if (['en', 'ru', 'ua'].includes(langFromPath) && langFromPath !== i18n.language) {
+      i18n.changeLanguage(langFromPath); // Синхронизируем язык
+    }
+  }, [i18n]);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get('/accounts/check-auth/', { withCredentials: true });
+        setIsLoggedIn(response.data.isAuthenticated);
+        if (response.data.isAuthenticated) {
+          setUserEmail(response.data.email);
+        }
+      } catch (error) {
+        console.error('Ошибка при проверке авторизации:', error);
+        setIsLoggedIn(false);
+      } finally {
+        setIsAuthChecked(true);
       }
-    } catch (error) {
-      console.error('Ошибка при проверке авторизации:', error);
-      setIsLoggedIn(false); // Если ошибка, то пользователь не авторизован
-    } finally {
-      setIsAuthChecked(true); // Завершаем проверку авторизации
-    }
-  };
+    };
 
-  checkAuth();
-}, []);
+    checkAuth();
+  }, []);
 
-  // Логика смены языка
-  useEffect(() => {
-    if (lang && ['en', 'ru', 'ua'].includes(lang)) {
-      i18n.changeLanguage(lang);
-    } else {
-      i18n.changeLanguage('ru');
-    }
-  }, [lang, i18n]);
-
-  // Успешный вход в систему
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
-  // Выход из системы
   const handleLogout = async () => {
     try {
       await axios.post('/accounts/logout/', {}, { headers: { 'Content-Type': 'application/json' } });
-      setIsLoggedIn(false); // Обновляем состояние после выхода
-      window.location.reload(); // Обновляем страницу для применения изменений
+      setIsLoggedIn(false);
+      window.location.reload();
     } catch (error) {
       console.error('Ошибка при выходе:', error);
     }
   };
 
-  // Пока проверка авторизации не завершена, отображаем загрузочный экран
-if (!isAuthChecked) {
-  return <div className="loading-screen">Проверка авторизации...</div>;
-}
-
+  if (!isAuthChecked) {
+    return <div className="loading-screen">Проверка авторизации...</div>;
+  }
 
   return (
     <Router>
@@ -23019,7 +22468,6 @@ if (!isAuthChecked) {
 
         <Routes>
           {/* Основные страницы */}
-
           <Route path="/about" element={<Navigate to="/ru/about" />} />
           <Route path="/:lang/about" element={<AboutPage />} />
 
@@ -23038,7 +22486,6 @@ if (!isAuthChecked) {
           <Route path="/confirm-code" element={<ConfirmCodePage />} />
 
           <Route path="/" element={<HomePage userEmail={userEmail} isAuthChecked={isAuthChecked} />} />
-
 
           <Route
             path="/login"
@@ -23663,176 +23110,69 @@ export default ContactPage;
 
 
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/pages/AboutPage.js ---
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../components/LanguageSwitcher'; // Импорт компонента переключателя языка
 
 const AboutPage = () => {
-  const { t } = useTranslation(); // Хук для переводов
+  const { i18n } = useTranslation();
 
-  console.log("AboutPage рендерится");
+  // Данные для текущего языка
+  const aboutData = i18n.store.data[i18n.language]?.about?.about;
 
-  // Логируем все переводы для текущего языка
-  console.log("Текущий язык:", i18n.language);
-  console.log("Все переводы:", i18n.store.data);
-
-  // Логируем конкретные ключи
-  const rolesTitle = t("about.roles.title");
-  const rolesList = t("about.roles.list", { returnObjects: true });
-
-  console.log("rolesTitle:", rolesTitle); // Проверяем заголовок
-  console.log("rolesList:", rolesList); // Проверяем массив или ошибку
-
-  const rolesList = t('roles.list', { returnObjects: true });
-  if (!Array.isArray(rolesList)) {
-    console.error("rolesList должен быть массивом, получено:", rolesList);
-    return <div>Ошибка: данные rolesList недоступны или некорректны.</div>;
+  // Проверка на наличие данных
+  if (!aboutData) {
+    return <div>Ошибка: данные для текущего языка отсутствуют.</div>;
   }
+
+  // Универсальная функция для рендера секций
+  const renderSection = (title, list) => {
+    if (!title || !list || list.length === 0) return null; // Проверка на пустые данные
+    return (
+      <section>
+        <h2>{title}</h2>
+        <ul>
+          {list.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </section>
+    );
+  };
 
   return (
     <div>
+      {/* Компонент для переключения языка */}
+      <LanguageSwitcher />
+
       {/* Заголовок страницы */}
-      <h1>{t("about.title")}</h1>
+      <h1>{aboutData.title}</h1>
 
       {/* Раздел: Обзор */}
       <section>
-        <h2>{t("about.overview.title")}</h2>
-        <p>{t("about.overview.intro")}</p>
-        <p>{t("about.overview.goal")}</p>
-        <p>{t("about.overview.mission")}</p>
+        <h2>{aboutData.overview?.title}</h2>
+        <p>{aboutData.overview?.intro}</p>
+        <p>{aboutData.overview?.goal}</p>
+        <p>{aboutData.overview?.mission}</p>
       </section>
 
-      {/* Раздел: Роли участников */}
-      <section>
-        <h2>{t("about.roles.title")}</h2>
-        <ul>
-          {t("about.roles.list", { returnObjects: true }).map((role, index) => (
-            <li key={index}>
-              <strong>{role.role}:</strong> {role.description}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Основные процессы */}
-      <section>
-        <h2>{t("about.processes.title")}</h2>
-        <ul>
-          {t("about.processes.list", { returnObjects: true }).map((process, index) => (
-            <li key={index}>{process}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Цифровая система вознаграждений */}
-      <section>
-        <h2>{t("about.rewards.title")}</h2>
-        <ul>
-          {t("about.rewards.details", { returnObjects: true }).map((reward, index) => (
-            <li key={index}>{reward}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Игровые элементы */}
-      <section>
-        <h2>{t("about.gamification.title")}</h2>
-        <ul>
-          {t("about.gamification.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Карта проекта */}
-      <section>
-        <h2>{t("about.map.title")}</h2>
-        <p>{t("about.map.description")}</p>
-        <ul>
-          {t("about.map.details", { returnObjects: true }).map((detail, index) => (
-            <li key={index}>{detail}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Технологическая и финансовая инфраструктура */}
-      <section>
-        <h2>{t("about.infrastructure.title")}</h2>
-        <ul>
-          {t("about.infrastructure.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Методы финансирования */}
-      <section>
-        <h2>{t("about.funding.title")}</h2>
-        <ul>
-          {t("about.funding.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Партнерские программы */}
-      <section>
-        <h2>{t("about.partnerships.title")}</h2>
-        <ul>
-          {t("about.partnerships.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Прозрачность и отчетность */}
-      <section>
-        <h2>{t("about.transparency.title")}</h2>
-        <ul>
-          {t("about.transparency.list", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Образовательные программы */}
-      <section>
-        <h2>{t("about.education.title")}</h2>
-        <ul>
-          {t("about.education.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: PR и маркетинг */}
-      <section>
-        <h2>{t("about.marketing.title")}</h2>
-        <ul>
-          {t("about.marketing.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Инновации */}
-      <section>
-        <h2>{t("about.innovations.title")}</h2>
-        <ul>
-          {t("about.innovations.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Раздел: Социальная сеть */}
-      <section>
-        <h2>{t("about.socialNetwork.title")}</h2>
-        <ul>
-          {t("about.socialNetwork.details", { returnObjects: true }).map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </section>
+      {/* Остальные секции */}
+      {renderSection(
+        aboutData.roles?.title,
+        aboutData.roles?.list.map((role) => `${role.role}: ${role.description}`)
+      )}
+      {renderSection(aboutData.processes?.title, aboutData.processes?.list)}
+      {renderSection(aboutData.rewards?.title, aboutData.rewards?.details)}
+      {renderSection(aboutData.gamification?.title, aboutData.gamification?.list)}
+      {renderSection(aboutData.map?.title, aboutData.map?.details)}
+      {renderSection(aboutData.infrastructure?.title, aboutData.infrastructure?.list)}
+      {renderSection(aboutData.funding?.title, aboutData.funding?.list)}
+      {renderSection(aboutData.partnerships?.title, aboutData.partnerships?.list)}
+      {renderSection(aboutData.transparency?.title, aboutData.transparency?.list)}
+      {renderSection(aboutData.education?.title, aboutData.education?.details)}
+      {renderSection(aboutData.marketing?.title, aboutData.marketing?.details)}
+      {renderSection(aboutData.innovations?.title, aboutData.innovations?.details)}
+      {renderSection(aboutData.socialNetwork?.title, aboutData.socialNetwork?.details)}
     </div>
   );
 };
@@ -25522,22 +24862,27 @@ export default Map;
 
 
 --- FILE: /home/ecomaner_django/collected_files/frontend/src/components/LanguageSwitcher.js ---
-import React from "react";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
-    window.location.pathname = `/${lang}/about`; // Перенаправление с выбранным языком
+  const changeLanguage = (lng) => {
+    const currentPath = window.location.pathname.split('/').slice(2).join('/');
+    navigate(`/${lng}/${currentPath}`);
+    i18n.changeLanguage(lng);
+    console.log("Язык переключён на:", lng);
   };
 
   return (
     <div>
-      <button onClick={() => changeLanguage("ru")}>Русский</button>
-      <button onClick={() => changeLanguage("en")}>English</button>
-      <button onClick={() => changeLanguage("ua")}>Українська</button>
+      <button onClick={() => changeLanguage('ua')}>Українська</button>
+      <button onClick={() => changeLanguage('en')}>English</button>
+      <button onClick={() => changeLanguage('ru')}>Русский</button>
+
     </div>
   );
 };

@@ -1,14 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../components/LanguageSwitcher'; // Импорт компонента переключателя языка
 
 const AboutPage = () => {
   const { i18n } = useTranslation();
-
-  // Функция для изменения языка
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    console.log("Язык переключён на:", lng);
-  };
 
   // Данные для текущего языка
   const aboutData = i18n.store.data[i18n.language]?.about?.about;
@@ -35,12 +30,8 @@ const AboutPage = () => {
 
   return (
     <div>
-      {/* Блок для выбора языка */}
-      <div style={{ marginBottom: '20px' }}>
-        <button onClick={() => changeLanguage('en')}>English</button>
-        <button onClick={() => changeLanguage('ru')}>Русский</button>
-        <button onClick={() => changeLanguage('ua')}>Українська</button>
-      </div>
+      {/* Компонент для переключения языка */}
+      <LanguageSwitcher />
 
       {/* Заголовок страницы */}
       <h1>{aboutData.title}</h1>
@@ -53,7 +44,7 @@ const AboutPage = () => {
         <p>{aboutData.overview?.mission}</p>
       </section>
 
-      {/* Разделы */}
+      {/* Остальные секции */}
       {renderSection(
         aboutData.roles?.title,
         aboutData.roles?.list.map((role) => `${role.role}: ${role.description}`)
