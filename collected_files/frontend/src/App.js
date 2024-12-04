@@ -19,7 +19,7 @@ import AccountPage from './pages/AccountPage';
 import axios from './axiosSetup';
 import './styles/style.css';
 
-import './i18n'; // Подключаем i18n
+import './i18n'; // Подключение i18n
 import { useTranslation } from 'react-i18next';
 
 function App() {
@@ -28,14 +28,32 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const { i18n } = useTranslation();
 
-  // Логика определения языка из URL
-  useEffect(() => {
-    const langFromPath = window.location.pathname.split('/')[1]; // Получаем язык из URL
-    if (['en', 'ru', 'ua'].includes(langFromPath) && langFromPath !== i18n.language) {
-      i18n.changeLanguage(langFromPath); // Синхронизируем язык
-    }
-  }, [i18n]);
+useEffect(() => {
+  const langFromPath = window.location.pathname.split('/')[1]; // Получаем язык из URL
+  const supportedLanguages = ['en', 'ru', 'ua']; // Поддерживаемые языки
 
+  console.log("URL language detected:", langFromPath); // Логируем язык из URL
+  console.log("Current i18n language before change:", i18n.language); // Лог текущего языка i18n
+
+  if (supportedLanguages.includes(langFromPath)) {
+    if (langFromPath !== i18n.language) {
+      i18n.changeLanguage(langFromPath).then(() => {
+        console.log("i18n language after change:", i18n.language); // Лог после изменения языка
+      }).catch((err) => {
+        console.error("Error changing language:", err);
+      });
+    }
+  } else {
+    console.log("Invalid URL language. Redirecting to default (ua).");
+    window.location.replace(`/ua${window.location.pathname}`);
+  }
+}, [i18n]);
+
+
+
+
+
+  // Проверка авторизации
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -55,10 +73,12 @@ function App() {
     checkAuth();
   }, []);
 
+  // Обработчик успешного входа
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
+  // Обработчик выхода
   const handleLogout = async () => {
     try {
       await axios.post('/accounts/logout/', {}, { headers: { 'Content-Type': 'application/json' } });
@@ -69,46 +89,48 @@ function App() {
     }
   };
 
+  // Проверка авторизации
   if (!isAuthChecked) {
     return <div className="loading-screen">Проверка авторизации...</div>;
   }
 
   return (
-    <Router>
+    <Router key={i18n.language}>
       <div>
-        {/* Передаем состояние авторизации и функцию выхода в Header */}
+        {/* Компонент Header с передачей состояния авторизации */}
         <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
         <Routes>
-          {/* Основные страницы */}
-          <Route path="/about" element={<Navigate to="/ru/about" />} />
+          {/* Редирект на About с корректным языком */}
           <Route path="/:lang/about" element={<AboutPage />} />
+          <Route path="/about" element={<Navigate to="/ua/about" />} />
 
-          <Route path="/gameplay" element={<GameplayPage />} />
-          <Route path="/how-it-works" element={<HowItWorksPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="/join" element={<ParticipationPage />} />
-          <Route path="/civilizations" element={<CivilizationsPage />} />
-          <Route path="/eternal-things" element={<EternalThingsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/news" element={<NewsList />} />
-          <Route path="/map" element={<Map />} />
 
-          {/* Регистрация и вход */}
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/confirm-code" element={<ConfirmCodePage />} />
+          {/* Страницы */}
+          <Route path="/:lang/gameplay" element={<GameplayPage />} />
+          <Route path="/:lang/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/:lang/faq" element={<FaqPage />} />
+          <Route path="/:lang/join" element={<ParticipationPage />} />
+          <Route path="/:lang/civilizations" element={<CivilizationsPage />} />
+          <Route path="/:lang/eternal-things" element={<EternalThingsPage />} />
+          <Route path="/:lang/contact" element={<ContactPage />} />
+          <Route path="/:lang/news" element={<NewsList />} />
+          <Route path="/:lang/map" element={<Map />} />
 
-          <Route path="/" element={<HomePage userEmail={userEmail} isAuthChecked={isAuthChecked} />} />
+          {/* Регистрация и авторизация */}
+          <Route path="/:lang/register" element={<RegisterPage />} />
+          <Route path="/:lang/confirm-code" element={<ConfirmCodePage />} />
+          <Route path="/" element={<Navigate to="/ua" />} /> {/* Редирект на язык по умолчанию */}
 
           <Route
-            path="/login"
+            path="/:lang/login"
             element={
-              isLoggedIn ? <Navigate to="/account" /> : <LoginPage onLoginSuccess={handleLoginSuccess} />
+              isLoggedIn ? <Navigate to="/ua/account" /> : <LoginPage onLoginSuccess={handleLoginSuccess} />
             }
           />
 
           {/* Личный кабинет */}
-          <Route path="/account" element={isLoggedIn ? <AccountPage /> : <Navigate to="/login" />} />
+          <Route path="/:lang/account" element={isLoggedIn ? <AccountPage /> : <Navigate to="/ua/login" />} />
         </Routes>
       </div>
     </Router>
