@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Подключение файлов перевода
 import aboutTranslations from './translations/about';
 import civilizationsTranslations from './translations/civilizations';
 import eternalThingsTranslations from './translations/eternalThings';
@@ -9,7 +8,7 @@ import gameplayTranslations from './translations/gameplay';
 import howItWorksTranslations from './translations/how_it_works';
 import newsTranslations from './translations/news';
 
-// Ресурсы для переводов
+// Собираем переводы
 const resources = {
   en: {
     about: aboutTranslations.en,
@@ -37,25 +36,20 @@ const resources = {
   },
 };
 
-// Ручное определение языка
+// Определение языка вручную
 const detectLanguage = () => {
-  const urlLang = window.location.pathname.split('/')[1]; // Извлекаем язык из URL
-  if (['en', 'ru', 'ua'].includes(urlLang)) {
-    return urlLang;
-  }
-  const browserLang = navigator.language.split('-')[0];
-  return ['en', 'ru', 'ua'].includes(browserLang) ? browserLang : 'ua'; // Язык по умолчанию
+  const browserLang = navigator.language || navigator.userLanguage;
+  return ['ua', 'ru', 'en'].includes(browserLang) ? browserLang : 'ua';
 };
 
 i18n
-  .use(initReactI18next)
+  .use(initReactI18next) // Подключаем React к i18next
   .init({
     resources,
-    lng: 'ua', // Устанавливаем язык по умолчанию
-    fallbackLng: 'ua', // Резервный язык
-    debug: true,
+    lng: detectLanguage(), // Устанавливаем язык на основе настроек браузера
+    fallbackLng: 'ua', // Язык по умолчанию
     interpolation: {
-      escapeValue: false, // Безопасность вставки
+      escapeValue: false, // React уже экранирует данные
     },
   });
 

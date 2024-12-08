@@ -76,6 +76,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -220,7 +221,7 @@ LOGGING = {
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'uk'
 
 TIME_ZONE = 'UTC'
 
@@ -283,3 +284,17 @@ SENDGRID_ECHO_TO_STDOUT = True  # Вывод email-сообщений в кон�
 # ecomaner_project/settings.py
 SITE_URL = "https://ecomaner.com"  # Укажите основной домен
 
+
+
+LANGUAGES = [
+    ('ru', 'Русский'),
+    ('en', 'English'),
+    ('uk', 'Українська'),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+USE_I18N = True
+USE_L10N = True
