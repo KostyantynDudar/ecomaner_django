@@ -4,7 +4,7 @@
 LOG_FILE="/home/ecomaner_django/restart_services.log"
 
 # Очищаем старый лог-файл
-echo "=== Лог перезапуска сервисов - $(date) ===" > $LOG_FILE
+echo "=== Лог перезапуска сервисов - $(date) =                 ==" > $LOG_FILE
 
 # Функция для перезагрузки и проверки статуса systemd-сервиса с логированием
 restart_and_check_systemd() {

@@ -34,4 +34,5 @@ urlpatterns = [
     path('api/news/', include('apps.news.urls')),  # Новости (доступ для всех)
 
     path('api/main/', include('apps.main.urls')),  # Информация о проекте
+
 ]
