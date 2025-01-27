@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
     'apps.main',
     'apps.eco_map',
+    'apps.barter',
 
     
     # сторонние приложения
