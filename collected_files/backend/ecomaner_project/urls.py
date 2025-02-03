@@ -35,4 +35,6 @@ urlpatterns = [
 
     path('api/main/', include('apps.main.urls')),  # Информация о проекте
 
+    path('barter/', include('apps.barter.urls')),  # Маршруты платформы бартера
+
 ]

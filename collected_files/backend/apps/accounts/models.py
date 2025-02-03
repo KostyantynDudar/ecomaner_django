@@ -51,3 +51,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    # Новый метод: get_short_name
+    def get_short_name(self):
+        """Возвращает короткое имя пользователя."""
+        return self.email.split('@')[0]  # Вернёт часть email до @

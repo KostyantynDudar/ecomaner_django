@@ -104,11 +104,13 @@ CSRF_TRUSTED_ORIGINS = [
 
 ROOT_URLCONF = 'ecomaner_project.urls'
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "main" / "templates"],
+        'DIRS': [
+            BASE_DIR / "main" / "templates",
+           # BASE_DIR / "backend" / "apps" / "barter" / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
