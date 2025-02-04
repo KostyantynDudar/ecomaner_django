@@ -303,3 +303,18 @@ LOCALE_PATHS = [
 
 USE_I18N = True
 USE_L10N = True
+
+
+# settings.py
+
+# Настройки медиафайлов (изображений)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Подключаем обработку медиафайлов в DEBUG режиме
+if DEBUG:
+    from django.conf.urls.static import static
+    from django.conf import settings
+    from django.urls import re_path
+    
+    #  settings.ROOT_URLCONF += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -30,6 +30,15 @@ const NewsList = () => {
                         <li key={item.id}>
                             <h2>{item.title}</h2>
                             <p>{item.content}</p>
+                            
+                            {/* Проверяем, есть ли изображения */}
+                            {item.images.length > 0 && (
+                                <img 
+                                    src={item.images[0].image} 
+                                    alt={item.title} 
+                                    style={{ width: '100%', maxWidth: '500px', borderRadius: '10px' }}
+                                />
+                            )}
                         </li>
                     ))}
                 </ul>

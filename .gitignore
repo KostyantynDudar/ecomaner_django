@@ -11,4 +11,6 @@ db.sqlite3
 *.log
 *.sqlite3
 *.env
-
+changes.txt
+backend/staticfiles/
+backend/media/
