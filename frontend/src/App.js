@@ -14,6 +14,7 @@ import CivilizationsPage from './pages/CivilizationsPage';
 import EternalThingsPage from './pages/EternalThingsPage';
 import ContactPage from './pages/ContactPage';
 import NewsList from './components/NewsList';
+import NewsDetail from "./components/NewsDetail";
 import Map from './components/Map';
 import AccountPage from './pages/AccountPage';
 import axios from './axiosSetup';
@@ -92,6 +93,7 @@ function App() {
           <Route path="/eternal-things" element={<EternalThingsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsList />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/map" element={<Map />} />
 
           {/* Регистрация и вход */}

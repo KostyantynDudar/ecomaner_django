@@ -1,0 +1,55 @@
+.news-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #ddd;
+}
+
+.news-item {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 20px;
+}
+
+.news-title {
+    font-size: 24px;
+    color: #fff;
+}
+
+.news-content {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.news-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.news-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.like-button {
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.share-links {
+    display: flex;
+    gap: 10px;
+}
+
+.share-links a {
+    text-decoration: none;
+    font-size: 14px;
+}

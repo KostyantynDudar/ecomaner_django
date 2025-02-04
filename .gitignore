@@ -14,3 +14,4 @@ db.sqlite3
 changes.txt
 backend/staticfiles/
 backend/media/
+project_structure.txt

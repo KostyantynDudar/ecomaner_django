@@ -8,11 +8,12 @@ from .serializers import NewsSerializer, NewsImageSerializer
 class NewsListAPIView(generics.ListAPIView):
     """
     Представление для получения списка новостей.
-    Открыт доступ для всех пользователей.
+    Сначала горячие (is_hot=True), затем остальные, сортировка по дате убывания.
     """
-    queryset = News.objects.all()
+    queryset = News.objects.filter(published=True).order_by('-is_hot', '-created_at')
     serializer_class = NewsSerializer
     permission_classes = [AllowAny]
+
 
 
 class NewsDetailAPIView(generics.RetrieveAPIView):
