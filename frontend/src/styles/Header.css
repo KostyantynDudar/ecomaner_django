@@ -1,4 +1,4 @@
-/* src/styles/Header.css */
+/* Основные стили для хедера */
 .header {
   display: flex;
   align-items: center;
@@ -9,6 +9,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Левая часть — логотип */
 .logo a {
   font-size: 20px;
   font-weight: bold;
@@ -16,27 +17,53 @@
   color: #00ff41;
 }
 
-.menu {
+/* Правая часть — гамбургер + кнопки входа */
+.right-section {
   display: flex;
-  gap: 15px;
-  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
 }
 
-.menu a {
+/* Гамбургер-меню */
+.hamburger-container {
+  display: block; /* Теперь всегда видно */
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #00ff41;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger-menu a {
+  display: block;
   color: #00ff41;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 5px 10px;
-  transition: color 0.3s, background-color 0.3s;
+  padding: 10px;
+  font-size: 16px;
 }
 
-.menu a:hover {
+.hamburger-menu a:hover {
   background-color: #444;
   color: #ffcc00;
   border-radius: 4px;
 }
 
+/* Кнопки входа и выхода */
 .auth-buttons {
   display: flex;
   gap: 10px;
@@ -57,4 +84,9 @@
 
 .auth-buttons .signup-button {
   background-color: #28a745;
+}
+
+/* Чтобы гамбургер-меню было видно всегда */
+.hamburger-menu.active {
+  display: block;
 }
