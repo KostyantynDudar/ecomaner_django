@@ -7,6 +7,8 @@
   background-color: #333;
   color: #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative; /* Оставляем, чтобы кнопки оставались на месте */
+  z-index: 1000; /* Выше карты */
 }
 
 /* Левая часть — логотип */
@@ -38,15 +40,17 @@
   padding: 10px;
 }
 
+/* Меню теперь фиксировано поверх карты */
 .hamburger-menu {
   display: none;
-  position: absolute;
+  position: fixed; /* Фиксируем поверх всего */
   top: 60px;
   right: 20px;
-  background-color: #333;
-  padding: 10px;
+  background-color: rgba(51, 51, 51, 0.95);
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 2000; /* Поверх карты */
 }
 
 .hamburger-menu a {
@@ -86,7 +90,7 @@
   background-color: #28a745;
 }
 
-/* Чтобы гамбургер-меню было видно всегда */
+/* Гамбургер-меню теперь работает независимо от ширины экрана */
 .hamburger-menu.active {
   display: block;
 }
