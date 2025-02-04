@@ -20,5 +20,5 @@ class HomeView(APIView):
     permission_classes = [IsAuthenticated]  # Только авторизованные пользователи
 
     def get(self, request):
-        data = {"message": "Welcome to Ecomaner!"}
+        data = {"message": "Привет на Экоманере! \nСделаем мир чище вместе."}
         return Response(data)
