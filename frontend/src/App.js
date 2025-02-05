@@ -1,3 +1,6 @@
+// frontend/src/App.js
+
+
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -17,6 +20,7 @@ import NewsList from './components/NewsList';
 import NewsDetail from "./components/NewsDetail";
 import Map from './components/Map';
 import AccountPage from './pages/AccountPage';
+import BarterPage from './pages/barter/AccountPage'; // Подключаем страницу бартера
 import axios from './axiosSetup';
 import './styles/style.css';
 
@@ -111,6 +115,9 @@ function App() {
 
           {/* Личный кабинет */}
           <Route path="/account" element={isLoggedIn ? <AccountPage /> : <Navigate to="/login" />} />
+
+          {/* 🔹 Раздел бартера */}
+          <Route path="/barter" element={isLoggedIn ? <BarterPage /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
