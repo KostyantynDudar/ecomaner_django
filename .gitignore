@@ -15,3 +15,7 @@ changes.txt
 backend/staticfiles/
 backend/media/
 project_structure.txt
+project_tree.txt
+backend_tree.txt
+accounts_code.txt
+*.txt
