@@ -13,4 +13,7 @@ urlpatterns = [
     # API для работы с заявками
     path('api/user-requests/', views.UserBarterRequestsAPIView.as_view(), name='user_barter_requests'),  # Получение и создание заявок
     path('api/user-requests/<int:pk>/', views.UserBarterRequestDetailAPIView.as_view(), name='user_barter_request_detail'),  # Просмотр, редактирование, удаление заявки
+
+    # 🔹 Новый маршрут для обменов
+    path('api/user-deals/', views.UserBarterDealsAPIView.as_view(), name='user_barter_deals'),
 ]

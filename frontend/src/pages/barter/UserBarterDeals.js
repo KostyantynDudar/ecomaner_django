@@ -1,25 +1,45 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const UserBarterDeals = () => {
     const [deals, setDeals] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Пока используем заглушку, позже заменим API-запросом
-        setDeals([
-            { id: 1, item: "Чайник", status: "Ожидание подтверждения" },
-            { id: 2, item: "Ноутбук", status: "В процессе" }
-        ]);
+        const fetchDeals = async () => {
+            try {
+                const response = await axios.get("https://ecomaner.com/barter/api/user-deals/", {
+                    withCredentials: true, // Если нужен cookie-based auth
+                });
+                setDeals(response.data);
+            } catch (err) {
+                setError("Ошибка загрузки данных обменов.");
+                console.error("Ошибка API:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDeals();
     }, []);
+
+    if (loading) return <p>Загрузка...</p>;
+    if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
         <div>
             <h2>Мои обмены</h2>
             <ul>
-                {deals.map((deal) => (
-                    <li key={deal.id}>
-                        <strong>{deal.item}</strong> - {deal.status}
-                    </li>
-                ))}
+                {deals.length > 0 ? (
+                    deals.map((deal) => (
+                        <li key={deal.id}>
+                            <strong>{deal.item}</strong> - {deal.status}
+                        </li>
+                    ))
+                ) : (
+                    <p>У вас пока нет обменов.</p>
+                )}
             </ul>
         </div>
     );

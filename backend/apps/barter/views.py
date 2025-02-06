@@ -48,3 +48,12 @@ class UserBarterRequestDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         """Позволяем редактировать только свои заявки."""
         return BarterRequest.objects.filter(owner=self.request.user)
+
+class UserBarterDealsAPIView(generics.ListAPIView):
+    """API для получения списка обменов пользователя"""
+    serializer_class = BarterRequestSerializer
+    permission_classes = [permissions.IsAuthenticated]  # Только для авторизованных
+
+    def get_queryset(self):
+        """Показываем пользователю только его обмены (где он либо владелец, либо обмен происходит с ним)"""
+        return BarterRequest.objects.filter(owner=self.request.user)
