@@ -74,7 +74,8 @@ const Map = () => {
                     const popupContent = `
                         <div>
                             <b>${location.type || 'Тип не указан'}</b><br>
-                            ${location.description || 'Описание не указано'}
+                            ${location.description || 'Описание не указано'}<br>
+                            <b>Адрес:</b> ${location.address || 'Адрес не найден'}
                             <div style="margin-top: 8px;">
                                 <button onclick="window.handleVote('${location.id}', 'like')">👍 Лайк</button>
                                 <button onclick="window.handleVote('${location.id}', 'dislike')">👎 Дизлайк</button>
