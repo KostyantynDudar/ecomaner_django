@@ -1,0 +1,17 @@
+.barter-menu {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-bottom: 2px solid #ddd;
+}
+
+.barter-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.barter-menu a:hover {
+    color: #007bff;
+}

@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import BarterMenu from '../../components/BarterMenu';
+
 
 const AllBarterRequests = () => {
     const [requests, setRequests] = useState([]);
@@ -29,6 +31,7 @@ const AllBarterRequests = () => {
 
     return (
         <div>
+            <BarterMenu />
             <h1>Все заявки на бартер</h1>
             <ul>
                 {requests.length > 0 ? (

@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import UserBarterRequests from "./UserBarterRequests";
 import UserBarterDeals from "./UserBarterDeals";
+import BarterMenu from '../../components/BarterMenu';
+
 
 const AccountPage = () => {
     const navigate = useNavigate();
 
     return (
         <div>
+            <BarterMenu />
             <h1>Личный кабинет бартера</h1>
             <UserProfile />
             <UserBarterRequests />
