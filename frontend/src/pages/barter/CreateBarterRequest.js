@@ -7,18 +7,28 @@ import { useNavigate } from "react-router-dom";
 const CreateBarterRequest = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("exchange"); // Тип заявки: обмен, поиск, дар
+    const [address, setAddress] = useState(""); // Адрес, где находится вещь или человек
+    const [value, setValue] = useState(""); // Оценка вещи в баллах
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await axios.post("https://ecomaner.com/barter/api/user-requests/", {
-                title,
-                description,
-            }, { withCredentials: true });
+        setError(null);
+        setSuccess(false);
 
-            navigate("/barter");  // После создания заявки вернуть в кабинет
+        try {
+            const response = await axios.post(
+                "https://ecomaner.com/barter/api/user-requests/",
+                { title, description, category, address, value },
+                { withCredentials: true }
+            );
+
+            setSuccess(true);
+            console.log("✅ Заявка успешно создана:", response.data);
+            setTimeout(() => navigate("/barter"), 2000); // Перенаправление через 2 секунды
         } catch (err) {
             setError("Ошибка при создании заявки. Попробуйте снова.");
             console.error("API error:", err);
@@ -26,20 +36,60 @@ const CreateBarterRequest = () => {
     };
 
     return (
-        <div>
-            <h1>Создать новую заявку</h1>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            <form onSubmit={handleSubmit}>
+        <div style={{ maxWidth: "500px", margin: "auto", padding: "20px", backgroundColor: "#222", color: "#fff", borderRadius: "10px" }}>
+            <h1 style={{ textAlign: "center" }}>Создать новую заявку</h1>
+            {success && <p style={{ color: "green", textAlign: "center" }}>✅ Заявка успешно создана!</p>}
+            {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+            
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 <label>Название:</label>
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required style={inputStyle} />
 
                 <label>Описание:</label>
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)} required style={textareaStyle} />
 
-                <button type="submit">Создать заявку</button>
+                <label>Тип заявки:</label>
+                <select value={category} onChange={(e) => setCategory(e.target.value)} style={inputStyle}>
+                    <option value="exchange">Обмен</option>
+                    <option value="search">Поиск</option>
+                    <option value="gift">Дар</option>
+                </select>
+
+                <label>Адрес:</label>
+                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required style={inputStyle} />
+
+                <label>Оценка в баллах:</label>
+                <input type="number" min="0" value={value} onChange={(e) => setValue(e.target.value)} required style={inputStyle} />
+
+                <button type="submit" style={buttonStyle}>Создать заявку</button>
             </form>
         </div>
     );
+};
+
+const inputStyle = {
+    padding: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+    fontSize: "16px",
+    backgroundColor: "#333",
+    color: "#fff"
+};
+
+const textareaStyle = {
+    ...inputStyle,
+    height: "80px",
+    resize: "none"
+};
+
+const buttonStyle = {
+    padding: "10px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "16px"
 };
 
 export default CreateBarterRequest;
