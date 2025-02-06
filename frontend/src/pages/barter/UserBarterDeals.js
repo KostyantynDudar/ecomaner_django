@@ -30,17 +30,17 @@ const UserBarterDeals = () => {
     return (
         <div>
             <h2>Мои обмены</h2>
-            <ul>
-                {deals.length > 0 ? (
-                    deals.map((deal) => (
+            {deals.length > 0 ? (
+                <ul>
+                    {deals.map((deal) => (
                         <li key={deal.id}>
                             <strong>{deal.item}</strong> - {deal.status}
                         </li>
-                    ))
-                ) : (
-                    <p>У вас пока нет обменов.</p>
-                )}
-            </ul>
+                    ))}
+                </ul>
+            ) : (
+                <p>У вас пока нет обменов.</p>
+            )}
         </div>
     );
 };
