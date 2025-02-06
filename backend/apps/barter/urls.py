@@ -16,4 +16,7 @@ urlpatterns = [
 
     # 🔹 Новый маршрут для обменов
     path('api/user-deals/', views.UserBarterDealsAPIView.as_view(), name='user_barter_deals'),
+
+    path('api/all-requests/', views.AllBarterRequestsAPIView.as_view(), name='all_barter_requests'),
+
 ]

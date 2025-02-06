@@ -1,3 +1,5 @@
+# backend/apps/barter/views.py
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -57,3 +59,12 @@ class UserBarterDealsAPIView(generics.ListAPIView):
     def get_queryset(self):
         """Показываем пользователю только его обмены (где он либо владелец, либо обмен происходит с ним)"""
         return BarterRequest.objects.filter(owner=self.request.user)
+
+class AllBarterRequestsAPIView(generics.ListAPIView):
+    """API для получения всех заявок на бартер"""
+    serializer_class = BarterRequestSerializer
+    permission_classes = [permissions.AllowAny]  # Доступен всем
+
+    def get_queryset(self):
+        """Возвращает все заявки на бартер"""
+        return BarterRequest.objects.all()
