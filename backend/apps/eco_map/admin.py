@@ -7,3 +7,8 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ('description', 'address')
     list_filter = ('type', 'status')
     readonly_fields = ('date_added', 'last_updated')
+
+    def save_model(self, request, obj, form, change):
+        if not obj.created_by:
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
