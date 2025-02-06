@@ -30,7 +30,10 @@ class LocationViewSet(viewsets.ModelViewSet):
         if self.request.user.is_anonymous:
             raise PermissionDenied("Пользователь должен быть аутентифицирован!")
         
-        location = serializer.save(created_by=self.request.user)
+        location = serializer.save(
+            created_by=self.request.user,
+            image=self.request.FILES.get('image')  # Добавляем сохранение изображения
+        )
         
         # Получаем и сохраняем адрес
         if not location.address:
@@ -55,7 +58,8 @@ class LocationViewSet(viewsets.ModelViewSet):
            "longitude": 37.618423,
            "description": "Новая свалка",
            "type": "waste_dump",
-           "status": "active"
+           "status": "active",
+           "image": (файл изображения)
        }
 
     2. Удаление локации:
