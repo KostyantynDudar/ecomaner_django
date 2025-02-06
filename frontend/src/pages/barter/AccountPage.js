@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Добавляем навигацию
+import { useNavigate } from "react-router-dom";
 import UserProfile from "./UserProfile";
 import UserBarterRequests from "./UserBarterRequests";
 import UserBarterDeals from "./UserBarterDeals";
 
 const AccountPage = () => {
-    const navigate = useNavigate(); // Хук для перенаправления
-
-    console.log("📌 Личный кабинет загружен.");
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -15,14 +13,13 @@ const AccountPage = () => {
             <UserProfile />
             <UserBarterRequests />
             <UserBarterDeals />
-
-            {/* Кнопки для управления */}
+            
             <div style={{ marginTop: "20px" }}>
                 <button onClick={() => navigate("/barter/create-request")}>
-                    Создать заявку
+                    ➕ Создать заявку
                 </button>
-                <button onClick={() => navigate("/barter/requests")} style={{ marginLeft: "10px" }}>
-                    Посмотреть заявки других пользователей
+                <button onClick={() => navigate("/barter/all-requests")} style={{ marginLeft: "10px" }}>
+                    🔍 Посмотреть заявки
                 </button>
             </div>
         </div>

@@ -1,6 +1,5 @@
 // frontend/src/App.js
 
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -20,11 +19,13 @@ import NewsList from './components/NewsList';
 import NewsDetail from "./components/NewsDetail";
 import Map from './components/Map';
 import AccountPage from './pages/AccountPage';
-import BarterPage from './pages/barter/AccountPage'; // Подключаем страницу бартера
+import BarterPage from './pages/barter/AccountPage'; // Личный кабинет бартера
+import CreateBarterRequest from './pages/barter/CreateBarterRequest'; // Создание заявки
+import AllBarterRequests from './pages/barter/AllBarterRequests'; // Просмотр всех заявок
+
 import axios from './axiosSetup';
 import './styles/style.css';
-
-import './i18n'; // Подключаем i18n
+import './i18n';
 import { useTranslation } from 'react-i18next';
 
 function App() {
@@ -33,11 +34,10 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const { i18n } = useTranslation();
 
-  // Логика определения языка из URL
   useEffect(() => {
-    const langFromPath = window.location.pathname.split('/')[1]; // Получаем язык из URL
+    const langFromPath = window.location.pathname.split('/')[1];
     if (['en', 'ru', 'ua'].includes(langFromPath) && langFromPath !== i18n.language) {
-      i18n.changeLanguage(langFromPath); // Синхронизируем язык
+      i18n.changeLanguage(langFromPath);
     }
   }, [i18n]);
 
@@ -81,14 +81,12 @@ function App() {
   return (
     <Router>
       <div>
-        {/* Передаем состояние авторизации и функцию выхода в Header */}
         <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
         <Routes>
           {/* Основные страницы */}
           <Route path="/about" element={<Navigate to="/ru/about" />} />
           <Route path="/:lang/about" element={<AboutPage />} />
-
           <Route path="/gameplay" element={<GameplayPage />} />
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/faq" element={<FaqPage />} />
@@ -103,7 +101,6 @@ function App() {
           {/* Регистрация и вход */}
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/confirm-code" element={<ConfirmCodePage />} />
-
           <Route path="/" element={<HomePage userEmail={userEmail} isAuthChecked={isAuthChecked} />} />
 
           <Route
@@ -118,6 +115,8 @@ function App() {
 
           {/* 🔹 Раздел бартера */}
           <Route path="/barter" element={isLoggedIn ? <BarterPage /> : <Navigate to="/login" />} />
+          <Route path="/barter/create-request" element={isLoggedIn ? <CreateBarterRequest /> : <Navigate to="/login" />} />
+          <Route path="/barter/all-requests" element={isLoggedIn ? <AllBarterRequests /> : <Navigate to="/login" />} />
         </Routes>
       </div>
     </Router>
