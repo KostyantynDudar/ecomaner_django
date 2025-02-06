@@ -17,6 +17,9 @@ class LocationSerializer(serializers.ModelSerializer):
 
     # Поле created_by только для чтения: возвращает email пользователя
     created_by = serializers.ReadOnlyField(source='created_by.email')
+    
+    # Поле address теперь только для чтения
+    address = serializers.CharField(read_only=True)
 
     class Meta:
         model = Location

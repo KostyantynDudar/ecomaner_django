@@ -30,7 +30,13 @@ class LocationViewSet(viewsets.ModelViewSet):
         if self.request.user.is_anonymous:
             raise PermissionDenied("Пользователь должен быть аутентифицирован!")
         
-        serializer.save(created_by=self.request.user)
+        location = serializer.save(created_by=self.request.user)
+        
+        # Получаем и сохраняем адрес
+        if not location.address:
+            location.address = location.fetch_address_from_nominatim()
+            location.save()
+
 """
     API для управления локациями на карте.
     Поддерживает следующие операции:
@@ -63,7 +69,7 @@ class LocationViewSet(viewsets.ModelViewSet):
 
     4. Добавление пользователя к локации (в разработке):
        Поддержка для назначения авторов и участников.
-    """
+"""
 
 def test_view(request):
     """
