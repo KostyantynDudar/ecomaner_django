@@ -1,5 +1,3 @@
-//  /home/ecomaner_django/frontend/src/pages/barter/CreateBarterRequest.js
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -8,30 +6,52 @@ import BarterMenu from '../../components/BarterMenu';
 const CreateBarterRequest = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("exchange"); // Тип заявки: обмен, поиск, дар
-    const [address, setAddress] = useState(""); // Адрес, где находится вещь или человек
-    const [value, setValue] = useState(""); // Оценка вещи в баллах
+    const [category, setCategory] = useState("exchange");
+    const [address, setAddress] = useState("");
+    const [value, setValue] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
+
+    // Функция для получения CSRF-токена из куков
+    const getCSRFToken = () => {
+        const match = document.cookie.match(/csrftoken=([^;]+)/);
+        return match ? match[1] : null;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
         setSuccess(false);
 
+        const csrfToken = getCSRFToken();
+        if (!csrfToken) {
+            setError("Ошибка: CSRF-токен отсутствует. Попробуйте снова.");
+            return;
+        }
+
         try {
             const response = await axios.post(
                 "https://ecomaner.com/barter/api/user-requests/",
                 { title, description, category, address, value },
-                { withCredentials: true }
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrfToken,  // ✅ Передаем CSRF-токен
+                    }
+                }
             );
 
             setSuccess(true);
             console.log("✅ Заявка успешно создана:", response.data);
-            setTimeout(() => navigate("/barter"), 2000); // Перенаправление через 2 секунды
+            setTimeout(() => navigate("/barter"), 2000);
         } catch (err) {
-            setError("Ошибка при создании заявки. Попробуйте снова.");
+            if (err.response && err.response.status === 403) {
+                setError("Ошибка: Доступ запрещен. Проверьте авторизацию.");
+            } else {
+                setError("Ошибка при создании заявки. Попробуйте снова.");
+            }
             console.error("API error:", err);
         }
     };

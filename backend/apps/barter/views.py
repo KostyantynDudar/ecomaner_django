@@ -7,6 +7,9 @@ from rest_framework.throttling import UserRateThrottle
 from .models import BarterRequest
 from .serializers import BarterRequestSerializer
 from .permissions import IsOwnerOrReadOnly  # Кастомное правило для прав доступа
+import logging
+
+logger = logging.getLogger(__name__)
 
 # 🔹 Представления для рендеринга страниц
 def barter_public(request):
@@ -23,7 +26,7 @@ def barter_requests(request):
     """Таблица заявок на бартер."""
     return render(request, 'barter/requests.html')
 
-# 🔹 Ограничение запросов (анти-спам)
+# 🔹 Ограничение запросов (anti-spam)
 class BarterRequestThrottle(UserRateThrottle):
     """Ограничение количества запросов"""
     rate = '1000/day'  # Максимум 1000 запросов в день
@@ -41,7 +44,12 @@ class UserBarterRequestsAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """При создании заявки автоматически назначаем владельца"""
-        serializer.save(owner=self.request.user)
+        logger.debug(f"\ud83d\udccc Данные перед сохранением: {self.request.data}")  # ✅ Добавляем логирование
+        serializer.save(
+            owner=self.request.user,
+            location=self.request.data.get('address', ''),  # ✅ Правильное сохранение
+            estimated_value=self.request.data.get('value', 0)  # ✅ Правильное сохранение
+        )
 
 # 🔹 API для детального просмотра, обновления и удаления заявки
 class UserBarterRequestDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
