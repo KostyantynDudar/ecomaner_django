@@ -1,0 +1,41 @@
+.barter-account-container {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+.barter-title {
+    text-align: center;
+    font-size: 28px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.barter-section {
+    background: #222;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.barter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.barter-btn {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #4CAF50, #66bb6a);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.barter-btn:hover {
+    background: linear-gradient(45deg, #388E3C, #4CAF50);
+    transform: scale(1.05);
+}
