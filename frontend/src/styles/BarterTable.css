@@ -1,0 +1,36 @@
+.barter-container {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+.barter-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #222;
+    color: #fff;
+}
+
+.barter-table th, .barter-table td {
+    padding: 10px;
+    border: 1px solid #444;
+    text-align: left;
+}
+
+.barter-table th {
+    background: #333;
+}
+
+.barter-btn {
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 20px;
+}
