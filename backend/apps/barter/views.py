@@ -1,12 +1,11 @@
-# backend/apps/barter/views.py
-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics, permissions
+from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
-from .models import BarterRequest
-from .serializers import BarterRequestSerializer
-from .permissions import IsOwnerOrReadOnly  # Кастомное правило для прав доступа
+from .models import BarterRequest, BarterDeal, UserBalance
+from .serializers import BarterRequestSerializer, BarterDealSerializer
+from .permissions import IsOwnerOrReadOnly
 import logging
 
 logger = logging.getLogger(__name__)
@@ -44,7 +43,7 @@ class UserBarterRequestsAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """При создании заявки автоматически назначаем владельца"""
-        logger.debug(f"\ud83d\udccc Данные перед сохранением: {self.request.data}")  # ✅ Добавляем логирование
+        logger.debug(f"📌 Данные перед сохранением: {self.request.data}")  # ✅ Добавляем логирование
         serializer.save(
             owner=self.request.user,
             location=self.request.data.get('address', ''),  # ✅ Правильное сохранение
@@ -80,3 +79,56 @@ class AllBarterRequestsAPIView(generics.ListAPIView):
     def get_queryset(self):
         """Возвращает все заявки на бартер"""
         return BarterRequest.objects.all()
+
+# 🔹 API для создания сделки
+class CreateDealAPIView(generics.CreateAPIView):
+    """Создание сделки между пользователями"""
+    serializer_class = BarterDealSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        item_A = get_object_or_404(BarterRequest, id=self.request.data.get('item_A'))
+        item_B = get_object_or_404(BarterRequest, id=self.request.data.get('item_B'))
+        compensation = float(self.request.data.get('compensation_points', 0))
+
+        # Проверяем баланс инициатора сделки
+        initiator_balance = get_object_or_404(UserBalance, user=self.request.user)
+        if compensation > initiator_balance.balance:
+            raise serializers.ValidationError("Недостаточно баллов для компенсации!")
+
+        serializer.save(initiator=self.request.user, item_A=item_A, item_B=item_B)
+
+# 🔹 API для подтверждения сделки
+class ConfirmDealAPIView(generics.UpdateAPIView):
+    """Подтверждение сделки второй стороной"""
+    queryset = BarterDeal.objects.all()
+    serializer_class = BarterDealSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_update(self, serializer):
+        instance = serializer.instance
+
+        if instance.partner is None:
+            instance.partner = self.request.user
+            instance.status = 'active'
+
+            # Переводим компенсацию баллов между пользователями
+            if instance.compensation_points > 0:
+                initiator_balance = get_object_or_404(UserBalance, user=instance.initiator)
+                partner_balance = get_object_or_404(UserBalance, user=self.request.user)
+
+                initiator_balance.remove_points(instance.compensation_points)
+                partner_balance.add_points(instance.compensation_points)
+
+            instance.save()
+        else:
+            raise serializers.ValidationError("Сделка уже подтверждена другим пользователем.")
+
+# 🔹 API для получения списка сделок пользователя
+class UserDealsAPIView(generics.ListAPIView):
+    """Получение списка сделок пользователя"""
+    serializer_class = BarterDealSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return BarterDeal.objects.filter(initiator=self.request.user) | BarterDeal.objects.filter(partner=self.request.user)

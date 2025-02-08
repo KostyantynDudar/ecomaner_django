@@ -1,5 +1,3 @@
-# backend/apps/barter/urls.py
-
 from django.urls import path
 from . import views
 
@@ -16,6 +14,10 @@ urlpatterns = [
     path('api/user-requests/<int:pk>/', views.UserBarterRequestDetailAPIView.as_view(), name='user_barter_request_detail'),  # Просмотр, редактирование, удаление заявки
 
     # 🔹 API для работы с обменами
-    path('api/user-deals/', views.UserBarterDealsAPIView.as_view(), name='user_barter_deals'),  # Обмены пользователя
+    path('api/user-deals/', views.UserDealsAPIView.as_view(), name='user_deals'),  # Обмены пользователя
     path('api/all-requests/', views.AllBarterRequestsAPIView.as_view(), name='all_barter_requests'),  # Все заявки
+
+    # 🔹 API для сделок (обмена и дарения)
+    path('api/deals/create/', views.CreateDealAPIView.as_view(), name='create_deal'),  # Создание сделки
+    path('api/deals/<int:pk>/confirm/', views.ConfirmDealAPIView.as_view(), name='confirm_deal'),  # Подтверждение сделки
 ]
