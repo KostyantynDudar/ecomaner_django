@@ -22,6 +22,7 @@ import AccountPage from './pages/AccountPage';
 import BarterPage from './pages/barter/AccountPage'; // Личный кабинет бартера
 import CreateBarterRequest from './pages/barter/CreateBarterRequest'; // Создание заявки
 import AllBarterRequests from './pages/barter/AllBarterRequests'; // Просмотр всех заявок
+import GamePage from './pages/GamePage'; // Импортируем страницу игры
 
 import axios from './axiosSetup';
 import './styles/style.css';
@@ -117,6 +118,9 @@ function App() {
           <Route path="/barter" element={isLoggedIn ? <BarterPage /> : <Navigate to="/login" />} />
           <Route path="/barter/create-request" element={isLoggedIn ? <CreateBarterRequest /> : <Navigate to="/login" />} />
           <Route path="/barter/all-requests" element={isLoggedIn ? <AllBarterRequests /> : <Navigate to="/login" />} />
+
+          <Route path="/game" element={<GamePage />} />
+
         </Routes>
       </div>
     </Router>

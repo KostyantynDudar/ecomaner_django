@@ -71,6 +71,9 @@ INSTALLED_APPS = [
     'corsheaders', 
 
     'apps.accounts', 
+
+    # приложение основной игры
+    'game',
 ]
 
 

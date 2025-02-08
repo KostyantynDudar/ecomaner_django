@@ -39,6 +39,8 @@ urlpatterns = [
 
     path('barter/', include('apps.barter.urls')),  # Маршруты платформы бартера
 
+    path('game/', include('game.urls')),  # Подключаем маршруты игры
+
 ]
 
 # Подключаем раздачу медиафайлов в режиме отладки
