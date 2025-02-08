@@ -1,16 +1,16 @@
 // frontend/src/components/GeoPhotoForm.js
 import React, { useState } from 'react';
 import axios from '../axiosSetup';
+import '../styles/GeoPhotoForm.css'; // Подключаем стили
 
 const GeoPhotoForm = ({ userEmail }) => {
   const [category, setCategory] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [description, setDescription] = useState('');
-  const [photo, setPhoto] = useState(null); // Добавляем стейт для фото
+  const [photo, setPhoto] = useState(null);
   const [message, setMessage] = useState('');
 
-  // Получаем CSRF-токен из cookies
   const getCSRFToken = () => {
     const name = 'csrftoken';
     const cookies = document.cookie.split(';');
@@ -23,12 +23,10 @@ const GeoPhotoForm = ({ userEmail }) => {
     return null;
   };
 
-  // Обработчик для выбора файла
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0]);
   };
 
-  // Получение геолокации
   const getGeolocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -45,7 +43,6 @@ const GeoPhotoForm = ({ userEmail }) => {
     }
   };
 
-  // Отправка данных на сервер
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -59,12 +56,11 @@ const GeoPhotoForm = ({ userEmail }) => {
     formData.append('latitude', latitude);
     formData.append('longitude', longitude);
     formData.append('description', description);
-    formData.append('photo', photo); // Добавляем фото
-    formData.append('created_by', userEmail); // Добавляем email
+    formData.append('photo', photo);
+    formData.append('created_by', userEmail);
 
-    const csrfToken = getCSRFToken(); // Получаем CSRF-токен
+    const csrfToken = getCSRFToken();
 
-    // Выводим отправляемые данные в консоль
     console.log('Отправляемые данные (FormData):');
     for (let pair of formData.entries()) {
       console.log(`${pair[0]}: ${pair[1]}`);
@@ -72,11 +68,10 @@ const GeoPhotoForm = ({ userEmail }) => {
 
     const headers = {
       'Content-Type': 'multipart/form-data',
-      'X-CSRFToken': csrfToken, // Передаем CSRF-токен
+      'X-CSRFToken': csrfToken,
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     };
 
-    // Выводим заголовки запроса
     console.log('Заголовки запроса:', headers);
 
     try {
@@ -95,10 +90,10 @@ const GeoPhotoForm = ({ userEmail }) => {
   };
 
   return (
-    <div>
+    <div className="geo-photo-form">
       <h3>Добавить локацию</h3>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Категория:</label>
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="">Выберите категорию</option>
@@ -106,7 +101,7 @@ const GeoPhotoForm = ({ userEmail }) => {
             <option value="recycling_point">Пункт приема</option>
           </select>
         </div>
-        <div>
+        <div className="form-group">
           <label>Описание:</label>
           <textarea
             value={description}
@@ -114,11 +109,11 @@ const GeoPhotoForm = ({ userEmail }) => {
             placeholder="Добавьте описание"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Фото:</label>
           <input type="file" onChange={handlePhotoChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Координаты:</label>
           <button type="button" onClick={getGeolocation}>
             Получить геолокацию
@@ -128,7 +123,7 @@ const GeoPhotoForm = ({ userEmail }) => {
         </div>
         <button type="submit">Отправить</button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="message">{message}</p>}
     </div>
   );
 };
