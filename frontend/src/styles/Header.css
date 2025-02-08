@@ -139,3 +139,7 @@
 }
 
 
+.account-button,
+.account-button:visited {
+    color: #00ff41 !important; /* Принудительно зеленый цвет */
+}
