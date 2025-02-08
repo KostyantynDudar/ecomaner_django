@@ -6,9 +6,13 @@ import HamburgerMenu from './HamburgerMenu';
 const Header = ({ isLoggedIn, onLogout }) => {
   return (
     <header className="header">
+
       <div className="logo">
         <a href="https://ecomaner.com/" className="add-location">
           ➕ Добавить локацию
+        </a>
+        <a href="https://ecomaner.com/game" className="game-button">
+          🎮 Игра
         </a>
       </div>
 

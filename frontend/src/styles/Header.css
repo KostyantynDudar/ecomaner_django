@@ -96,6 +96,11 @@
   border-radius: 4px;
 }
 
+/* Гамбургер-меню теперь работает независимо от ширины экрана */
+.hamburger-menu.active {
+  display: block;
+}
+
 
 /* Кнопки входа и выхода */
 .auth-buttons {
@@ -120,7 +125,17 @@
   background-color: #28a745;
 }
 
-/* Гамбургер-меню теперь работает независимо от ширины экрана */
-.hamburger-menu.active {
-  display: block;
+.game-button {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ff41;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s ease;
 }
+
+.game-button:hover {
+  color: #ffcc00;
+}
+
+
