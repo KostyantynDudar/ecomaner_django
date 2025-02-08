@@ -7,13 +7,13 @@ const Header = ({ isLoggedIn, onLogout }) => {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/">Экоманер</Link>
+        <a href="https://ecomaner.com/" className="add-location">
+          ➕ Добавить локацию
+        </a>
       </div>
 
       <div className="right-section">
-        {/* Гамбургер-меню (теперь оно всегда отображается) */}
         <HamburgerMenu />
-
         <div className="auth-buttons">
           {!isLoggedIn ? (
             <>
