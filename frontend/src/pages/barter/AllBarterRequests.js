@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BarterMenu from '../../components/BarterMenu';
+import BarterMenu from "../../components/BarterMenu";
 import "../../styles/BarterTable.css";
 
 const AllBarterRequests = () => {
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
         const fetchRequests = async () => {
             try {
                 const response = await axios.get("https://ecomaner.com/barter/api/all-requests/");
+                console.log("📌 API Response:", response.data);
                 setRequests(response.data);
             } catch (err) {
                 setError("Ошибка загрузки заявок.");
@@ -23,6 +25,42 @@ const AllBarterRequests = () => {
 
         fetchRequests();
     }, []);
+
+    const getCSRFToken = () => {
+        const match = document.cookie.match(/csrftoken=([^;]+)/);
+        return match ? match[1] : "";
+    };
+
+    const handleCreateDeal = async (requestId) => {
+        if (isProcessing) return;
+        setIsProcessing(true);
+
+        console.log("📌 Отправка запроса на создание сделки:", requestId);
+
+        try {
+            const csrftoken = getCSRFToken();
+            const response = await axios.post(
+                "https://ecomaner.com/barter/api/deals/create/",
+                {
+                    item_A: requestId,
+                    item_B: null,
+                    compensation_points: 0
+                },
+                {
+                    withCredentials: true,
+                    headers: { "X-CSRFToken": csrftoken }
+                }
+            );
+
+            alert("Сделка успешно создана!");
+            console.log("✅ Ответ API:", response.data);
+        } catch (error) {
+            alert("Ошибка создания сделки. Проверьте консоль.");
+            console.error("❌ API error:", error);
+        } finally {
+            setIsProcessing(false);
+        }
+    };
 
     if (loading) return <p>Загрузка...</p>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -54,7 +92,13 @@ const AllBarterRequests = () => {
                                 <td>{req.estimated_value || "-"}</td>
                                 <td>{req.status}</td>
                                 <td>
-                                    <button className="barter-action-btn">Открыть сделку</button>
+                                    <button
+                                        className="barter-action-btn"
+                                        onClick={() => handleCreateDeal(req.id)}
+                                        disabled={isProcessing}
+                                    >
+                                        Открыть сделку
+                                    </button>
                                 </td>
                             </tr>
                         ))

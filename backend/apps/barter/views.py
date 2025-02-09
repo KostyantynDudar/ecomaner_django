@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status, serializers
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
 from .models import BarterRequest, BarterDeal, UserBalance
@@ -87,16 +87,36 @@ class CreateDealAPIView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        item_A = get_object_or_404(BarterRequest, id=self.request.data.get('item_A'))
-        item_B = get_object_or_404(BarterRequest, id=self.request.data.get('item_B'))
-        compensation = float(self.request.data.get('compensation_points', 0))
+        try:
+            item_A_id = self.request.data.get("item_A")
+            item_B_id = self.request.data.get("item_B")
 
-        # Проверяем баланс инициатора сделки
-        initiator_balance = get_object_or_404(UserBalance, user=self.request.user)
-        if compensation > initiator_balance.balance:
-            raise serializers.ValidationError("Недостаточно баллов для компенсации!")
+            logger.info(f"📌 Создание сделки: item_A={item_A_id}, item_B={item_B_id}")
 
-        serializer.save(initiator=self.request.user, item_A=item_A, item_B=item_B)
+            if not item_A_id or not str(item_A_id).isdigit():
+                raise serializers.ValidationError("Некорректный item_A")
+
+            item_A = get_object_or_404(BarterRequest, id=int(item_A_id))
+
+            item_B = None
+            if item_B_id:
+                if not str(item_B_id).isdigit():
+                    raise serializers.ValidationError("Некорректный item_B")
+                item_B = get_object_or_404(BarterRequest, id=int(item_B_id))
+
+            compensation = float(self.request.data.get("compensation_points", 0))
+
+            # Проверяем баланс инициатора сделки
+            initiator_balance, _ = UserBalance.objects.get_or_create(user=self.request.user)
+            if compensation > initiator_balance.balance:
+                raise serializers.ValidationError("Недостаточно баллов для компенсации!")
+
+            serializer.save(initiator=self.request.user, item_A=item_A, item_B=item_B)
+
+        except ValueError:
+            raise serializers.ValidationError("Ошибка обработки данных сделки")
+
+
 
 # 🔹 API для подтверждения сделки
 class ConfirmDealAPIView(generics.UpdateAPIView):
@@ -108,21 +128,31 @@ class ConfirmDealAPIView(generics.UpdateAPIView):
     def perform_update(self, serializer):
         instance = serializer.instance
 
-        if instance.partner is None:
-            instance.partner = self.request.user
-            instance.status = 'active'
+        if instance.partner is not None:
+            raise serializers.ValidationError("Сделка уже подтверждена другим пользователем.")
 
-            # Переводим компенсацию баллов между пользователями
-            if instance.compensation_points > 0:
-                initiator_balance = get_object_or_404(UserBalance, user=instance.initiator)
-                partner_balance = get_object_or_404(UserBalance, user=self.request.user)
+        if instance.status != 'pending':
+            raise serializers.ValidationError("Сделка уже в процессе или завершена.")
 
+        if instance.initiator == self.request.user:
+            raise serializers.ValidationError("Вы не можете подтвердить свою же сделку.")
+
+        instance.partner = self.request.user
+        instance.status = 'active'
+
+        # Переводим компенсацию баллов между пользователями
+        if instance.compensation_points > 0:
+            initiator_balance = get_object_or_404(UserBalance, user=instance.initiator)
+            partner_balance = get_object_or_404(UserBalance, user=self.request.user)
+
+            try:
                 initiator_balance.remove_points(instance.compensation_points)
                 partner_balance.add_points(instance.compensation_points)
+            except ValueError:
+                raise serializers.ValidationError("Недостаточно баллов у инициатора сделки.")
 
-            instance.save()
-        else:
-            raise serializers.ValidationError("Сделка уже подтверждена другим пользователем.")
+        instance.save()
+        logger.info(f"Сделка {instance.id} подтверждена пользователем {self.request.user.username}")
 
 # 🔹 API для получения списка сделок пользователя
 class UserDealsAPIView(generics.ListAPIView):
