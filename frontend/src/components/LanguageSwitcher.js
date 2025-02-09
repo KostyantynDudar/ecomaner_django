@@ -13,12 +13,36 @@ const LanguageSwitcher = () => {
     console.log("Язык переключён на:", lng);
   };
 
-  return (
-    <div>
-      <button onClick={() => changeLanguage('ua')}>Українська</button>
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('ru')}>Русский</button>
+  // Контейнер теперь внутри хедера, но кнопки меньше и без лишнего отступа
+  const switcherStyle = {
+    position: 'relative',
+    top: '5px',
+    left: '0px', // 🔹 Убрали лишний отступ слева
+    display: 'flex',
+    gap: '3px', // 🔹 Уменьшили расстояние между кнопками
+    zIndex: 1000,
+  };
 
+  // Еще больше уменьшаем кнопки!
+  const buttonStyle = {
+    backgroundColor: '#ccc',
+    color: 'black',
+    border: '1px solid #aaa',
+    padding: '1px 3px', // 🔹 Еще меньше отступы внутри
+    cursor: 'pointer',
+    fontSize: '11px', // 🔹 Снова уменьшаем текст
+    borderRadius: '2px',
+    minWidth: '30px', // 🔹 Еще меньше ширина кнопок
+    textAlign: 'center',
+    fontWeight: 'bold',
+    transition: 'background-color 0.3s, color 0.3s',
+  };
+
+  return (
+    <div style={switcherStyle}>
+      <button onClick={() => changeLanguage('ua')} style={buttonStyle}>UA</button>
+      <button onClick={() => changeLanguage('en')} style={buttonStyle}>EN</button>
+      <button onClick={() => changeLanguage('ru')} style={buttonStyle}>RU</button>
     </div>
   );
 };
