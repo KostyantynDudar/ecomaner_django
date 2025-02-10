@@ -1,4 +1,3 @@
-// src/pages/LoginPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axiosSetup';
@@ -18,6 +17,9 @@ const LoginPage = ({ onLoginSuccess }) => {
       });
       setMessage("Вход выполнен успешно");
       console.log("Ответ сервера при входе:", response.data);
+
+      // Сохраняем токен в localStorage
+      localStorage.setItem("authToken", response.data.token);
 
       // Сообщаем об успешном входе
       onLoginSuccess();

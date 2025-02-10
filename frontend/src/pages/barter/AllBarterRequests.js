@@ -8,10 +8,20 @@ const AllBarterRequests = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
         const fetchRequests = async () => {
             try {
+                const token = localStorage.getItem("authToken");
+                const userResponse = await axios.get("https://ecomaner.com/api/accounts/profile/", {
+                    headers: { "Authorization": `Token ${token}` },
+                    withCredentials: true,
+                });
+
+                console.log("Данные профиля:", userResponse.data);
+                setCurrentUser(userResponse.data.id);
+
                 const response = await axios.get("https://ecomaner.com/barter/api/all-requests/");
                 console.log("📌 API Response:", response.data);
                 setRequests(response.data);
@@ -92,13 +102,17 @@ const AllBarterRequests = () => {
                                 <td>{req.estimated_value || "-"}</td>
                                 <td>{req.status}</td>
                                 <td>
-                                    <button
-                                        className="barter-action-btn"
-                                        onClick={() => handleCreateDeal(req.id)}
-                                        disabled={isProcessing}
-                                    >
-                                        Открыть сделку
-                                    </button>
+                                    {console.log("Текущий пользователь:", currentUser, "Владелец заявки:", req.owner)}
+                                    {true && (
+                                    // {currentUser && req.owner !== currentUser && (
+                                        <button
+                                            className="barter-action-btn"
+                                            onClick={() => handleCreateDeal(req.id)}
+                                            disabled={isProcessing}
+                                        >
+                                            Открыть сделку
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))
