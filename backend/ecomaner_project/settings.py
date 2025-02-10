@@ -68,7 +68,7 @@ INSTALLED_APPS = [
     
     # сторонние приложения
     'rest_framework',
-
+    'rest_framework.authtoken',
     'corsheaders', 
 
     'apps.accounts', 

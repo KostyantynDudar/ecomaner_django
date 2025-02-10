@@ -193,3 +193,32 @@ def check_auth(request):
         'isAuthenticated': True,
         'email': request.user.email,  # Убедитесь, что email возвращается
     })
+
+
+from rest_framework.authtoken.models import Token  # Импортируем работу с токенами
+
+@csrf_exempt
+def login_user_api(request):
+    logger.info("Получен API-запрос на вход")
+    logger.debug(f"Метод запроса: {request.method}, Заголовки: {request.headers}")
+
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        email = data.get('email')
+        password = data.get('password')
+        logger.debug(f"API-запрос входа с email: {email}")
+
+        user = authenticate(request, username=email, password=password)
+        
+        if user is not None:
+            login(request, user)
+            token, created = Token.objects.get_or_create(user=user)  # Генерируем токен
+            logger.info(f"Успешный вход через API для {email}, токен: {token.key}")
+            
+            return JsonResponse({'message': 'Успешный вход', 'token': token.key}, status=200)
+        else:
+            logger.warning(f"Неудачный вход через API для {email}")
+            return JsonResponse({'message': 'Неверные данные для входа'}, status=400)
+
+    logger.warning("Использован неподдерживаемый метод для API")
+    return JsonResponse({'error': 'Неподдерживаемый метод'}, status=405)
