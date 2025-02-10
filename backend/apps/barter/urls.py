@@ -16,4 +16,6 @@ urlpatterns = [
     path('api/deals/<int:pk>/confirm/', views.ConfirmDealAPIView.as_view(), name='confirm_deal'),
     path('api/user-deals/', views.UserDealsAPIView.as_view(), name='user_deals'),
     path('api/all-requests/', views.AllBarterRequestsAPIView.as_view(), name='all_barter_requests'),
+    path('api/deals/<int:pk>/', views.DealDetailAPIView.as_view(), name='deal_detail'),
+
 ]

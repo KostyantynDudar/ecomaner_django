@@ -71,14 +71,19 @@ class CreateDealAPIView(generics.CreateAPIView):
         if compensation > initiator_balance.balance:
             raise serializers.ValidationError("Недостаточно баллов для компенсации!")
 
+        # Автоматически устанавливаем партнёра, если `item_B` есть
+        partner = item_B.owner if item_B else None
+
         deal = serializer.save(
             initiator=self.request.user,
+            partner=partner,  # ✅ Устанавливаем сразу второго контрагента!
             item_A=item_A,
             item_B=item_B,
             status="pending"
         )
 
-        logger.info(f"✅ Сделка {deal.id} создана пользователем {self.request.user.email}")
+        logger.info(f"✅ Сделка {deal.id} создана пользователем {self.request.user.email} с {partner.email if partner else 'Ожидает партнёра'}")
+
 
 # 🔹 API для просмотра деталей сделки
 class DealDetailAPIView(generics.RetrieveAPIView):
@@ -124,3 +129,10 @@ class UserDealsAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return BarterDeal.objects.filter(initiator=self.request.user) | BarterDeal.objects.filter(partner=self.request.user)
+
+class DealDetailAPIView(generics.RetrieveAPIView):
+    """API для просмотра деталей сделки"""
+    queryset = BarterDeal.objects.all()
+    serializer_class = BarterDealSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
