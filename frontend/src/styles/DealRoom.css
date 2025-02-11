@@ -1,0 +1,145 @@
+/* frontend/src/styles/DealRoom.css - Стили для комнаты сделки */
+
+.deal-room-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background: #1e1e1e;
+    color: #fff;
+}
+
+.deal-room {
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    background: #2a2a2a;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deal-room h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.deal-room p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.deal-room .deal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.deal-room button {
+    width: 50%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.deal-room button:hover {
+    background: #218838;
+}
+
+.deal-room button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.nav-button {
+    width: 48%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.nav-button:hover {
+    background: #0056b3;
+}
+
+/* Чат в сделке */
+.chat-container {
+    margin-top: 20px;
+    background: #2c2c2c;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.chat-input {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #fff;
+    color: #000;
+}
+
+.chat-input button {
+    margin-left: 10px;
+    padding: 12px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.chat-input button:hover {
+    background: #218838;
+}
