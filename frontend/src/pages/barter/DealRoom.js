@@ -10,6 +10,8 @@ const DealRoom = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [deal, setDeal] = useState(null);
+    const [itemA, setItemA] = useState(null);
+    const [itemB, setItemB] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -25,6 +27,15 @@ const DealRoom = () => {
                     withCredentials: true,
                 });
                 setDeal(response.data);
+
+                // Загружаем данные товаров
+                const itemAResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_A}/`);
+                setItemA(itemAResponse.data);
+                
+                if (response.data.item_B) {
+                    const itemBResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_B}/`);
+                    setItemB(itemBResponse.data);
+                }
             } catch (err) {
                 setError("Ошибка загрузки сделки.");
                 console.error("API error:", err);
@@ -97,39 +108,41 @@ const DealRoom = () => {
         <div className="deal-room">
             <BarterMenu />
             <h1>Комната сделки #{deal.id}</h1>
-            <p><strong>Товар A:</strong> {deal.item_A ? deal.item_A.title : "Не указано"}</p>
-            <p><strong>Товар B:</strong> {deal.item_B ? deal.item_B.title : "Не указано"}</p>
-            <p><strong>Статус:</strong> {deal.status}</p>
+            <div className="deal-items">
+                <div className="deal-item">
+                    <h2>Товар A</h2>
+                    {itemA ? (
+                        <>
+                            {itemA.image && <img src={itemA.image} alt={itemA.title} />}
+                            <p><strong>{itemA.title}</strong></p>
+                            <p>Цена: {itemA.estimated_value} баллов</p>
+                        </>
+                    ) : (
+                        <p>Загрузка...</p>
+                    )}
+                </div>
+                {itemB && (
+                    <div className="deal-item">
+                        <h2>Товар B</h2>
+                        {itemB ? (
+                            <>
+                                {itemB.image && <img src={itemB.image} alt={itemB.title} />}
+                                <p><strong>{itemB.title}</strong></p>
+                                <p>Цена: {itemB.estimated_value} баллов</p>
+                            </>
+                        ) : (
+                            <p>Загрузка...</p>
+                        )}
+                    </div>
+                )}
+            </div>
             
             {deal.status === "pending" && (
                 <>
-                    <button onClick={handleConfirmDeal} disabled={isProcessing}>Подтвердить сделку</button>
-                    <button onClick={handleCancelDeal} disabled={isProcessing}>Отменить сделку</button>
+                    <button onClick={() => handleConfirmDeal()} disabled={isProcessing}>Подтвердить сделку</button>
+                    <button onClick={() => handleCancelDeal()} disabled={isProcessing}>Отменить сделку</button>
                 </>
             )}
-
-            <div className="chat-container">
-                <h2>Чат сделки</h2>
-                <div className="chat-messages">
-                    {chatMessages.map((msg, index) => (
-                        <p key={index}><strong>{msg.sender}:</strong> {msg.text}</p>
-                    ))}
-                </div>
-                <div className="chat-input">
-                    <input 
-                        type="text" 
-                        value={newMessage} 
-                        onChange={(e) => setNewMessage(e.target.value)} 
-                        placeholder="Написать сообщение..."
-                    />
-                    <button onClick={handleSendMessage}>Отправить</button>
-                </div>
-            </div>
-
-            <div className="navigation-buttons">
-                <button onClick={() => navigate("/barter/all-requests")} className="nav-button">Список заявок</button>
-                <button onClick={() => navigate("/barter")} className="nav-button">Личный кабинет</button>
-            </div>
         </div>
     );
 };

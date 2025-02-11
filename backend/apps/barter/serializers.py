@@ -9,13 +9,16 @@ class BarterRequestSerializer(serializers.ModelSerializer):
         model = BarterRequest
         fields = [
             "id", "owner", "owner_username", "title", "description", "barter_type",
-            "location", "estimated_value", "compensatory_amount", "status", "created_at"
+            "location", "estimated_value", "compensatory_amount", "status", "created_at", "image"
         ]
         read_only_fields = ["owner", "status", "created_at"]
 
 class BarterDealSerializer(serializers.ModelSerializer):
     initiator_username = serializers.ReadOnlyField(source="initiator.username")
     partner_username = serializers.ReadOnlyField(source="partner.username", default=None)
+    item_A = serializers.PrimaryKeyRelatedField(queryset=BarterRequest.objects.all())
+    item_B = serializers.PrimaryKeyRelatedField(queryset=BarterRequest.objects.all(), allow_null=True, required=False)
+
 
     class Meta:
         model = BarterDeal

@@ -5,10 +5,13 @@ import "../../styles/BarterTable.css";
 
 const AllBarterRequests = () => {
     const [requests, setRequests] = useState([]);
+    const [userItems, setUserItems] = useState([]); // 🔹 Храним товары инициатора
+    const [selectedItem, setSelectedItem] = useState(""); // 🔹 Выбранный товар
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
+    const [dealTarget, setDealTarget] = useState(null); // 🔹 Данные заявки для сделки
 
     useEffect(() => {
         const fetchRequests = async () => {
@@ -22,7 +25,6 @@ const AllBarterRequests = () => {
                 setCurrentUser(userResponse.data.email);
 
                 const response = await axios.get("https://ecomaner.com/barter/api/all-requests/");
-                console.log("📌 Данные заявок:", response.data); // ЛОГ
                 setRequests(response.data);
             } catch (err) {
                 setError("Ошибка загрузки заявок.");
@@ -35,6 +37,20 @@ const AllBarterRequests = () => {
         fetchRequests();
     }, []);
 
+    // 🔹 Получаем товары текущего пользователя
+    const fetchUserItems = async () => {
+        try {
+            const token = localStorage.getItem("authToken");
+            const response = await axios.get("https://ecomaner.com/barter/api/user-requests/", {
+                headers: { "Authorization": `Token ${token}` },
+                withCredentials: true,
+            });
+            setUserItems(response.data);
+        } catch (err) {
+            console.error("Ошибка загрузки товаров:", err);
+        }
+    };
+
     const getCSRFToken = () => {
         return document.cookie
             .split("; ")
@@ -42,23 +58,38 @@ const AllBarterRequests = () => {
             ?.split("=")[1] || "";
     };
 
-    const handleCreateDeal = async (requestId, partnerEmail) => {  // ✅ Исправлено
-        if (isProcessing) return;
-        setIsProcessing(true);
+    // 🔹 Открываем меню выбора товара
+    const openDealMenu = async (requestId, requestTitle, partnerEmail) => {
+        setDealTarget({ requestId, requestTitle, partnerEmail });
+        await fetchUserItems(); // Загружаем товары пользователя
+    };
 
-        console.log("📌 Отправка запроса на создание сделки:", requestId, "для", partnerEmail);
+    // 🔹 Создаем сделку с выбранным товаром
+    const handleCreateDeal = async () => {
+        if (!selectedItem) {
+            alert("Выберите ваш товар для обмена!");
+            return;
+        }
+        setIsProcessing(true);
 
         try {
             const csrftoken = getCSRFToken();
             const token = localStorage.getItem("authToken");
+  
+            console.log("📌 Создание сделки:", {
+            item_A: selectedItem,
+            item_B: dealTarget.requestId,
+            partner_email: dealTarget.partnerEmail
+            });
+
 
             const response = await axios.post(
                 "https://ecomaner.com/barter/api/deals/create/",
                 {
-                    item_A: requestId,
-                    item_B: null,
+                    item_A: selectedItem,  
+                    item_B: dealTarget.requestId,   
                     compensation_points: 0,
-                    partner_email: partnerEmail  // ✅ Передаем email владельца
+                    partner_email: dealTarget.partnerEmail
                 },
                 {
                     withCredentials: true,
@@ -71,6 +102,9 @@ const AllBarterRequests = () => {
 
             alert("Сделка успешно создана!");
             console.log("✅ Ответ API:", response.data);
+            setDealTarget(null); // Закрываем меню
+            window.location.href = `/barter/deal-room/${response.data.id}`;
+
         } catch (error) {
             alert("Ошибка создания сделки. Проверьте консоль.");
             console.error("❌ API error:", error.response?.data || error);
@@ -112,7 +146,7 @@ const AllBarterRequests = () => {
                                     {currentUser && req.owner !== currentUser && (
                                         <button
                                             className="barter-action-btn"
-                                            onClick={() => handleCreateDeal(req.id, req.owner)}  // ✅ Исправлено
+                                            onClick={() => openDealMenu(req.id, req.title, req.owner)}
                                             disabled={isProcessing}
                                         >
                                             Открыть сделку
@@ -128,6 +162,21 @@ const AllBarterRequests = () => {
                     )}
                 </tbody>
             </table>
+
+            {/* 🔹 Меню выбора товара для обмена */}
+            {dealTarget && (
+                <div className="deal-popup">
+                    <h3>Выберите ваш товар для обмена на "{dealTarget.requestTitle}"</h3>
+                    <select value={selectedItem} onChange={(e) => setSelectedItem(e.target.value)}>
+                        <option value="">-- Выберите товар --</option>
+                        {userItems.map((item) => (
+                            <option key={item.id} value={item.id}>{item.title}</option>
+                        ))}
+                    </select>
+                    <button onClick={handleCreateDeal} disabled={isProcessing}>Подтвердить сделку</button>
+                    <button onClick={() => setDealTarget(null)}>Отмена</button>
+                </div>
+            )}
         </div>
     );
 };

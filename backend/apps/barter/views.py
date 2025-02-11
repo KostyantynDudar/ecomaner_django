@@ -27,14 +27,13 @@ def barter_requests(request):
 class BarterRequestThrottle(UserRateThrottle):
     rate = '1000/day'
 
-# 🔹 API для работы с заявками
+# 🔹 API для получения списка заявок (ТОЛЬКО свои!)
 class UserBarterRequestsAPIView(generics.ListCreateAPIView):
     serializer_class = BarterRequestSerializer
     permission_classes = [permissions.IsAuthenticated]
-    throttle_classes = [BarterRequestThrottle]
 
     def get_queryset(self):
-        return BarterRequest.objects.filter(owner=self.request.user)
+        return BarterRequest.objects.filter(owner=self.request.user)  # ✅ Только свои заявки
 
     def perform_create(self, serializer):
         logger.debug(f"📌 Данные перед сохранением: {self.request.data}")
@@ -44,12 +43,26 @@ class UserBarterRequestsAPIView(generics.ListCreateAPIView):
             estimated_value=self.request.data.get('value', 0)
         )
 
+# 🔹 API для получения конкретной заявки (ДОСТУП УЧАСТНИКАМ СДЕЛКИ)
 class UserBarterRequestDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BarterRequestSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return BarterRequest.objects.filter(owner=self.request.user)
+        user = self.request.user
+        
+        # ✅ Исправленный запрос
+        queryset = BarterRequest.objects.filter(
+            Q(owner=user) |
+            Q(id__in=BarterDeal.objects.filter(item_A_id__in=BarterRequest.objects.filter(owner=user).values_list("id", flat=True)).values_list("item_B_id", flat=True)) |
+            Q(id__in=BarterDeal.objects.filter(item_B_id__in=BarterRequest.objects.filter(owner=user).values_list("id", flat=True)).values_list("item_A_id", flat=True))
+        ).distinct()
+
+
+        logger.debug(f"📌 Запрос на товар: {self.request.query_params}, Найденные ID: {[item.id for item in queryset]}")
+        
+        return queryset
+
 
 # 🔹 API для получения всех заявок
 class AllBarterRequestsAPIView(generics.ListAPIView):
@@ -69,7 +82,6 @@ class CreateDealAPIView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-
         logger.debug(f"📌 Данные перед созданием сделки: {self.request.data}")  # ЛОГ
 
         item_A = get_object_or_404(BarterRequest, id=self.request.data.get("item_A"))
@@ -80,24 +92,49 @@ class CreateDealAPIView(generics.CreateAPIView):
         if compensation > initiator_balance.balance:
             raise serializers.ValidationError("Недостаточно баллов для компенсации!")
 
-        partner = item_B.owner if item_B else get_object_or_404(User, email=self.request.data.get("partner_email"))
-        
+        # Определяем партнера сделки
+        partner = None
+        if item_B:
+            partner = item_B.owner
+        elif self.request.data.get("partner_email"):
+            partner = get_object_or_404(User, email=self.request.data.get("partner_email"))
+
+        if not partner:
+            raise serializers.ValidationError("Невозможно создать сделку без партнера!")
+
         logger.debug(f"📌 Partner найден: {partner}")  # ЛОГ
+
+        # Если у сделки есть партнер, сразу переводим ее в "active"
+        status = "active" if partner else "pending"
 
         deal = serializer.save(
             initiator=self.request.user,
             partner=partner,
             item_A=item_A,
             item_B=item_B,
-            status="pending"
+            status=status
         )
+
         logger.info(f"✅ Сделка {deal.id} создана: {self.request.user.email} ↔ {partner.email if partner else 'Ожидает партнера'}")
 
+        # Если сделка активирована, отправляем уведомление партнёру (добавить логику отправки)
+
+
 # 🔹 API для просмотра деталей сделки
+from rest_framework.exceptions import PermissionDenied
+
 class DealDetailAPIView(generics.RetrieveAPIView):
     queryset = BarterDeal.objects.all()
     serializer_class = BarterDealSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        deal = super().get_object()
+        if deal.initiator != self.request.user and deal.partner != self.request.user:
+            logger.warning(f"❌ Доступ запрещен: {self.request.user} пытался открыть сделку {deal.id}")
+            raise PermissionDenied("Вы не участвуете в этой сделке.")
+        return deal
+
 
 # 🔹 API для подтверждения сделки
 class ConfirmDealAPIView(generics.UpdateAPIView):

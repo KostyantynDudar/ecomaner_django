@@ -30,6 +30,7 @@ class BarterRequest(models.Model):
     compensatory_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name="Сумма компенсации в баллах")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open', verbose_name="Статус заявки")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    image = models.ImageField(upload_to="barter_images/", null=True, blank=True)
 
     def __str__(self):
         return f"{self.owner.email} - {self.title} ({self.get_barter_type_display()})"
