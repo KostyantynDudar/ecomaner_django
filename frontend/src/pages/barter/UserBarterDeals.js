@@ -15,7 +15,7 @@ const UserBarterDeals = () => {
                 const response = await axios.get("https://ecomaner.com/barter/api/user-deals/", {
                     headers: {
                         "Authorization": `Token ${token}`,
-                        "X-CSRFToken": getCookie("csrftoken")  // Добавляем CSRF
+                        "X-CSRFToken": getCookie("csrftoken"),
                     },
                     withCredentials: true,
                 });
@@ -31,34 +31,6 @@ const UserBarterDeals = () => {
         fetchDeals();
     }, []);
 
-    const handleConfirmDeal = async (dealId) => {
-        try {
-            const token = localStorage.getItem("authToken");
-            const csrfToken = getCookie("csrftoken");
-
-            await axios.put(
-                `https://ecomaner.com/barter/api/deals/${dealId}/confirm/`,
-                {},
-                {
-                    headers: {
-                        "Authorization": `Token ${token}`,
-                        "X-CSRFToken": csrfToken  // Отправляем CSRF
-                    },
-                    withCredentials: true,
-                }
-            );
-
-            alert("Сделка подтверждена!");
-            setDeals(deals.map(deal =>
-                deal.id === dealId ? { ...deal, status: "active", partner: true } : deal
-            ));
-        } catch (error) {
-            alert("Ошибка подтверждения сделки.");
-            console.error("Ошибка API:", error);
-        }
-    };
-
-    // Функция для получения CSRF из cookies
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== "") {
@@ -92,17 +64,17 @@ const UserBarterDeals = () => {
                     </thead>
                     <tbody>
                         {deals.map((deal) => (
-                            <tr key={deal.id} onClick={() => navigate(`/barter/deal/${deal.id}/`)}>
-                                <td>{deal.item_A ? deal.item_A.title : "Не указано"}</td>
-                                <td>{deal.item_B ? deal.item_B.title : "Не указано"}</td>
+                            <tr key={deal.id}>
+                                <td>{deal.item_A?.title || "Не указано"}</td>
+                                <td>{deal.item_B?.title || "Не указано"}</td>
                                 <td>{deal.status}</td>
                                 <td>
-                                    {deal.status === "pending" && !deal.partner && (
+                                    {deal.status === "pending" && (
                                         <button onClick={(e) => {
-                                            e.stopPropagation(); // Останавливаем всплытие события
-                                            handleConfirmDeal(deal.id);
+                                            e.stopPropagation();
+                                            navigate(`/barter/deal-room/${deal.id}`);
                                         }}>
-                                            Подтвердить сделку
+                                            Открыть сделку
                                         </button>
                                     )}
                                 </td>

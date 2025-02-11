@@ -23,6 +23,7 @@ import BarterPage from './pages/barter/AccountPage'; // Личный кабин�
 import CreateBarterRequest from './pages/barter/CreateBarterRequest'; // Создание заявки
 import AllBarterRequests from './pages/barter/AllBarterRequests'; // Просмотр всех заявок
 import GamePage from './pages/GamePage'; // Импортируем страницу игры
+import DealRoom from './pages/barter/DealRoom'; // Импортируем комнату сделки
 
 import axios from './axiosSetup';
 import './styles/style.css';
@@ -118,7 +119,9 @@ function App() {
           <Route path="/barter" element={isLoggedIn ? <BarterPage /> : <Navigate to="/login" />} />
           <Route path="/barter/create-request" element={isLoggedIn ? <CreateBarterRequest /> : <Navigate to="/login" />} />
           <Route path="/barter/all-requests" element={isLoggedIn ? <AllBarterRequests /> : <Navigate to="/login" />} />
+          <Route path="/barter/deal-room/:id" element={isLoggedIn ? <DealRoom /> : <Navigate to="/login" />} />
 
+          {/* 🔹 Раздел Игры*/}
           <Route path="/game" element={<GamePage />} />
 
         </Routes>

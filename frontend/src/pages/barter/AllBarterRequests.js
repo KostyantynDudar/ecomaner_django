@@ -14,16 +14,15 @@ const AllBarterRequests = () => {
         const fetchRequests = async () => {
             try {
                 const token = localStorage.getItem("authToken");
+
                 const userResponse = await axios.get("https://ecomaner.com/api/accounts/profile/", {
                     headers: { "Authorization": `Token ${token}` },
                     withCredentials: true,
                 });
-
-                console.log("Данные профиля:", userResponse.data);
-                setCurrentUser(userResponse.data.id);
+                setCurrentUser(userResponse.data.email);
 
                 const response = await axios.get("https://ecomaner.com/barter/api/all-requests/");
-                console.log("📌 API Response:", response.data);
+                console.log("📌 Данные заявок:", response.data); // ЛОГ
                 setRequests(response.data);
             } catch (err) {
                 setError("Ошибка загрузки заявок.");
@@ -37,28 +36,36 @@ const AllBarterRequests = () => {
     }, []);
 
     const getCSRFToken = () => {
-        const match = document.cookie.match(/csrftoken=([^;]+)/);
-        return match ? match[1] : "";
+        return document.cookie
+            .split("; ")
+            .find(row => row.startsWith("csrftoken="))
+            ?.split("=")[1] || "";
     };
 
-    const handleCreateDeal = async (requestId) => {
+    const handleCreateDeal = async (requestId, partnerEmail) => {  // ✅ Исправлено
         if (isProcessing) return;
         setIsProcessing(true);
 
-        console.log("📌 Отправка запроса на создание сделки:", requestId);
+        console.log("📌 Отправка запроса на создание сделки:", requestId, "для", partnerEmail);
 
         try {
             const csrftoken = getCSRFToken();
+            const token = localStorage.getItem("authToken");
+
             const response = await axios.post(
                 "https://ecomaner.com/barter/api/deals/create/",
                 {
                     item_A: requestId,
                     item_B: null,
-                    compensation_points: 0
+                    compensation_points: 0,
+                    partner_email: partnerEmail  // ✅ Передаем email владельца
                 },
                 {
                     withCredentials: true,
-                    headers: { "X-CSRFToken": csrftoken }
+                    headers: {
+                        "X-CSRFToken": csrftoken,
+                        "Authorization": `Token ${token}`
+                    }
                 }
             );
 
@@ -66,7 +73,7 @@ const AllBarterRequests = () => {
             console.log("✅ Ответ API:", response.data);
         } catch (error) {
             alert("Ошибка создания сделки. Проверьте консоль.");
-            console.error("❌ API error:", error);
+            console.error("❌ API error:", error.response?.data || error);
         } finally {
             setIsProcessing(false);
         }
@@ -102,12 +109,10 @@ const AllBarterRequests = () => {
                                 <td>{req.estimated_value || "-"}</td>
                                 <td>{req.status}</td>
                                 <td>
-                                    {console.log("Текущий пользователь:", currentUser, "Владелец заявки:", req.owner)}
-                                    {true && (
-                                    // {currentUser && req.owner !== currentUser && (
+                                    {currentUser && req.owner !== currentUser && (
                                         <button
                                             className="barter-action-btn"
-                                            onClick={() => handleCreateDeal(req.id)}
+                                            onClick={() => handleCreateDeal(req.id, req.owner)}  // ✅ Исправлено
                                             disabled={isProcessing}
                                         >
                                             Открыть сделку
