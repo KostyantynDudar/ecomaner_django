@@ -1,13 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics, permissions, serializers
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
+from rest_framework.exceptions import PermissionDenied
+from django.db.models import Q
+from django.contrib.auth import get_user_model
+import logging
+
 from .models import BarterRequest, BarterDeal, UserBalance
 from .serializers import BarterRequestSerializer, BarterDealSerializer
-import logging
-from django.db import models
-from django.db.models import Q
+
+# ✅ Добавляем IsAuthenticated в permissions
+from rest_framework.permissions import IsAuthenticated
+
 
 logger = logging.getLogger(__name__)
 
@@ -193,3 +200,19 @@ class UserDealsAPIView(generics.ListAPIView):
         return BarterDeal.objects.filter(
             Q(initiator=self.request.user) | Q(partner=self.request.user)
         ).distinct()
+
+# 🔹 API для чата
+class DealChatAPIView(APIView):
+    """Заглушка для чата сделки"""
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        """Возвращает пустой список сообщений (заглушка)"""
+        deal = get_object_or_404(BarterDeal, pk=pk)
+
+        # Проверяем, является ли пользователь участником сделки
+        if request.user != deal.initiator and request.user != deal.partner:
+            return Response({"error": "Вы не участник сделки!"}, status=403)
+
+        # Возвращаем заглушку (пустой чат)
+        return Response({"messages": []})

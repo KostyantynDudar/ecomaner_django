@@ -18,4 +18,7 @@ urlpatterns = [
     path('api/all-requests/', views.AllBarterRequestsAPIView.as_view(), name='all_barter_requests'),
     path('api/deals/<int:pk>/', views.DealDetailAPIView.as_view(), name='deal_detail'),
 
+    # 🔹 Заглушка для API чата
+    path('api/deals/<int:pk>/chat/', views.DealChatAPIView.as_view(), name='deal_chat'),
+
 ]
