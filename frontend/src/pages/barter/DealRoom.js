@@ -1,5 +1,3 @@
-// frontend/src/pages/barter/DealRoom.js - Комната сделки
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -19,32 +17,46 @@ const DealRoom = () => {
     const [newMessage, setNewMessage] = useState("");
 
     useEffect(() => {
-        const fetchDeal = async () => {
+        const fetchData = async () => {
             try {
                 const token = localStorage.getItem("authToken");
+
+                // Загружаем сделку
                 const response = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/`, {
                     headers: { "Authorization": `Token ${token}` },
                     withCredentials: true,
                 });
                 setDeal(response.data);
 
-                // Загружаем данные товаров
+                // Загружаем товары
                 const itemAResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_A}/`);
                 setItemA(itemAResponse.data);
-                
+
                 if (response.data.item_B) {
                     const itemBResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_B}/`);
                     setItemB(itemBResponse.data);
                 }
+
+                // Загружаем чат
+                const chatResponse = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/chat/`, {
+                    headers: { "Authorization": `Token ${token}` },
+                    withCredentials: true,
+                });
+                setChatMessages(chatResponse.data);
             } catch (err) {
-                setError("Ошибка загрузки сделки.");
+                setError("Ошибка загрузки данных сделки.");
                 console.error("API error:", err);
             } finally {
                 setLoading(false);
             }
         };
-        fetchDeal();
+
+        fetchData();
+        const interval = setInterval(fetchData, 5000); // Обновление каждые 5 секунд
+
+        return () => clearInterval(interval); // Очистка интервала при выходе
     }, [id]);
+
 
     const handleConfirmDeal = async () => {
         if (isProcessing) return;
@@ -87,15 +99,21 @@ const DealRoom = () => {
     const handleSendMessage = async () => {
         if (!newMessage.trim()) return;
 
-        setChatMessages(prev => [...prev, { text: newMessage, sender: "Вы" }]);
-        setNewMessage("");
-
         try {
             const token = localStorage.getItem("authToken");
             await axios.post(`https://ecomaner.com/barter/api/deals/${id}/chat/`, 
                 { message: newMessage }, 
                 { headers: { "Authorization": `Token ${token}` }, withCredentials: true }
             );
+
+            // Перезапрашиваем чат после отправки
+            const chatResponse = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/chat/`, {
+                headers: { "Authorization": `Token ${token}` },
+                withCredentials: true,
+            });
+            setChatMessages(chatResponse.data);
+
+            setNewMessage(""); // Очищаем поле ввода
         } catch (error) {
             console.error("Ошибка отправки сообщения:", error);
         }
@@ -136,13 +154,36 @@ const DealRoom = () => {
                     </div>
                 )}
             </div>
-            
+
             {deal.status === "pending" && (
                 <>
                     <button onClick={() => handleConfirmDeal()} disabled={isProcessing}>Подтвердить сделку</button>
                     <button onClick={() => handleCancelDeal()} disabled={isProcessing}>Отменить сделку</button>
                 </>
             )}
+
+            {/* Чат сделки */}
+            <div className="chat-container">
+                <h2>Чат сделки</h2>
+                <div className="chat-messages">
+                    {chatMessages.length > 0 ? (
+                        chatMessages.map((msg, index) => (
+                            <p key={index}><strong>{msg.sender}:</strong> {msg.text}</p>
+                        ))
+                    ) : (
+                        <p>Сообщений пока нет</p>
+                    )}
+                </div>
+                <div className="chat-input">
+                    <input 
+                        type="text" 
+                        value={newMessage} 
+                        onChange={(e) => setNewMessage(e.target.value)}
+                        placeholder="Введите сообщение..." 
+                    />
+                    <button onClick={handleSendMessage}>Отправить</button>
+                </div>
+            </div>
         </div>
     );
 };

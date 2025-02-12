@@ -69,14 +69,12 @@ const UserBarterDeals = () => {
                                 <td>{deal.item_B?.title || "Не указано"}</td>
                                 <td>{deal.status}</td>
                                 <td>
-                                    {deal.status === "pending" && (
-                                        <button onClick={(e) => {
-                                            e.stopPropagation();
-                                            navigate(`/barter/deal-room/${deal.id}`);
-                                        }}>
-                                            Открыть сделку
-                                        </button>
-                                    )}
+                                    <button onClick={(e) => {
+                                        e.stopPropagation();
+                                        navigate(`/barter/deal-room/${deal.id}`);
+                                    }}>
+                                        Открыть сделку
+                                    </button>
                                 </td>
                             </tr>
                         ))}
