@@ -70,6 +70,14 @@ class UserBarterRequestDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         
         return queryset
 
+# 🔹 API для получения баланса пользователя
+class UserBalanceAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """Возвращает текущий баланс пользователя"""
+        user_balance, _ = UserBalance.objects.get_or_create(user=request.user)
+        return Response({"balance": user_balance.balance})
 
 # 🔹 API для получения всех заявок
 class AllBarterRequestsAPIView(generics.ListAPIView):
@@ -144,52 +152,43 @@ class DealDetailAPIView(generics.RetrieveAPIView):
 
 
 # 🔹 API для подтверждения сделки
-class ConfirmDealAPIView(generics.UpdateAPIView):
-    queryset = BarterDeal.objects.all()
-    serializer_class = BarterDealSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class ConfirmDealAPIView(APIView):
+    """
+    API для подтверждения сделки.
 
-    def perform_update(self, serializer):
-        instance = serializer.instance
+    🔹 Функционал:
+    - Проверяет, участвует ли пользователь в сделке.
+    - Рассчитывает разницу в стоимости товаров.
+    - Если стоимость равна, сделка сразу подтверждается.
+    - Если разница есть, проверяет баланс пользователя:
+      ✅ Если хватает баллов — списывает и подтверждает сделку.
+      ❌ Если не хватает — сделка не может быть принята.
+    """
 
-        logger.info(f"🔍 Подтверждение сделки ID: {instance.id}, Пользователь: {self.request.user}")
+    permission_classes = [IsAuthenticated]
 
-        if not instance:
-            logger.error("❌ Ошибка: Сделка не найдена!")
-            raise serializers.ValidationError("Сделка не найдена.")
+    def post(self, request, pk):
+        deal = get_object_or_404(BarterDeal, pk=pk)
 
-        if instance.status != "pending":
-            logger.warning(f"❌ Ошибка: Сделка {instance.id} уже подтверждена или завершена.")
-            raise serializers.ValidationError("Сделка уже подтверждена или завершена.")
+        if request.user not in [deal.initiator, deal.partner]:
+            return Response({"error": "Вы не участник сделки!"}, status=403)
 
-        if instance.partner:
-            logger.warning(f"❌ Ошибка: Сделка {instance.id} уже имеет партнера.")
-            raise serializers.ValidationError("Сделка уже подтверждена другим пользователем.")
+        price_difference = abs(deal.item_A.estimated_value - deal.item_B.estimated_value)
+        user_balance = get_object_or_404(UserBalance, user=request.user)
 
-        if instance.initiator == self.request.user:
-            logger.warning(f"❌ Ошибка: Пользователь {self.request.user} пытается подтвердить свою же сделку {instance.id}.")
-            raise serializers.ValidationError("Вы не можете подтвердить свою же сделку.")
+        if deal.item_A.estimated_value == deal.item_B.estimated_value:
+            deal.status = "accepted"
+            deal.save()
+            return Response({"message": "Сделка успешно принята!"}, status=200)
 
-        instance.partner = self.request.user
-        instance.status = "active"
+        if user_balance.balance >= price_difference:
+            user_balance.balance -= price_difference
+            user_balance.save()
+            deal.status = "accepted"
+            deal.save()
+            return Response({"message": "Сделка успешно принята с доплатой!"}, status=200)
 
-        if instance.compensation_points > 0:
-            initiator_balance = get_object_or_404(UserBalance, user=instance.initiator)
-            partner_balance = get_object_or_404(UserBalance, user=self.request.user)
-
-            if initiator_balance.balance < instance.compensation_points:
-                logger.warning(f"❌ Недостаточно баллов у инициатора сделки {instance.initiator}")
-                raise serializers.ValidationError("Недостаточно баллов у инициатора сделки.")
-
-            try:
-                initiator_balance.remove_points(instance.compensation_points)
-                partner_balance.add_points(instance.compensation_points)
-            except ValueError:
-                logger.error("❌ Ошибка списания баллов!")
-                raise serializers.ValidationError("Ошибка при списании баллов.")
-
-        instance.save()
-        logger.info(f"✅ Сделка {instance.id} подтверждена пользователем {self.request.user.email}")
+        return Response({"error": "Недостаточно баллов для завершения сделки!"}, status=400)
 
 # 🔹 API для получения списка сделок пользователя
 class UserDealsAPIView(generics.ListAPIView):

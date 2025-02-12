@@ -21,4 +21,7 @@ urlpatterns = [
     # 🔹 Заглушка для API чата
     path('api/deals/<int:pk>/chat/', views.DealChatAPIView.as_view(), name='deal_chat'),
 
+    path('api/user-balance/', views.UserBalanceAPIView.as_view(), name='user_balance'),
+
+
 ]

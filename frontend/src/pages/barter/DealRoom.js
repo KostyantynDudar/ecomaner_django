@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import BarterMenu from "../../components/BarterMenu";
+import TradePanel from "./TradePanel";
+import ChatBox from "./ChatBox";
 import "../../styles/DealRoom.css";
 
 const DealRoom = () => {
@@ -12,112 +14,55 @@ const DealRoom = () => {
     const [itemB, setItemB] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [chatMessages, setChatMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState("");
+    const [priceDifference, setPriceDifference] = useState(0);
+    const [canAccept, setCanAccept] = useState(false);
+    const [userBalance, setUserBalance] = useState(0);
 
+
+
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem("authToken");
-
-                // Загружаем сделку
+                
+                const balanceResponse = await axios.get(`https://ecomaner.com/barter/api/user-balance/`, {
+                    headers: { "Authorization": `Token ${token}` },
+                });
+                setUserBalance(balanceResponse.data.balance);
+                
                 const response = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/`, {
                     headers: { "Authorization": `Token ${token}` },
-                    withCredentials: true,
                 });
-                setDeal(response.data);
 
+                setDeal(response.data);
+                
                 // Загружаем товары
                 const itemAResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_A}/`);
                 setItemA(itemAResponse.data);
-
+                
                 if (response.data.item_B) {
                     const itemBResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_B}/`);
                     setItemB(itemBResponse.data);
                 }
-
-                // Загружаем чат
-                const chatResponse = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/chat/`, {
-                    headers: { "Authorization": `Token ${token}` },
-                    withCredentials: true,
-                });
-                setChatMessages(chatResponse.data);
-            } catch (err) {
-                setError("Ошибка загрузки данных сделки.");
-                console.error("API error:", err);
+            } catch (error) {
+                console.error("Ошибка загрузки сделки:", error);
+                setError("Ошибка загрузки сделки");
             } finally {
                 setLoading(false);
             }
         };
 
         fetchData();
-        const interval = setInterval(fetchData, 5000); // Обновление каждые 5 секунд
-
-        return () => clearInterval(interval); // Очистка интервала при выходе
     }, [id]);
 
-
-    const handleConfirmDeal = async () => {
-        if (isProcessing) return;
-        setIsProcessing(true);
-        try {
-            const token = localStorage.getItem("authToken");
-            await axios.put(`https://ecomaner.com/barter/api/deals/${id}/confirm/`, {}, {
-                headers: { "Authorization": `Token ${token}` },
-                withCredentials: true,
-            });
-            alert("Сделка подтверждена!");
-            setDeal(prev => ({ ...prev, status: "active" }));
-        } catch (error) {
-            alert("Ошибка подтверждения сделки. Проверьте консоль.");
-            console.error("API error:", error);
-        } finally {
-            setIsProcessing(false);
+    useEffect(() => {
+        if (itemA && itemB) {
+            const diff = Math.abs(itemA.estimated_value - itemB.estimated_value);
+            setPriceDifference(diff);
+            setCanAccept(itemA.estimated_value === itemB.estimated_value || userBalance >= diff);
         }
-    };
-
-    const handleCancelDeal = async () => {
-        if (isProcessing) return;
-        setIsProcessing(true);
-        try {
-            const token = localStorage.getItem("authToken");
-            await axios.delete(`https://ecomaner.com/barter/api/deals/${id}/`, {
-                headers: { "Authorization": `Token ${token}` },
-                withCredentials: true,
-            });
-            alert("Сделка отменена!");
-            navigate("/barter/all-requests");
-        } catch (error) {
-            alert("Ошибка отмены сделки. Проверьте консоль.");
-            console.error("API error:", error);
-        } finally {
-            setIsProcessing(false);
-        }
-    };
-
-    const handleSendMessage = async () => {
-        if (!newMessage.trim()) return;
-
-        try {
-            const token = localStorage.getItem("authToken");
-            await axios.post(`https://ecomaner.com/barter/api/deals/${id}/chat/`, 
-                { message: newMessage }, 
-                { headers: { "Authorization": `Token ${token}` }, withCredentials: true }
-            );
-
-            // Перезапрашиваем чат после отправки
-            const chatResponse = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/chat/`, {
-                headers: { "Authorization": `Token ${token}` },
-                withCredentials: true,
-            });
-            setChatMessages(chatResponse.data);
-
-            setNewMessage(""); // Очищаем поле ввода
-        } catch (error) {
-            console.error("Ошибка отправки сообщения:", error);
-        }
-    };
+    }, [itemA, itemB, userBalance]);
 
     if (loading) return <p>Загрузка...</p>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -125,7 +70,7 @@ const DealRoom = () => {
     return (
         <div className="deal-room">
             <BarterMenu />
-            <h1>Комната сделки #{deal.id}</h1>
+            <h1>Комната сделки #{deal?.id}</h1>
             <div className="deal-items">
                 <div className="deal-item">
                     <h2>Товар A</h2>
@@ -154,36 +99,9 @@ const DealRoom = () => {
                     </div>
                 )}
             </div>
-
-            {deal.status === "pending" && (
-                <>
-                    <button onClick={() => handleConfirmDeal()} disabled={isProcessing}>Подтвердить сделку</button>
-                    <button onClick={() => handleCancelDeal()} disabled={isProcessing}>Отменить сделку</button>
-                </>
-            )}
-
-            {/* Чат сделки */}
-            <div className="chat-container">
-                <h2>Чат сделки</h2>
-                <div className="chat-messages">
-                    {chatMessages.length > 0 ? (
-                        chatMessages.map((msg, index) => (
-                            <p key={index}><strong>{msg.sender}:</strong> {msg.text}</p>
-                        ))
-                    ) : (
-                        <p>Сообщений пока нет</p>
-                    )}
-                </div>
-                <div className="chat-input">
-                    <input 
-                        type="text" 
-                        value={newMessage} 
-                        onChange={(e) => setNewMessage(e.target.value)}
-                        placeholder="Введите сообщение..." 
-                    />
-                    <button onClick={handleSendMessage}>Отправить</button>
-                </div>
-            </div>
+            
+            <TradePanel dealId={id} itemA={itemA} itemB={itemB} userBalance={userBalance} />
+            <ChatBox dealId={id} />
         </div>
     );
 };

@@ -7,6 +7,7 @@ const UserBarterDeals = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const [priceDifference, setPriceDifference] = useState(0);
 
     useEffect(() => {
         const fetchDeals = async () => {
