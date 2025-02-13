@@ -17,34 +17,55 @@ const DealRoom = () => {
     const [priceDifference, setPriceDifference] = useState(0);
     const [canAccept, setCanAccept] = useState(false);
     const [userBalance, setUserBalance] = useState(0);
+    const [userId, setUserId] = useState(null);  // ✅ Добавляем userId
+    const [userEmail, setUserEmail] = useState(null);  // ✅ Добавляем email пользователя
 
 
 
     
+    // 🔹 Загружаем данные пользователя и сделки
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem("authToken");
-                
+
+                // 🔹 Запрос баланса
                 const balanceResponse = await axios.get(`https://ecomaner.com/barter/api/user-balance/`, {
                     headers: { "Authorization": `Token ${token}` },
                 });
                 setUserBalance(balanceResponse.data.balance);
-                
+
+    // 🔹 Запрос информации о пользователе
+    try {
+        const userResponse = await axios.get(`https://ecomaner.com/api/accounts/check-auth/`, {
+            headers: { "Authorization": `Token ${token}` },
+        });
+
+        console.log("🔥 API Ответ /api/accounts/check-auth/:", userResponse.data); // Логируем весь ответ
+
+        setUserId(userResponse.data.id || null);  // ✅ Устанавливаем userId (если есть)
+        setUserEmail(userResponse.data.email || null);  // ✅ Сохраняем email
+
+    } catch (error) {
+        console.error("❌ Ошибка при запросе профиля:", error);
+    }
+
+
+                // 🔹 Запрос информации о сделке
                 const response = await axios.get(`https://ecomaner.com/barter/api/deals/${id}/`, {
                     headers: { "Authorization": `Token ${token}` },
                 });
-
                 setDeal(response.data);
-                
-                // Загружаем товары
+
+                // 🔹 Запрос товаров
                 const itemAResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_A}/`);
                 setItemA(itemAResponse.data);
-                
+
                 if (response.data.item_B) {
                     const itemBResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_B}/`);
                     setItemB(itemBResponse.data);
                 }
+
             } catch (error) {
                 console.error("Ошибка загрузки сделки:", error);
                 setError("Ошибка загрузки сделки");
@@ -66,6 +87,9 @@ const DealRoom = () => {
 
     if (loading) return <p>Загрузка...</p>;
     if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+
+    console.log("🔥 DealRoom state:", { deal, id, userEmail, userId });
 
     return (
         <div className="deal-room">
@@ -100,7 +124,17 @@ const DealRoom = () => {
                 )}
             </div>
             
-            <TradePanel dealId={id} itemA={itemA} itemB={itemB} userBalance={userBalance} />
+            <TradePanel 
+    		dealId={id} 
+   		 itemA={itemA} 
+  		  itemB={itemB} 
+  		  setItemA={setItemA} 
+  		  setItemB={setItemB} 
+   		 userBalance={userBalance} 
+                userEmail={userEmail}  // ✅ Передаём email пользователя
+                ownerAEmail={deal?.initiator_email}  // ✅ Email владельца сделки A
+                ownerBEmail={deal?.partner_email}    // ✅ Email владельца сделки B
+		/>
             <ChatBox dealId={id} />
         </div>
     );
