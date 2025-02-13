@@ -50,6 +50,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ecomaner.com', 'www.ecomaner.com', '
 
 
 INSTALLED_APPS = [
+    "daphne",  # 👈 Channels backend
     # стандартные приложения Django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -322,3 +323,18 @@ if DEBUG:
     from django.urls import re_path
     
     #  settings.ROOT_URLCONF += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# Указываем ASGI-приложение
+ASGI_APPLICATION = "ecomaner_project.asgi.application"
+
+# Настройки каналов через Redis
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
