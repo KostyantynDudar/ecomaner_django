@@ -163,7 +163,7 @@ const handleDecrease = () => {
             <p>Разница в стоимости: <strong>{priceDifference} баллов</strong></p>
             <button onClick={handleIncrease}>⬆ Увеличить мою цену</button>
             <button onClick={handleDecrease}>⬇ Уменьшить мою цену</button>
-            {userBalance >= priceDifference && (
+            {priceDifference > 0 && userBalance >= priceDifference && (
                 <button onClick={() => {
                     console.log("💰 Доплата баллов:", priceDifference);
                     setPriceDifference(0);
