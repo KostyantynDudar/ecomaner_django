@@ -25,7 +25,8 @@ const AllBarterRequests = () => {
                 setCurrentUser(userResponse.data.email);
 
                 const response = await axios.get("https://ecomaner.com/barter/api/all-requests/");
-                setRequests(response.data);
+                const filteredRequests = response.data.filter(req => !req.is_reserved);  // ✅ Оставляем только доступные товары
+                setRequests(filteredRequests);
             } catch (err) {
                 setError("Ошибка загрузки заявок.");
                 console.error("API error:", err);
