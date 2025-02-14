@@ -19,6 +19,9 @@ const DealRoom = () => {
     const [userBalance, setUserBalance] = useState(0);
     const [userId, setUserId] = useState(null);  // ✅ Добавляем userId
     const [userEmail, setUserEmail] = useState(null);  // ✅ Добавляем email пользователя
+    const [ownerAEmail, setOwnerAEmail] = useState(null);
+    const [ownerBEmail, setOwnerBEmail] = useState(null);
+
 
 
 
@@ -57,14 +60,33 @@ const DealRoom = () => {
                 });
                 setDeal(response.data);
 
-                // 🔹 Запрос товаров
+                // ✅ Логируем ответ API, чтобы увидеть все данные
+                console.log("🔥 Данные сделки из API:", response.data);
+                console.log("✅ ownerAEmail:", response.data?.initiator_email);
+                console.log("✅ ownerBEmail:", response.data?.partner_email);
+
+                // 🔹 Запрос товара A
                 const itemAResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_A}/`);
                 setItemA(itemAResponse.data);
+                const ownerAEmail = itemAResponse.data.owner;  // ✅ Сохраняем email владельца товара A
 
+                // 🔹 Запрос товара B (если есть)
+                let itemBResponse = null;
+                let ownerBEmail = null;
                 if (response.data.item_B) {
                     const itemBResponse = await axios.get(`https://ecomaner.com/barter/api/user-requests/${response.data.item_B}/`);
                     setItemB(itemBResponse.data);
+                    ownerBEmail = itemBResponse.data.owner || null;  // ✅ Сохраняем email владельца товара B
                 }
+
+                // ✅ Устанавливаем email владельцев товаров
+                setOwnerAEmail(ownerAEmail);
+                setOwnerBEmail(ownerBEmail);
+
+            console.log("✅ ownerAEmail:", ownerAEmail);
+            console.log("✅ ownerBEmail:", ownerBEmail || "нет товара B");
+
+
 
             } catch (error) {
                 console.error("Ошибка загрузки сделки:", error);
@@ -132,8 +154,8 @@ const DealRoom = () => {
   		  setItemB={setItemB} 
    		 userBalance={userBalance} 
                 userEmail={userEmail}  // ✅ Передаём email пользователя
-                ownerAEmail={deal?.initiator_email}  // ✅ Email владельца сделки A
-                ownerBEmail={deal?.partner_email}    // ✅ Email владельца сделки B
+                ownerAEmail={itemA?.owner}  // ✅ Email владельца сделки A
+                ownerBEmail={itemB?.owner}    // ✅ Email владельца сделки B
 		/>
             <ChatBox dealId={id} />
         </div>
