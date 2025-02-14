@@ -22,5 +22,6 @@ class BarterDealAdmin(admin.ModelAdmin):
 
 @admin.register(UserBalance)
 class UserBalanceAdmin(admin.ModelAdmin):
-    list_display = ("user", "balance")
-    search_fields = ("user__email",)
+    list_display = ("user", "balance")  # Показываем email и баланс
+    search_fields = ("user__email",)  # Поиск по email
+    list_editable = ("balance",)  # ✅ Позволяем редактировать баланс прямо в списке
