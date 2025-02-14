@@ -103,4 +103,4 @@ class UserBalance(models.Model):
             raise ValueError("Недостаточно баллов!")
 
     def __str__(self):
-        return f"{self.user.username} — Баланс: {self.balance} баллов"
+        return f"{self.user.email if self.user else 'Нет email'} — Баланс: {self.balance} баллов"
