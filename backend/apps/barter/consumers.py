@@ -82,9 +82,12 @@ class TradeConsumer(AsyncWebsocketConsumer):
         """ Обновление состояния сделки в базе данных """
         try:
             deal = Deal.objects.get(id=self.room_name)
-            deal.offerA = data["offerA"]
-            deal.offerB = data["offerB"]
-            deal.save()
-            print(f"✅ Обновлено в БД: {deal.offerA} ↔ {deal.offerB}")
+            if deal.item_A:
+                deal.item_A.estimated_value = data["offerA"]
+                deal.item_A.save()
+            if deal.item_B:
+                deal.item_B.estimated_value = data["offerB"]
+                deal.item_B.save()
+            print(f"✅ Обновлено в БД: {data['offerA']} ↔ {data['offerB']}")
         except Deal.DoesNotExist:
             print(f"❌ Ошибка: Сделка {self.room_name} не найдена")
