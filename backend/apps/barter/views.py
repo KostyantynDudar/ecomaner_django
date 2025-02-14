@@ -92,17 +92,26 @@ from django.contrib.auth import get_user_model
 User = get_user_model()  # ✅ Добавляем импорт
 
 # 🔹 API для создания сделки
+
 class CreateDealAPIView(generics.CreateAPIView):
     serializer_class = BarterDealSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        logger.debug(f"📌 Данные перед созданием сделки: {self.request.data}")  # ЛОГ
+        logger.debug(f"📌 Данные перед созданием сделки: {self.request.data}")  # Логируем входящие данные
 
+        # Получаем товары по ID из запроса
         item_A = get_object_or_404(BarterRequest, id=self.request.data.get("item_A"))
         item_B = get_object_or_404(BarterRequest, id=self.request.data.get("item_B")) if self.request.data.get("item_B") else None
         compensation = float(self.request.data.get("compensation_points", 0))
 
+        # Проверяем, не участвует ли товар уже в другой сделке
+        if item_A.is_reserved:
+            raise serializers.ValidationError("Этот товар уже участвует в другой сделке!")
+        if item_B and item_B.is_reserved:
+            raise serializers.ValidationError("Товар B уже зарезервирован в другой сделке!")
+
+        # Проверяем баланс пользователя
         initiator_balance, _ = UserBalance.objects.get_or_create(user=self.request.user)
         if compensation > initiator_balance.balance:
             raise serializers.ValidationError("Недостаточно баллов для компенсации!")
@@ -117,11 +126,19 @@ class CreateDealAPIView(generics.CreateAPIView):
         if not partner:
             raise serializers.ValidationError("Невозможно создать сделку без партнера!")
 
-        logger.debug(f"📌 Partner найден: {partner}")  # ЛОГ
+        logger.debug(f"📌 Partner найден: {partner}")  # Логируем найденного партнера
 
-        # Если у сделки есть партнер, сразу переводим ее в "active"
+        # Устанавливаем статус сделки
         status = "active" if partner else "pending"
 
+        # Помечаем товары как зарезервированные
+        item_A.is_reserved = True
+        item_A.save()
+        if item_B:
+            item_B.is_reserved = True
+            item_B.save()
+
+        # Создаем сделку
         deal = serializer.save(
             initiator=self.request.user,
             partner=partner,
@@ -132,7 +149,8 @@ class CreateDealAPIView(generics.CreateAPIView):
 
         logger.info(f"✅ Сделка {deal.id} создана: {self.request.user.email} ↔ {partner.email if partner else 'Ожидает партнера'}")
 
-        # Если сделка активирована, отправляем уведомление партнёру (добавить логику отправки)
+        # TODO: Если сделка активирована, отправить уведомление партнёру
+
 
 
 # 🔹 API для просмотра деталей сделки

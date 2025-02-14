@@ -2,16 +2,19 @@ from rest_framework import serializers
 from .models import BarterRequest, BarterDeal
 
 class BarterRequestSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source="owner.email")  # Теперь owner передается как email
+    owner = serializers.ReadOnlyField(source="owner.email")  # ✅ Передаем email владельца
     owner_username = serializers.ReadOnlyField(source="owner.username")
+    is_reserved = serializers.BooleanField()  # ✅ Добавляем поле is_reserved
 
     class Meta:
         model = BarterRequest
         fields = [
             "id", "owner", "owner_username", "title", "description", "barter_type",
-            "location", "estimated_value", "compensatory_amount", "status", "created_at", "image"
+            "location", "estimated_value", "compensatory_amount", "status", "created_at", "image",
+            "is_reserved"  # ✅ Теперь это поле будет передаваться
         ]
-        read_only_fields = ["owner", "status", "created_at"]
+        read_only_fields = ["owner", "status", "created_at", "is_reserved"]
+
 
 class BarterDealSerializer(serializers.ModelSerializer):
     initiator_username = serializers.ReadOnlyField(source="initiator.username")

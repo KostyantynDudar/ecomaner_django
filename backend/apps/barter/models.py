@@ -31,6 +31,7 @@ class BarterRequest(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open', verbose_name="Статус заявки")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     image = models.ImageField(upload_to="barter_images/", null=True, blank=True)
+    is_reserved = models.BooleanField(default=False, verbose_name="Зарезервирован в сделке")
 
     def __str__(self):
         return f"{self.owner.email} - {self.title} ({self.get_barter_type_display()})"
