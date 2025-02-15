@@ -15,7 +15,7 @@ const DealRoom = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [priceDifference, setPriceDifference] = useState(0);
-    const [canAccept, setCanAccept] = useState(false);
+
     const [userBalance, setUserBalance] = useState(0);
     const [userId, setUserId] = useState(null);  // ✅ Добавляем userId
     const [userEmail, setUserEmail] = useState(null);  // ✅ Добавляем email пользователя
@@ -103,7 +103,7 @@ const DealRoom = () => {
         if (itemA && itemB) {
             const diff = Math.abs(itemA.estimated_value - itemB.estimated_value);
             setPriceDifference(diff);
-            setCanAccept(itemA.estimated_value === itemB.estimated_value || userBalance >= diff);
+
         }
     }, [itemA, itemB, userBalance]);
 
