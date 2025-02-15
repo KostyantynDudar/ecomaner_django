@@ -170,28 +170,53 @@ const handleDecrease = () => {
         }
     };
 
-    return (
-        <div className="trade-panel">
-            <h3>Торги</h3>
-            <p>Разница в стоимости: <strong>{priceDifference} баллов</strong></p>
-            <button onClick={handleIncrease}>⬆ Увеличить мою цену</button>
-            <button onClick={handleDecrease}>⬇ Уменьшить мою цену</button>
-            {priceDifference > 0 && userBalance >= priceDifference && (
-                <button onClick={() => {
-                    console.log("💰 Доплата баллов:", priceDifference);
-                    setPriceDifference(0);
-                    sendUpdate(offerA, offerB);
-                }}>
-                    Доплатить {priceDifference} баллов
-                </button>
-            )}
-            {canAccept && (
-                <button onClick={handleAcceptDeal} className="accept-button">
-                    Принять сделку
-                </button>
-            )}
+const handleDirectInput = (e, offerType) => {
+    const newValue = Math.max(0, Number(e.target.value)); // 🔒 Ограничиваем минимумом 0
+
+    if (offerType === "A") {
+        setOfferA(newValue);
+        sendUpdate(newValue, offerB);
+    } else {
+        setOfferB(newValue);
+        sendUpdate(offerA, newValue);
+    }
+};
+
+
+return (
+    <div className="trade-panel">
+        <h3>Торги</h3>
+        <p>Разница в стоимости: <strong>{priceDifference} баллов</strong></p>
+
+        <div>
+            <input
+                type="number"
+                value={userEmail === ownerAEmail ? offerA : offerB}
+                onChange={(e) => handleDirectInput(e, userEmail === ownerAEmail ? "A" : "B")}
+                min="0"
+                step="1"
+            />
+            <span> — {userEmail === ownerAEmail ? offerB : offerA} баллов</span>
         </div>
-    );
+
+        {priceDifference > 0 && userBalance >= priceDifference && (
+            <button onClick={() => {
+                console.log("💰 Доплата баллов:", priceDifference);
+                setPriceDifference(0);
+                sendUpdate(offerA, offerB);
+            }}>
+                Доплатить {priceDifference} баллов
+            </button>
+        )}
+        {canAccept && (
+            <button onClick={handleAcceptDeal} className="accept-button">
+                Принять сделку
+            </button>
+        )}
+    </div>
+);
+
+
 };
 
 export default TradePanel;
