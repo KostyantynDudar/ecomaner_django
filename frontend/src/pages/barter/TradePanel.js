@@ -118,12 +118,12 @@ const handleIncrease = () => {
 
 const handleDecrease = () => {
     console.log("🔽 Уменьшение цены: userEmail =", userEmail, "ownerAEmail =", ownerAEmail, "ownerBEmail =", ownerBEmail);
-    
+
     if (userEmail === ownerAEmail) {
         setOfferA((prev) => {
             console.log("🔽 handleDecrease -> Текущее значение offerA (до):", prev);
             const prevValue = Number(prev) || 0;
-            const newValue = Number((prevValue - 10).toFixed(2));
+            const newValue = Math.max(0, Number((prevValue - 10).toFixed(2))); // 🔒 Ограничиваем до 0
             console.log("✅ handleDecrease -> Новое значение offerA:", newValue);
             sendUpdate(newValue, offerB);
             return newValue;
@@ -132,13 +132,14 @@ const handleDecrease = () => {
         setOfferB((prev) => {
             console.log("🔽 handleDecrease -> Текущее значение offerB (до):", prev);
             const prevValue = Number(prev) || 0;
-            const newValue = Number((prevValue - 10).toFixed(2));
+            const newValue = Math.max(0, Number((prevValue - 10).toFixed(2))); // 🔒 Ограничиваем до 0
             console.log("✅ handleDecrease -> Новое значение offerB:", newValue);
             sendUpdate(offerA, newValue);
             return newValue;
         });
     }
 };
+
 
 
 
