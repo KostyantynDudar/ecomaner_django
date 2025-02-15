@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";  // ✅ Установи библиотеку: npm install js-cookie
 
     const TradePanel = ({ dealId, itemA, itemB, setItemA, setItemB, userBalance, userEmail, ownerAEmail, ownerBEmail }) => {
 
@@ -156,19 +157,32 @@ const handleDecrease = () => {
 
 
 
-    const handleAcceptDeal = async () => {
-        console.log("Попытка принять сделку с параметрами:", { offerA, offerB, priceDifference });
-        try {
-            const token = localStorage.getItem("authToken");
-            await axios.post(`https://ecomaner.com/barter/api/deals/${dealId}/confirm/`, {}, {
-                headers: { "Authorization": `Token ${token}` },
-            });
-            alert("Сделка принята!");
-        } catch (error) {
-            console.error("Ошибка принятия сделки:", error);
-            alert("Не удалось принять сделку.");
-        }
-    };
+
+const handleAcceptDeal = async () => {
+    console.log("Попытка принять сделку с параметрами:", { dealId });
+    try {
+        const token = localStorage.getItem("authToken");
+        const csrfToken = Cookies.get("csrftoken");  // 🔹 Получаем CSRF-токен
+
+        await axios.post(
+            `https://ecomaner.com/barter/api/deals/${dealId}/confirm/`,
+            {},
+            {
+                headers: {
+                    "Authorization": `Token ${token}`,
+                    "X-CSRFToken": csrfToken  // ✅ Передаём CSRF-токен
+                },
+                withCredentials: true  // 🔹 Включаем передачу куки
+            }
+        );
+        alert("Сделка принята!");
+    } catch (error) {
+        console.error("Ошибка принятия сделки:", error);
+        alert("Не удалось принять сделку.");
+    }
+};
+
+
 
 const handleDirectInput = (e, offerType) => {
     const newValue = Math.max(0, Number(e.target.value)); // 🔒 Ограничиваем минимумом 0
