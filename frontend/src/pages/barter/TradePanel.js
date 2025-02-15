@@ -69,13 +69,25 @@ useEffect(() => {
 
 
 
-    useEffect(() => {
-        window.reactState = { offerA, offerB, priceDifference };
-        console.log("🔄 Обновленный стейт:", { offerA, offerB, priceDifference });
-        const diff = parseFloat(Math.abs(offerA - offerB).toFixed(2));
-        setPriceDifference(diff);
-        setCanAccept(offerA === offerB || userBalance >= diff);
-    }, [offerA, offerB, userBalance]);
+useEffect(() => {
+    window.reactState = { offerA, offerB, priceDifference, canAccept }; 
+    console.log("🔄 Обновленный стейт:", { offerA, offerB, priceDifference, canAccept });
+
+    const diff = parseFloat(Math.abs(offerA - offerB).toFixed(2));
+    
+    // ✅ Правильное обновление состояния разницы
+    setPriceDifference(diff);
+
+    const newCanAccept = offerA === offerB && offerA > 0;
+
+    console.log("🔍 Проверка canAccept:", { offerA, offerB, priceDifference: diff, newCanAccept });
+
+    // ✅ Принудительное обновление `canAccept`
+    setTimeout(() => setCanAccept(newCanAccept), 0);
+}, [offerA, offerB]);
+
+
+
 
     const sendUpdate = (newOfferA, newOfferB) => {
         if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN) {
