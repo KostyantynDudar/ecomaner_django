@@ -25,6 +25,12 @@ const ContactPage = () => {
                     <p><strong>Discord:</strong> <a href="https://discord.com/channels/935569452861370449/935569452861370452" target="_blank">Присоединиться к нашему Discord</a></p>
                 </div>
             </section>
+
+            {/* 🔹 Кнопка установки PWA */}
+                <button id="installPWA" style={{ display: "none", padding: "10px", background: "#4CAF50", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+                  📲 Установить приложение
+                </button>
+
         </main>
     );
 };

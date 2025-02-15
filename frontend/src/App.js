@@ -76,9 +76,39 @@ function App() {
     }
   };
 
+
+useEffect(() => {
+    let deferredPrompt;
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        deferredPrompt = event;
+
+        const installBtn = document.getElementById("installPWA");
+        if (installBtn) {
+            installBtn.style.display = "block"; // Показываем кнопку
+            installBtn.addEventListener("click", () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === "accepted") {
+                        console.log("👍 Установка подтверждена");
+                    } else {
+                        console.log("❌ Установка отклонена");
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        }
+    });
+}, []);
+
+
+
+
   if (!isAuthChecked) {
     return <div className="loading-screen">Проверка авторизации...</div>;
   }
+
 
   return (
     <Router>
