@@ -9,6 +9,7 @@ import Cookies from "js-cookie";  // ✅ Установи библиотеку: 
     const [priceDifference, setPriceDifference] = useState(0);
     const [canAccept, setCanAccept] = useState(false);
     const socketRef = useRef(null);
+    const [dealStatus, setDealStatus] = useState(null);
 
     console.log("🔥 TradePanel полученные пропсы:", { dealId, itemA, itemB, userEmail, ownerAEmail, ownerBEmail });
 
@@ -158,24 +159,27 @@ const handleDecrease = () => {
 
 
 
+useEffect(() => {
+    // Запрашиваем статус сделки при загрузке компонента
+    axios.get(`https://ecomaner.com/barter/api/deals/${dealId}/`, {
+        headers: { "Authorization": `Token ${localStorage.getItem("authToken")}` }
+    })
+    .then(response => setDealStatus(response.data.status))
+    .catch(error => console.error("Ошибка загрузки статуса сделки:", error));
+}, [dealId]);
+
 const handleAcceptDeal = async () => {
-    console.log("Попытка принять сделку с параметрами:", { dealId });
     try {
         const token = localStorage.getItem("authToken");
-        const csrfToken = Cookies.get("csrftoken");  // 🔹 Получаем CSRF-токен
+        const csrfToken = Cookies.get("csrftoken");
 
-        await axios.post(
-            `https://ecomaner.com/barter/api/deals/${dealId}/confirm/`,
-            {},
-            {
-                headers: {
-                    "Authorization": `Token ${token}`,
-                    "X-CSRFToken": csrfToken  // ✅ Передаём CSRF-токен
-                },
-                withCredentials: true  // 🔹 Включаем передачу куки
-            }
-        );
-        alert("Сделка принята!");
+        const response = await axios.patch(`https://ecomaner.com/barter/api/deals/${dealId}/confirm/`, {}, {
+            headers: { "Authorization": `Token ${token}`, "X-CSRFToken": csrfToken },
+            withCredentials: true,
+        });
+
+        alert(response.data.message);
+        setDealStatus("started"); // Обновляем статус в UI
     } catch (error) {
         console.error("Ошибка принятия сделки:", error);
         alert("Не удалось принять сделку.");
@@ -202,33 +206,39 @@ return (
         <h3>Торги</h3>
         <p>Разница в стоимости: <strong>{priceDifference} баллов</strong></p>
 
-        <div>
-            <input
-                type="number"
-                value={userEmail === ownerAEmail ? offerA : offerB}
-                onChange={(e) => handleDirectInput(e, userEmail === ownerAEmail ? "A" : "B")}
-                min="0"
-                step="1"
-            />
-            <span> — {userEmail === ownerAEmail ? offerB : offerA} баллов</span>
-        </div>
+        {dealStatus !== "started" && (
+            <>
+                <div>
+                    <input
+                        type="number"
+                        value={userEmail === ownerAEmail ? offerA : offerB}
+                        onChange={(e) => handleDirectInput(e, userEmail === ownerAEmail ? "A" : "B")}
+                        min="0"
+                        step="1"
+                    />
+                    <span> — {userEmail === ownerAEmail ? offerB : offerA} баллов</span>
+                </div>
 
-        {priceDifference > 0 && userBalance >= priceDifference && (
-            <button onClick={() => {
-                console.log("💰 Доплата баллов:", priceDifference);
-                setPriceDifference(0);
-                sendUpdate(offerA, offerB);
-            }}>
-                Доплатить {priceDifference} баллов
-            </button>
+                {priceDifference > 0 && userBalance >= priceDifference && (
+                    <button onClick={() => {
+                        console.log("💰 Доплата баллов:", priceDifference);
+                        setPriceDifference(0);
+                        sendUpdate(offerA, offerB);
+                    }}>
+                        Доплатить {priceDifference} баллов
+                    </button>
+                )}
+            </>
         )}
-        {canAccept && (
+
+        {canAccept && dealStatus !== "started" && (
             <button onClick={handleAcceptDeal} className="accept-button">
                 Принять сделку
             </button>
         )}
     </div>
 );
+
 
 
 };
