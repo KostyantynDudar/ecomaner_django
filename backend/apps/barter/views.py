@@ -47,7 +47,8 @@ class UserBarterRequestsAPIView(generics.ListCreateAPIView):
         serializer.save(
             owner=self.request.user,
             location=self.request.data.get('address', ''),
-            estimated_value=self.request.data.get('value', 0)
+            estimated_value=self.request.data.get('value', 0),
+            is_reserved=False
         )
 
 # 🔹 API для получения конкретной заявки (ДОСТУП УЧАСТНИКАМ СДЕЛКИ)
@@ -168,45 +169,49 @@ class DealDetailAPIView(generics.RetrieveAPIView):
             raise PermissionDenied("Вы не участвуете в этой сделке.")
         return deal
 
-
 # 🔹 API для подтверждения сделки
-class ConfirmDealAPIView(APIView):
-    """
-    API для подтверждения сделки.
-
-    🔹 Функционал:
-    - Проверяет, участвует ли пользователь в сделке.
-    - Рассчитывает разницу в стоимости товаров.
-    - Если стоимость равна, сделка сразу подтверждается.
-    - Если разница есть, проверяет баланс пользователя:
-      ✅ Если хватает баллов — списывает и подтверждает сделку.
-      ❌ Если не хватает — сделка не может быть принята.
-    """
-
+class ConfirmDealAPIView(generics.UpdateAPIView):
+    """Подтверждение сделки. Если баллы равны — сделка начинается, если нет — идёт доплата."""
+    queryset = BarterDeal.objects.all()
+    serializer_class = BarterDealSerializer
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, pk):
-        deal = get_object_or_404(BarterDeal, pk=pk)
+    def get_object(self):
+        deal = super().get_object()
+        if self.request.user != deal.initiator and self.request.user != deal.partner:
+            logger.warning(f"❌ Доступ запрещён: {self.request.user} пытался подтвердить сделку {deal.id}")
+            raise PermissionDenied("Вы не участвуете в этой сделке.")
+        return deal
 
-        if request.user not in [deal.initiator, deal.partner]:
-            return Response({"error": "Вы не участник сделки!"}, status=403)
+    def update(self, request, *args, **kwargs):
+        deal = self.get_object()
+
+        # ❌ Если сделка уже началась, запретить повторное подтверждение
+        if deal.status == "started":
+            return Response({"error": "Сделка уже началась!"}, status=400)
 
         price_difference = abs(deal.item_A.estimated_value - deal.item_B.estimated_value)
-        user_balance = get_object_or_404(UserBalance, user=request.user)
+        user_balance, _ = UserBalance.objects.get_or_create(user=request.user)
 
+        # ✅ Сделка стартует, если стоимость равна
         if deal.item_A.estimated_value == deal.item_B.estimated_value:
-            deal.status = "accepted"
+            deal.status = "started"
             deal.save()
-            return Response({"message": "Сделка успешно принята!"}, status=200)
+            return Response({"message": "Сделка началась!"}, status=200)
 
+        # ✅ Если баллов хватает, резервируем их и стартуем сделку
         if user_balance.balance >= price_difference:
             user_balance.balance -= price_difference
             user_balance.save()
-            deal.status = "accepted"
-            deal.save()
-            return Response({"message": "Сделка успешно принята с доплатой!"}, status=200)
 
-        return Response({"error": "Недостаточно баллов для завершения сделки!"}, status=400)
+            deal.status = "started"
+            deal.save()
+
+            return Response({"message": "Сделка началась с доплатой!"}, status=200)
+
+        return Response({"error": "Недостаточно баллов для сделки!"}, status=400)
+
+
 
 # 🔹 API для получения списка сделок пользователя
 class UserDealsAPIView(generics.ListAPIView):

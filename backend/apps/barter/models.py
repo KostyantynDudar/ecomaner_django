@@ -41,6 +41,7 @@ class BarterDeal(models.Model):
     """Модель сделки между контрагентами"""
     STATUS_CHOICES = [
         ('pending', 'Ожидание'),
+        ('started', 'Начата'),
         ('active', 'В работе'),
         ('completed', 'Завершена'),
         ('cancelled', 'Отменена'),
@@ -78,7 +79,7 @@ class BarterDeal(models.Model):
         max_digits=10, decimal_places=2, default=0, verbose_name="Компенсация в баллах"
     )
     status = models.CharField(
-        max_length=10, choices=STATUS_CHOICES, default="pending", verbose_name="Статус сделки"
+        max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Статус сделки"
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
