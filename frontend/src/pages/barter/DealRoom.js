@@ -113,6 +113,13 @@ const DealRoom = () => {
 
     console.log("🔥 DealRoom state:", { deal, id, userEmail, userId });
 
+console.log("✅ itemA:", itemA);
+console.log("✅ itemB:", itemB);
+console.log("✅ ownerAEmail перед передачей в TradePanel:", itemA?.owner);
+console.log("✅ ownerBEmail перед передачей в TradePanel:", itemB?.owner);
+
+
+
     return (
         <div className="deal-room">
             <BarterMenu />
@@ -154,8 +161,8 @@ const DealRoom = () => {
   		  setItemB={setItemB} 
    		 userBalance={userBalance} 
                 userEmail={userEmail}  // ✅ Передаём email пользователя
-                ownerAEmail={itemA?.owner}  // ✅ Email владельца сделки A
-                ownerBEmail={itemB?.owner}    // ✅ Email владельца сделки B
+                ownerAEmail={itemA?.owner || deal?.initiator_email || "undefined_owner"}  // ✅ Email владельца сделки A
+                ownerBEmail={itemB?.owner || deal?.partner_email || "undefined_owner"}    // ✅ Email владельца сделки B
 		/>
             <ChatBox dealId={id} />
         </div>

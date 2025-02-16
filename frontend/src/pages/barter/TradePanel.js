@@ -201,6 +201,17 @@ const handleDirectInput = (e, offerType) => {
 };
 
 
+console.log("🔍 Проверка перед кнопкой:", {
+  priceDifference,
+  userBalance,
+  userEmail,
+  ownerAEmail,
+  ownerBEmail,
+  offerA,
+  offerB
+});
+
+
 return (
     <div className="trade-panel">
         <h3>Торги</h3>
@@ -219,7 +230,9 @@ return (
                     <span> — {userEmail === ownerAEmail ? offerB : offerA} баллов</span>
                 </div>
 
-                {priceDifference > 0 && userBalance >= priceDifference && (
+                {priceDifference > 0 && userBalance >= priceDifference &&     
+			((userEmail === itemA.owner && offerA < offerB) || 
+     			(userEmail === itemB.owner && offerB < offerA)) && (
                     <button onClick={() => {
                         console.log("💰 Доплата баллов:", priceDifference);
                         setPriceDifference(0);
