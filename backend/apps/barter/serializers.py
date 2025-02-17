@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BarterRequest, BarterDeal
+from .models import BarterRequest, BarterDeal, UserBalance 
 
 class BarterRequestSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.email")  # ✅ Передаем email владельца
@@ -28,3 +28,8 @@ class BarterDealSerializer(serializers.ModelSerializer):
             "item_A", "item_B", "compensation_points", "status", "created_at"
         ]
         read_only_fields = ["initiator", "status", "created_at"]
+
+class UserBalanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserBalance
+        fields = ["balance", "reserved_balance"]

@@ -76,9 +76,13 @@ class UserBalanceAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        """Возвращает текущий баланс пользователя"""
+        """Возвращает текущий баланс и зарезервированные баллы пользователя"""
         user_balance, _ = UserBalance.objects.get_or_create(user=request.user)
-        return Response({"balance": user_balance.balance})
+        return Response({
+            "balance": user_balance.balance,
+            "reserved_balance": user_balance.reserved_balance  # ✅ Теперь возвращаем и резерв
+        })
+
 
 # 🔹 API для получения всех заявок
 class AllBarterRequestsAPIView(generics.ListAPIView):
@@ -194,23 +198,58 @@ class ConfirmDealAPIView(generics.UpdateAPIView):
         user_balance, _ = UserBalance.objects.get_or_create(user=request.user)
 
         # ✅ Сделка стартует, если стоимость равна
-        if deal.item_A.estimated_value == deal.item_B.estimated_value:
+        if price_difference == 0:
             deal.status = "started"
             deal.save()
             return Response({"message": "Сделка началась!"}, status=200)
 
-        # ✅ Если баллов хватает, резервируем их и стартуем сделку
+        # ✅ Если у пользователя хватает баллов, резервируем их и стартуем сделку
         if user_balance.balance >= price_difference:
             user_balance.balance -= price_difference
+            user_balance.reserved_balance += price_difference  # 🔹 Резервируем сумму
             user_balance.save()
 
             deal.status = "started"
             deal.save()
 
-            return Response({"message": "Сделка началась с доплатой!"}, status=200)
+            return Response({"message": "Сделка началась с доплатой!", "reserved": price_difference}, status=200)
 
         return Response({"error": "Недостаточно баллов для сделки!"}, status=400)
 
+
+class CancelDealAPIView(APIView):
+    def post(self, request, deal_id):
+        deal = get_object_or_404(BarterDeal, id=deal_id)
+        user = request.user.userprofile  
+
+        if deal.status != "in_progress":
+            return Response({"error": "Сделку нельзя отменить!"}, status=400)
+
+        # 🔹 Возвращаем баллы
+        user.balance += user.reserved_balance
+        user.reserved_balance = 0
+        user.save()
+
+        # 🔹 Меняем статус
+        deal.status = "cancelled"
+        deal.save()
+
+        return Response({"message": "Сделка отменена!", "status": deal.status})
+
+class MarkAsInTransitAPIView(APIView):
+    """Перевод сделки в статус 'В дороге'"""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, deal_id):
+        deal = get_object_or_404(BarterDeal, id=deal_id)
+
+        if deal.status != "active":
+            return Response({"error": "Сделка должна быть в статусе 'В работе', чтобы перейти в 'В дороге'."}, status=400)
+
+        deal.status = "in_transit"
+        deal.save()
+
+        return Response({"message": "Сделка переведена в статус 'В дороге'", "status": deal.status}, status=200)
 
 
 # 🔹 API для получения списка сделок пользователя

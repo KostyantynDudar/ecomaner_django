@@ -23,5 +23,7 @@ urlpatterns = [
 
     path('api/user-balance/', views.UserBalanceAPIView.as_view(), name='user_balance'),
 
+    path("deals/<int:deal_id>/mark-in-transit/", views.MarkAsInTransitAPIView.as_view(), name="mark_as_in_transit"),
+
 
 ]

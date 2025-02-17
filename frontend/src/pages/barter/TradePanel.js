@@ -227,6 +227,25 @@ const handleDirectInput = (e, offerType) => {
     }
 };
 
+const handleMarkAsInTransit = async () => {
+    try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.post(
+            `https://ecomaner.com/barter/api/deals/${dealId}/mark-in-transit/`,
+            {},
+            {
+                headers: { "Authorization": `Token ${token}` },
+            }
+        );
+
+        alert(response.data.message);
+        setDealStatus("in_transit");  // Обновляем статус в UI
+    } catch (error) {
+        console.error("Ошибка перевода сделки в статус 'В дороге':", error);
+        alert("Не удалось изменить статус.");
+    }
+};
+
 
 console.log("🔍 Проверка перед кнопкой:", {
   priceDifference,
@@ -260,7 +279,7 @@ return (
 
 
 
-        {dealStatus !== "started" && (
+        {dealStatus === "active" &&  (
             <>
                 <div>
                     <input
@@ -283,7 +302,7 @@ return (
             </>
         )}
 
-        {canAccept && dealStatus !== "started" && (
+        {canAccept && dealStatus === "active" &&  (
             <button 
                 onClick={handleAcceptDeal} 
                 className="accept-button" 
@@ -292,8 +311,16 @@ return (
                 {userBalance < priceDifference ? "Недостаточно баллов" : "Принять сделку"}
             </button>
         )}
+
+        {dealStatus === "started" && (
+            <button onClick={handleMarkAsInTransit} className="in-transit-button">
+                Отправлено
+            </button>
+        )}
+
     </div>
 );
+
 
 
 

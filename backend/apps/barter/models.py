@@ -43,6 +43,7 @@ class BarterDeal(models.Model):
         ('pending', 'Ожидание'),
         ('started', 'Начата'),
         ('active', 'В работе'),
+        ('in_transit', 'В дороге'),
         ('completed', 'Завершена'),
         ('cancelled', 'Отменена'),
     ]
@@ -91,6 +92,7 @@ class UserBalance(models.Model):
     """Баланс пользователя для компенсации"""
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    reserved_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def add_points(self, amount):
         self.balance += amount
