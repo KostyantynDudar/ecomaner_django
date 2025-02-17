@@ -168,6 +168,7 @@ useEffect(() => {
     .catch(error => console.error("Ошибка загрузки статуса сделки:", error));
 }, [dealId]);
 
+//  Accept deal
 const handleAcceptDeal = async () => {
     try {
         const token = localStorage.getItem("authToken");
@@ -186,6 +187,30 @@ const handleAcceptDeal = async () => {
     }
 };
 
+//  Accept deal with pay
+const handlePayDifference = async () => {
+    try {
+        console.log("📡 Отправляем API-запрос:", `https://ecomaner.com/barter/api/deals/${dealId}/confirm/`);
+
+        const token = localStorage.getItem("authToken");
+        const csrfToken = Cookies.get("csrftoken");
+
+        const response = await axios.patch(`https://ecomaner.com/barter/api/deals/${dealId}/confirm/`, {}, {
+            headers: {
+                "Authorization": `Token ${token}`,
+                "X-CSRFToken": csrfToken,
+            },
+            withCredentials: true,
+        });
+
+        alert("✅ Баллы доплачены, сделка началась!");
+        setDealStatus("started");
+
+    } catch (error) {
+        console.error("Ошибка доплаты:", error);
+        alert("❌ Ошибка при доплате.");
+    }
+};
 
 
 const handleDirectInput = (e, offerType) => {
@@ -211,6 +236,7 @@ console.log("🔍 Проверка перед кнопкой:", {
   offerB
 });
 
+console.log("🔥 Проверяем dealId в TradePanel.js:", dealId);
 
 return (
     <div className="trade-panel">
@@ -231,13 +257,9 @@ return (
                 </div>
 
                 {priceDifference > 0 && userBalance >= priceDifference &&     
-			((userEmail === itemA.owner && offerA < offerB) || 
-     			(userEmail === itemB.owner && offerB < offerA)) && (
-                    <button onClick={() => {
-                        console.log("💰 Доплата баллов:", priceDifference);
-                        setPriceDifference(0);
-                        sendUpdate(offerA, offerB);
-                    }}>
+			        ((userEmail === itemA.owner && offerA < offerB) || 
+     			    (userEmail === itemB.owner && offerB < offerA)) && (
+                    <button onClick={handlePayDifference}>
                         Доплатить {priceDifference} баллов
                     </button>
                 )}
@@ -245,12 +267,17 @@ return (
         )}
 
         {canAccept && dealStatus !== "started" && (
-            <button onClick={handleAcceptDeal} className="accept-button">
-                Принять сделку
+            <button 
+                onClick={handleAcceptDeal} 
+                className="accept-button" 
+                disabled={userBalance < priceDifference}
+            >
+                {userBalance < priceDifference ? "Недостаточно баллов" : "Принять сделку"}
             </button>
         )}
     </div>
 );
+
 
 
 
