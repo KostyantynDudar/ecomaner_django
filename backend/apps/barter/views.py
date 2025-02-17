@@ -243,8 +243,8 @@ class MarkAsInTransitAPIView(APIView):
     def post(self, request, deal_id):
         deal = get_object_or_404(BarterDeal, id=deal_id)
 
-        if deal.status != "active":
-            return Response({"error": "Сделка должна быть в статусе 'В работе', чтобы перейти в 'В дороге'."}, status=400)
+        if deal.status != "started":
+            return Response({"error": "Сделка должна быть в статусе 'Подтверждена', чтобы перейти в 'В дороге'."}, status=400)
 
         deal.status = "in_transit"
         deal.save()
