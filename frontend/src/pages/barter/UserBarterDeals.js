@@ -8,6 +8,14 @@ const UserBarterDeals = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [priceDifference, setPriceDifference] = useState(0);
+    
+    const statusMapping = {
+        pending: "⏳ В ожидании",
+        started: "🚀 Начата",
+        active: "🔥 В работе",
+        completed: "✅ Завершена",
+        cancelled: "❌ Отменена"
+    };
 
     useEffect(() => {
         const fetchDeals = async () => {
@@ -68,7 +76,7 @@ const UserBarterDeals = () => {
                             <tr key={deal.id}>
                                 <td>{deal.item_A?.title || "Не указано"}</td>
                                 <td>{deal.item_B?.title || "Не указано"}</td>
-                                <td>{deal.status}</td>
+                                <td>{statusMapping[deal.status] || deal.status}</td>
                                 <td>
                                     <button onClick={(e) => {
                                         e.stopPropagation();

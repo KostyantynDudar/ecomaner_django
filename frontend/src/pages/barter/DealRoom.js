@@ -17,10 +17,15 @@ const DealRoom = () => {
     const [priceDifference, setPriceDifference] = useState(0);
 
     const [userBalance, setUserBalance] = useState(0);
+    const [reservedBalance, setReservedBalance] = useState(0);
+
     const [userId, setUserId] = useState(null);  // ✅ Добавляем userId
     const [userEmail, setUserEmail] = useState(null);  // ✅ Добавляем email пользователя
+
     const [ownerAEmail, setOwnerAEmail] = useState(null);
     const [ownerBEmail, setOwnerBEmail] = useState(null);
+
+
 
 
 
@@ -37,6 +42,7 @@ const DealRoom = () => {
                     headers: { "Authorization": `Token ${token}` },
                 });
                 setUserBalance(balanceResponse.data.balance);
+                setReservedBalance(balanceResponse.data.reserved_balance);
 
     // 🔹 Запрос информации о пользователе
     try {
@@ -160,6 +166,7 @@ console.log("✅ ownerBEmail перед передачей в TradePanel:", item
   		  setItemA={setItemA} 
   		  setItemB={setItemB} 
    		 userBalance={userBalance} 
+                reservedBalance={reservedBalance}
                 userEmail={userEmail}  // ✅ Передаём email пользователя
                 ownerAEmail={itemA?.owner || deal?.initiator_email || "undefined_owner"}  // ✅ Email владельца сделки A
                 ownerBEmail={itemB?.owner || deal?.partner_email || "undefined_owner"}    // ✅ Email владельца сделки B

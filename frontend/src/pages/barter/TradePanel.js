@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";  // ✅ Установи библиотеку: npm install js-cookie
+import "../../styles/TradePanel.css";  // если стили в том же каталоге
 
-    const TradePanel = ({ dealId, itemA, itemB, setItemA, setItemB, userBalance, userEmail, ownerAEmail, ownerBEmail }) => {
+
+    const TradePanel = ({ dealId, itemA, itemB, setItemA, setItemB, userBalance, reservedBalance, userEmail, ownerAEmail, ownerBEmail }) => {
 
     const [offerA, setOfferA] = useState(itemA?.estimated_value || 0);
     const [offerB, setOfferB] = useState(itemB?.estimated_value || 0);
@@ -242,6 +244,21 @@ return (
     <div className="trade-panel">
         <h3>Торги</h3>
         <p>Разница в стоимости: <strong>{priceDifference} баллов</strong></p>
+
+	{/* 🔥 Выводим статус сделки (заметно) */}
+	<p><strong>Статус сделки:</strong> <span className="deal-status">{dealStatus}</span></p>
+
+	{/* 🔥 Информация о товарах и ролях */}
+	<p><strong>Товар инициатора:</strong> {itemA.title} <span className="label">Инициатор</span></p>
+	<p><strong>Товар партнера:</strong> {itemB.title} <span className="label">Партнер</span></p>
+
+	{/* 🔥 Баланс пользователя */}
+	<h4>Баланс</h4>
+	<p><strong>Ваш баланс:</strong> {userBalance} баллов</p>
+	<p><strong>Зарезервировано:</strong> {reservedBalance} баллов</p>
+
+
+
 
         {dealStatus !== "started" && (
             <>
