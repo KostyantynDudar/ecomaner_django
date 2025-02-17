@@ -12,6 +12,9 @@ import "../../styles/TradePanel.css";  // если стили в том же к�
     const [canAccept, setCanAccept] = useState(false);
     const socketRef = useRef(null);
     const [dealStatus, setDealStatus] = useState(null);
+    const [initiatorReceived, setInitiatorReceived] = useState(false);
+    const [partnerReceived, setPartnerReceived] = useState(false);
+
 
     console.log("🔥 TradePanel полученные пропсы:", { dealId, itemA, itemB, userEmail, ownerAEmail, ownerBEmail });
 
@@ -227,24 +230,73 @@ const handleDirectInput = (e, offerType) => {
     }
 };
 
+//  Mark deal as "In Transit"
 const handleMarkAsInTransit = async () => {
     try {
+        console.log("📡 Отправляем API-запрос:", `https://ecomaner.com/barter/api/deals/${dealId}/mark-in-transit/`);
+
         const token = localStorage.getItem("authToken");
+        const csrfToken = Cookies.get("csrftoken");
+
         const response = await axios.post(
             `https://ecomaner.com/barter/api/deals/${dealId}/mark-in-transit/`,
             {},
             {
-                headers: { "Authorization": `Token ${token}` },
+                headers: {
+                    "Authorization": `Token ${token}`,
+                    "X-CSRFToken": csrfToken,
+                },
+                withCredentials: true,
+            }
+        );
+
+        alert("✅ Сделка переведена в статус 'В дороге'!");
+        setDealStatus("in_transit"); // Обновляем статус в UI
+
+    } catch (error) {
+        console.error("Ошибка перевода сделки в статус 'В дороге':", error);
+        alert("❌ Не удалось изменить статус.");
+    }
+};
+
+//  Mark deal as "Received"
+const handleMarkAsReceived = async () => {
+    try {
+        console.log("📡 Отправляем API-запрос:", `https://ecomaner.com/barter/api/deals/${dealId}/mark-as-received/`);
+
+        const token = localStorage.getItem("authToken");
+        const csrfToken = Cookies.get("csrftoken");
+
+        const response = await axios.post(
+            `https://ecomaner.com/barter/api/deals/${dealId}/mark-as-received/`,
+            {},
+            {
+                headers: {
+                    "Authorization": `Token ${token}`,
+                    "X-CSRFToken": csrfToken,
+                },
+                withCredentials: true,
             }
         );
 
         alert(response.data.message);
-        setDealStatus("in_transit");  // Обновляем статус в UI
+
+        // ✅ Логируем обновленный статус после нажатия
+        console.log("🔍 Обновленный статус сделки:", response.data.status);
+        console.log("📌 Получение инициатором:", response.data.initiator_received);
+        console.log("📌 Получение партнером:", response.data.partner_received);
+
+        setDealStatus(response.data.status);  // ✅ Обновляем статус в UI
+        setInitiatorReceived(response.data.initiator_received || false);
+        setPartnerReceived(response.data.partner_received || false);
+
     } catch (error) {
-        console.error("Ошибка перевода сделки в статус 'В дороге':", error);
-        alert("Не удалось изменить статус.");
+        console.error("Ошибка подтверждения получения товара:", error);
+        alert("❌ Не удалось подтвердить получение.");
     }
 };
+
+
 
 
 console.log("🔍 Проверка перед кнопкой:", {
@@ -317,6 +369,13 @@ return (
                 Отправлено
             </button>
         )}
+
+        {dealStatus === "in_transit" && (
+            <button onClick={handleMarkAsReceived} className="received-button">
+                Товар получен
+            </button>
+        )}
+
 
     </div>
 );
