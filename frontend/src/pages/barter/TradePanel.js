@@ -297,6 +297,36 @@ const handleMarkAsReceived = async () => {
 };
 
 
+//  Mark deal as "Canceled"
+const handleCancelDeal = async () => {
+    try {
+        console.log("📡 Отправляем API-запрос на отмену:", `https://ecomaner.com/barter/api/deals/${dealId}/cancel/`);
+
+        const token = localStorage.getItem("authToken");
+        const csrfToken = Cookies.get("csrftoken");
+
+        await axios.post(
+            `https://ecomaner.com/barter/api/deals/${dealId}/cancel/`,
+            {},
+            {
+                headers: {
+                    "Authorization": `Token ${token}`,
+                    "X-CSRFToken": csrfToken,
+                },
+                withCredentials: true,
+            }
+        );
+
+        alert("❌ Сделка отменена!");
+        window.location.reload();
+
+    } catch (error) {
+        console.error("Ошибка отмены сделки:", error);
+        alert("❌ Не удалось отменить сделку.");
+    }
+};
+
+
 
 
 console.log("🔍 Проверка перед кнопкой:", {
@@ -375,6 +405,17 @@ return (
                 Товар получен
             </button>
         )}
+
+
+        <button 
+  		onClick={handleCancelDeal} 
+  		className="cancel-button" 
+  		disabled={dealStatus === "completed" || dealStatus === "cancelled"}
+		>
+  		Отменить сделку
+	</button>
+
+
 
 
     </div>
