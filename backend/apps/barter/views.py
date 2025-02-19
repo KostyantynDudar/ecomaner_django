@@ -217,24 +217,56 @@ class ConfirmDealAPIView(generics.UpdateAPIView):
         return Response({"error": "Недостаточно баллов для сделки!"}, status=400)
 
 
+
 class CancelDealAPIView(APIView):
+    """Отмена сделки (возможна на всех стадиях, кроме 'completed')"""
+    permission_classes = [IsAuthenticated]
+
     def post(self, request, deal_id):
+        logger.info(f"🔹 Запрос на отмену сделки: deal_id={deal_id}, user={request.user}")
+        
         deal = get_object_or_404(BarterDeal, id=deal_id)
-        user = request.user.userprofile  
+        user = request.user  # ✅ Исправлено: получаем пользователя напрямую
 
-        if deal.status != "in_progress":
-            return Response({"error": "Сделку нельзя отменить!"}, status=400)
+        logger.debug(f"📌 Найденная сделка: {deal}")
+        logger.debug(f"📌 Статус сделки перед отменой: {deal.status}")
 
-        # 🔹 Возвращаем баллы
-        user.balance += user.reserved_balance
-        user.reserved_balance = 0
-        user.save()
+        if deal.status == "completed":
+            logger.warning(f"❌ Попытка отменить завершенную сделку: deal_id={deal_id}")
+            return Response({"error": "Сделка уже завершена и не может быть отменена."}, status=400)
 
-        # 🔹 Меняем статус
+        # Возвращаем зарезервированные баллы (если были)
+        user_balance, _ = UserBalance.objects.get_or_create(user=user)
+        logger.debug(f"📌 Баланс до возврата: {user_balance.balance}, зарезервировано: {user_balance.reserved_balance}")
+        
+        user_balance.balance += user_balance.reserved_balance
+        user_balance.reserved_balance = 0
+        user_balance.save()
+        
+        logger.debug(f"✅ Баланс после возврата: {user_balance.balance}")
+
+        # Освобождаем товары
+        if deal.item_A:
+            deal.item_A.is_reserved = False
+            deal.item_A.save()
+            logger.debug(f"✅ Товар A {deal.item_A} освобожден")
+        if deal.item_B:
+            deal.item_B.is_reserved = False
+            deal.item_B.save()
+            logger.debug(f"✅ Товар B {deal.item_B} освобожден")
+
+        # Меняем статус
         deal.status = "cancelled"
         deal.save()
 
+
+
+        logger.info(f"✅ Сделка {deal_id} успешно отменена пользователем {user}")
         return Response({"message": "Сделка отменена!", "status": deal.status})
+
+
+
+
 
 class MarkAsInTransitAPIView(APIView):
     """Перевод сделки в статус 'В дороге'"""
@@ -250,6 +282,39 @@ class MarkAsInTransitAPIView(APIView):
         deal.save()
 
         return Response({"message": "Сделка переведена в статус 'В дороге'", "status": deal.status}, status=200)
+
+
+class MarkAsReceivedAPIView(APIView):
+    """Подтверждение получения товара. Сделка завершается, если оба подтвердили."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, deal_id):
+        deal = get_object_or_404(BarterDeal, id=deal_id)
+
+        if deal.status != "in_transit":
+            return Response({"error": "Сделка должна быть в статусе 'В дороге'."}, status=400)
+
+        user = request.user
+        if user == deal.initiator:
+            deal.initiator_received = True
+        elif user == deal.partner:
+            deal.partner_received = True
+        else:
+            return Response({"error": "Вы не участник сделки."}, status=403)
+
+        # Если оба подтвердили получение → сделка завершена
+        if deal.initiator_received and deal.partner_received:
+            deal.status = "completed"
+            deal.save()
+            return Response({
+                "message": "Вы подтвердили получение!",
+                "status": deal.status,
+                "initiator_received": deal.initiator_received,
+                "partner_received": deal.partner_received,
+            }, status=200)
+
+        deal.save()
+        return Response({"message": "Вы подтвердили получение товара.", "status": deal.status}, status=200)
 
 
 # 🔹 API для получения списка сделок пользователя

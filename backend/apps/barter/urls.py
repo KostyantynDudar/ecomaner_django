@@ -24,6 +24,10 @@ urlpatterns = [
     path('api/user-balance/', views.UserBalanceAPIView.as_view(), name='user_balance'),
 
     path("api/deals/<int:deal_id>/mark-in-transit/", views.MarkAsInTransitAPIView.as_view(), name="mark_as_in_transit"),
+    path("api/deals/<int:deal_id>/mark-as-received/", views.MarkAsReceivedAPIView.as_view(), name="mark_as_received"),
+    path("api/deals/<int:deal_id>/cancel/", views.CancelDealAPIView.as_view(), name="cancel_deal"),
+
+
 
 
 ]

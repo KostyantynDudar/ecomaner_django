@@ -82,6 +82,9 @@ class BarterDeal(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default="pending", verbose_name="Статус сделки"
     )
+    initiator_received = models.BooleanField(default=False)  # ✅ Добавили поле
+    partner_received = models.BooleanField(default=False)  # ✅ Добавили поле
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
